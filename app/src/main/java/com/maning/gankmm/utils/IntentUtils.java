@@ -15,10 +15,8 @@ import com.maning.gankmm.ui.activity.SettingActivity;
 import com.maning.gankmm.ui.activity.SupportPayActivity;
 import com.maning.gankmm.ui.activity.WebActivity;
 import com.maning.gankmm.ui.imagebrowser.MNImageBrowser;
-import com.socks.library.KLog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by maning on 16/3/3.
@@ -40,7 +38,7 @@ public class IntentUtils {
         MNImageBrowser.showImageBrowser(context, view, position, mDatas, null);
     }
 
-    public static void startToImageShow(Context context, ArrayList<String> mDatas, ArrayList<GankEntity> gankEntityList, int position, View view) {
+    public static void startToImageShow(final Context context, ArrayList<String> mDatas, final ArrayList<GankEntity> gankEntityList, int position, View view) {
         MNImageBrowser.showImageBrowser(context, view, position, mDatas, gankEntityList);
     }
 

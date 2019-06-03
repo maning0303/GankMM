@@ -47,7 +47,7 @@ import java.util.ArrayList;
 /**
  * 图片浏览的页面
  */
-public class MNImageBrowserActivity extends AppCompatActivity {
+public class MNImageBrowserActivity2 extends AppCompatActivity {
 
     public final static String IntentKey_ImageList = "IntentKey_ImageList";
     public final static String IntentKey_GankEntityList = "IntentKey_GankEntityList";
@@ -73,7 +73,7 @@ public class MNImageBrowserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setWindowFullScreen();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mnimage_browser);
+        setContentView(R.layout.activity_mnimage_browser2);
 
         context = this;
 
@@ -339,7 +339,7 @@ public class MNImageBrowserActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            View inflate = layoutInflater.inflate(R.layout.mn_image_browser_item_show_image, container, false);
+            View inflate = layoutInflater.inflate(R.layout.mn_image_browser_item_show_image2, container, false);
             final PhotoView imageView = (PhotoView) inflate.findViewById(R.id.photoImageView);
             RelativeLayout rl_browser_root = (RelativeLayout) inflate.findViewById(R.id.rl_browser_root);
             final ProgressWheel progressWheel = (ProgressWheel) inflate.findViewById(R.id.progressWheel);

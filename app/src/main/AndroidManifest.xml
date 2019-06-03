@@ -260,7 +260,7 @@
         <activity android:name=".ui.activity.mob.FlightActivity"/>
         <activity android:name=".ui.activity.mob.FlightListActivity"/>
         <activity
-            android:name=".ui.imagebrowser.MNImageBrowserActivity"
+            android:name=".ui.imagebrowser.MNImageBrowserActivity2"
             android:screenOrientation="portrait"
             android:theme="@style/ImageBrowserTheme"/>
         <activity android:name=".ui.activity.mob.CarListActivity">

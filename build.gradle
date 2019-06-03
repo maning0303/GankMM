@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
 
 buildscript {
     repositories {
@@ -7,7 +8,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.1.4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -30,18 +31,19 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex')
+                    && !details.requested.name.contains('constraint')
+            ) {
+                details.useVersion '27.1.0'//改这个版本号到你想要的版本
+            }
+        }
+    }
 }
 
-ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "26.0.2"
-    minSdkVersion = 16
-    targetSdkVersion = 25
-    versionCode = 170
-    versionName = "1.7.0"
-    storePassword = "123456"
-    keyAlias = "Gank"
-    keyPassword = "123456"
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

@@ -12,16 +12,20 @@ channel{
     isFastMode = true
 }
 
+def config = rootProject.ext.android // 配置
+def librarys = rootProject.ext.dependencies // 依赖
+
+
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.maning.gankmm"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        applicationId config.packageName
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
         resConfigs "zh"
 
         renderscriptTargetApi 25
@@ -37,24 +41,14 @@ android {
     signingConfigs {//签名信息
         release {
             storeFile file("gank_mm.jks")
-            storePassword rootProject.ext.storePassword
-            keyAlias rootProject.ext.keyAlias
-            keyPassword rootProject.ext.keyPassword
+            storePassword config.storePassword
+            keyAlias config.keyAlias
+            keyPassword config.keyPassword
 
             v1SigningEnabled true
             v2SigningEnabled false
         }
     }
-
-
-//    productFlavors {
-//        yingyongbao {}
-//
-//        productFlavors.all { flavor ->
-//            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-//        }
-//
-//    }
 
     File customerproguardFile = file('src/proguard.cfg')
     buildTypes {
@@ -77,23 +71,6 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "true"
         }
     }
-
-    //修改apk名
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('release.apk')) {
-                // 输出apk名称为GankMM_yingyongbao_v1.0.0_2017-12-29-21_23_30_release.apk
-                def fileName = "GankMM_${variant.flavorName}_v${variant.versionName}_${releaseTime()}_release.apk"
-                outputFileName = new File(fileName)
-            }
-            if (outputFile != null && outputFile.name.endsWith('debug.apk')) {
-                // 输出apk名称为GankMM_yingyongbao_v1.0.0_2017-12-29_debug.apk
-                def fileName = "GankMM_${variant.flavorName}_v${variant.versionName}_${debugTime()}_debug.apk"
-                outputFileName = new File(fileName)
-            }
-        }
-    }
 }
 
 //时间字符串方法
@@ -112,97 +89,88 @@ repositories {
     }
 }
 
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion '25.3.1'
-            }
-        }
-    }
-}
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    /* Dex分包 */
-    compile 'com.android.support:multidex:1.0.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation librarys.constraint
+    implementation librarys.supportV4
+    implementation librarys.supportV7
+    implementation librarys.design
+    implementation librarys.recyclerview
+    implementation librarys.cardview
+    implementation librarys.multidex
     /*RecycleView的间隔线*/
-    compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
+    implementation 'com.yqritc:recyclerview-flexibledivider:1.2.9'
     /*解析Json*/
-    compile 'com.google.code.gson:gson:2.7'
+    implementation 'com.google.code.gson:gson:2.7'
     /*网络相关*/
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.3.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     /*图片加载Glide*/
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'jp.wasabeef:glide-transformations:2.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    implementation 'jp.wasabeef:glide-transformations:2.0.2'
     /*日志*/
-    compile 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
     /*注解*/
-    compile 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.jakewharton:butterknife:7.0.1'
     /*下拉刷新框架*/
-    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.4'
+    implementation 'com.github.Aspsine:SwipeToLoadLayout:v1.0.4'
     /*点赞收藏按钮*/
-    compile 'com.ldoublem.thumbUplib:ThumbUplib:0.5'
+    implementation 'com.ldoublem.thumbUplib:ThumbUplib:0.5'
     /*material风格的dialogs*/
-    compile 'com.afollestad.material-dialogs:core:0.9.3.0'
+    implementation 'com.afollestad.material-dialogs:core:0.9.3.0'
     /*解析HTML页面*/
-    compile 'org.jsoup:jsoup:1.9.2'
+    implementation 'org.jsoup:jsoup:1.9.2'
     /*权限库*/
-//    compile 'com.yanzhenjie:permission:1.0.5'
-    compile 'com.yanzhenjie:permission:2.0.0-rc4'
+    implementation 'com.yanzhenjie:permission:2.0.0-rc4'
     /*ViewPager指示器*/
-    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
-    /*翻滚广告条TextView*/
-    compile 'com.github.maning0303:SwitcherView:v1.0.4'
+    implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     /*Umeng统计*/
-    compile 'com.umeng.sdk:common:latest.integration'
-    compile 'com.umeng.sdk:analytics:latest.integration'
+    implementation 'com.umeng.sdk:common:latest.integration'
+    implementation 'com.umeng.sdk:analytics:latest.integration'
     /*极光推送*/
-    compile files('libs/jcore-android_v1.1.2.jar')
-    compile files('libs/jpush-android_v3.0.5.jar')
+    implementation files('libs/jcore-android_v1.1.2.jar')
+    implementation files('libs/jpush-android_v3.0.5.jar')
     /*菜单*/
-    compile 'io.github.yavski:fab-speed-dial:1.0.4'
+    implementation 'io.github.yavski:fab-speed-dial:1.0.4'
     /*高德地图*/
-    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
+    implementation files('libs/AMap_Location_V3.3.0_20170118.jar')
     /* 模糊 */
-    compile 'jp.wasabeef:blurry:2.1.1'
+    implementation 'jp.wasabeef:blurry:2.1.1'
     /*网络监测*/
-    debugCompile 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
     /* 表格 */
-    compile 'com.kelin.scrollablepanel:library:1.2.0'
+    implementation 'com.kelin.scrollablepanel:library:1.2.0'
     /*显示更多文字*/
-    compile 'com.ms-square:expandableTextView:0.1.4'
-    /* 日历 */
-    compile 'com.github.maning0303:MNCalendar:V1.0.1'
-    /* 日志监听 */
-    compile 'com.github.maning0303:MNCrashMonitor:V1.0.5'
-    /* 图片浏览器所需 */
-    compile 'com.github.chrisbanes:PhotoView:2.0.0'
-    /* 版本升级 */
-    compile 'com.github.maning0303:MNUpdateAPK:V1.1.8'
+    implementation 'com.ms-square:expandableTextView:0.1.4'
     /* 拼音转换 */
-    compile 'com.github.promeg:tinypinyin:2.0.3'
+    implementation 'com.github.promeg:tinypinyin:2.0.3'
     /* 背景可以移动的View */
-    compile 'com.flaviofaria:kenburnsview:1.0.7'
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
     /* 圆形图片 */
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
     /* 滚轮选择器 */
-    compile 'com.contrarywind:Android-PickerView:3.2.5'
+    implementation 'com.contrarywind:Android-PickerView:3.2.5'
     /* 图片选择 */
-    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.0'
-    /* 提示框 */
-    compile 'com.github.maning0303:MNProgressHUD:V1.0.6'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.0'
     /* 状态栏 */
-    compile 'com.jaeger.statusbarutil:library:1.5.0'
+    implementation 'com.jaeger.statusbarutil:library:1.5.0'
     /* 渠道包渠道获取帮助类 */
     api 'com.leon.channel:helper:1.1.7'
+
+    /* ----------自己------------ */
+    /*翻滚广告条TextView*/
+    implementation 'com.github.maning0303:SwitcherView:v1.0.4'
+    /* 提示框 */
+    implementation 'com.github.maning0303:MNProgressHUD:V1.1.5'
+    /* 日历 */
+    implementation 'com.github.maning0303:MNCalendar:V1.0.1'
+    /* 日志监听 */
+    implementation 'com.github.maning0303:MNCrashMonitor:V1.0.5'
+    /* 图片浏览 */
+    api 'com.github.maning0303:MNImageBrowser:V1.1.9'
+    /* 版本升级 */
+    implementation 'com.github.maning0303:MNUpdateAPK:V1.1.8'
 
 }
