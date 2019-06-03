@@ -451,7 +451,6 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 .show();
         InstallUtils.with(context)
                 .setApkUrl(appUpdateInfo.getInstall_url())
-                .setApkName("GankMM")
                 .setCallBack(new InstallUtils.DownloadCallBack() {
                     @Override
                     public void onStart() {
@@ -471,7 +470,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                          * @param authorities   ---------Manifest中配置provider的authorities字段---------
                          * @param callBack      安装界面成功调起的回调
                          */
-                        InstallUtils.installAPK(context, path, new InstallUtils.InstallCallBack() {
+                        InstallUtils.installAPK(mActivity, path, new InstallUtils.InstallCallBack() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(context, "正在安装程序", Toast.LENGTH_SHORT).show();

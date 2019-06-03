@@ -123,7 +123,7 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     void item_feedback() {
 
         boolean feedbackKey_showAlertDialog = SharePreUtil.getBooleanData(this, "FeedbackKey_ShowAlertDialog", false);
-        if(!feedbackKey_showAlertDialog){
+        if (!feedbackKey_showAlertDialog) {
             DialogUtils.showMyDialog(this, "通知", "由于个人原因,暂时移除了之前版本的意见反馈,暂时把意见反馈链接到了GitHub项目的Issues地址,请你谅解!", "确定", "", new DialogUtils.OnDialogClickListener() {
                 @Override
                 public void onConfirm() {
@@ -137,7 +137,7 @@ public class SettingActivity extends BaseActivity implements ISettingView {
 
                 }
             });
-        }else{
+        } else {
             //意见反馈地址
             SharePreUtil.saveBooleanData(mContext, "FeedbackKey_ShowAlertDialog", true);
             IntentUtils.startToWebActivity(mContext, "", "意见反馈", "https://github.com/maning0303/GankMM/issues");
@@ -326,7 +326,6 @@ public class SettingActivity extends BaseActivity implements ISettingView {
 
         InstallUtils.with(context)
                 .setApkUrl(appUpdateInfo.getInstall_url())
-                .setApkName("GankMM")
                 .setCallBack(new InstallUtils.DownloadCallBack() {
                     @Override
                     public void onStart() {
@@ -346,7 +345,7 @@ public class SettingActivity extends BaseActivity implements ISettingView {
                          * @param authorities   ---------Manifest中配置provider的authorities字段---------
                          * @param callBack      安装界面成功调起的回调
                          */
-                        InstallUtils.installAPK(context, path, new InstallUtils.InstallCallBack() {
+                        InstallUtils.installAPK(mActivity, path, new InstallUtils.InstallCallBack() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(context, "正在安装程序", Toast.LENGTH_SHORT).show();
@@ -390,7 +389,9 @@ public class SettingActivity extends BaseActivity implements ISettingView {
 
                     @Override
                     public void cancle() {
-
+                        if (notifyUtils != null) {
+                            notifyUtils.clear();
+                        }
                     }
                 })
                 .startDownload();

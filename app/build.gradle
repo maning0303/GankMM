@@ -158,19 +158,19 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.5.0'
     /* 渠道包渠道获取帮助类 */
     api 'com.leon.channel:helper:1.1.7'
+    /* 图片浏览器所需 */
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
     /* ----------自己------------ */
     /*翻滚广告条TextView*/
     implementation 'com.github.maning0303:SwitcherView:v1.0.4'
     /* 提示框 */
-    implementation 'com.github.maning0303:MNProgressHUD:V1.1.5'
+    implementation 'com.github.maning0303:MNProgressHUD:V1.1.7'
     /* 日历 */
     implementation 'com.github.maning0303:MNCalendar:V1.0.1'
     /* 日志监听 */
     implementation 'com.github.maning0303:MNCrashMonitor:V1.0.5'
-    /* 图片浏览 */
-    api 'com.github.maning0303:MNImageBrowser:V1.1.9'
     /* 版本升级 */
-    implementation 'com.github.maning0303:MNUpdateAPK:V1.1.8'
+    implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
 
 }

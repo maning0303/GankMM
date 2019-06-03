@@ -23,6 +23,7 @@ import com.umeng.analytics.MobclickAgent;
 public class BaseActivity extends AppCompatActivity {
 
     public Context mContext;
+    public AppCompatActivity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mContext = this;
+        mActivity = this;
 
         initStatus();
 
