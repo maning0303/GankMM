@@ -58,16 +58,20 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             WeatherBeseEntity.WeatherBean.FutureBean futureBean = weatherEntity.getFuture().get(position);
             myViewHolder01.tv_01.setText(futureBean.getWeek());
             myViewHolder01.tv_02.setText(futureBean.getDate().substring(5));
+
             myViewHolder01.tv_03.setText(futureBean.getDayTime());
             //最高温度和最低温度
             String temperature = futureBean.getTemperature();
-            if(!TextUtils.isEmpty(temperature)){
-                if(temperature.length() > 1 && temperature.contains("/")){
+            if (!TextUtils.isEmpty(temperature)) {
+                if (temperature.length() > 1 && temperature.contains("/")) {
                     String[] tempers = temperature.split("/");
-                    if(tempers.length > 0){
+                    if (tempers.length > 0) {
                         myViewHolder01.tv_04.setText(tempers[0].replace(" ", ""));
                         myViewHolder01.tv_05.setText(tempers[1].replace(" ", ""));
                     }
+                } else {
+                    myViewHolder01.tv_04.setText(temperature);
+                    myViewHolder01.tv_05.setText("");
                 }
             }
 
@@ -75,10 +79,10 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             //风向和风速
             String wind = futureBean.getWind();
-            if(!TextUtils.isEmpty(wind)){
-                if(wind.length() > 1 && wind.contains(" ")){
+            if (!TextUtils.isEmpty(wind)) {
+                if (wind.length() > 1 && wind.contains(" ")) {
                     String[] winds = wind.split(" ");
-                    if(winds.length > 0){
+                    if (winds.length > 0) {
                         myViewHolder01.tv_07.setText(winds[0].replace(" ", ""));
                         myViewHolder01.tv_08.setText(winds[1].replace(" ", ""));
                     }
@@ -87,6 +91,12 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             myViewHolder01.iv_01.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getDayTime(), R.drawable.icon_weather_none)));
             myViewHolder01.iv_02.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getNight(), R.drawable.icon_weather_none)));
+
+            if (TextUtils.isEmpty(futureBean.getDayTime())) {
+                myViewHolder01.iv_01.setVisibility(View.GONE);
+            } else {
+                myViewHolder01.iv_01.setVisibility(View.VISIBLE);
+            }
 
         }
 

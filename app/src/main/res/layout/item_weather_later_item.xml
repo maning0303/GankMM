@@ -8,8 +8,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:paddingTop="20dp">
+        android:paddingTop="20dp"
+        android:paddingRight="4dp">
 
 
         <TextView
@@ -45,7 +45,6 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/icon_weather_none" />
 
-
         <TextView
             android:id="@+id/tv_04"
             android:layout_width="wrap_content"
@@ -59,8 +58,8 @@
             android:id="@+id/tv_05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
             android:text="13°C"
             android:textColor="@color/white"
             android:textSize="13sp" />
