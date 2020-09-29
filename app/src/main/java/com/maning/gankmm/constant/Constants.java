@@ -13,6 +13,8 @@ public class Constants {
     //接口请求的Url
     public static final String BASEURL = "http://gank.io/api/";
 
+    public static final String GANK2_BASEURL = "https://gank.io/api/v2/";
+
     //干活历史日期
     public static final String URL_HistoryDate = "http://gank.io/api/day/history";
 
@@ -34,6 +36,7 @@ public class Constants {
     //标签
     public static final String FlagFragment = "Flag";
     public static final String FlagWelFare = "福利";
+    public static final String FlagGirls = "Girl";
     public static final String FlagAndroid = "Android";
     public static final String FlagIOS = "iOS";
     public static final String FlagVideo = "休息视频";

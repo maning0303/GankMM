@@ -5,7 +5,7 @@ import android.view.View;
 /**
  * Created by maning on 16/6/21.
  */
-public interface IWelFarePresenter {
+public interface GirlPresenter {
 
     void getNewDatas();
 

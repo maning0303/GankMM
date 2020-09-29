@@ -20,8 +20,6 @@ public class GankEntity implements Serializable{
     private boolean used;
     private String who;
     private int itemHeight;
-
-
     private List<String> images;
 
     public List<String> getImages() {

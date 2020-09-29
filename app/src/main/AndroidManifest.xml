@@ -60,6 +60,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/DayTheme"
+        android:usesCleartextTraffic="true"
         tools:replace="icon,label,theme,allowBackup"
         >
         <provider

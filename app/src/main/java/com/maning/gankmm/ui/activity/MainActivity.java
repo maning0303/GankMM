@@ -34,8 +34,8 @@ import com.maning.gankmm.ui.activity.login.LoginActivity;
 import com.maning.gankmm.ui.activity.login.UserInfoActivity;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.fragment.CategoryFragment;
+import com.maning.gankmm.ui.fragment.GirlsFragment;
 import com.maning.gankmm.ui.fragment.HistoryFragment;
-import com.maning.gankmm.ui.fragment.WelFareFragment;
 import com.maning.gankmm.ui.fragment.collect.CollectFragment;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.impl.MainPresenterImpl;
@@ -44,7 +44,6 @@ import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.NotifyUtil;
-import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.SharePreUtil;
 import com.maning.gankmm.utils.UserUtils;
 import com.maning.updatelibrary.InstallUtils;
@@ -74,7 +73,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private LinearLayout header_ll_choose_city;
 
     private Context context;
-    private WelFareFragment welFareFragment;
+    private GirlsFragment girlsFragment;
     private CollectFragment collectFragment;
     private CategoryFragment categoryFragment;
     private HistoryFragment timeFragment;
@@ -210,11 +209,11 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         hideFragments(fragmentTransaction);
         switch (flag) {
             case R.id.nav_fuli:
-                if (welFareFragment == null) {
-                    welFareFragment = WelFareFragment.newInstance();
-                    fragmentTransaction.add(R.id.frame_content, welFareFragment);
+                if (girlsFragment == null) {
+                    girlsFragment = GirlsFragment.newInstance();
+                    fragmentTransaction.add(R.id.frame_content, girlsFragment);
                 } else {
-                    fragmentTransaction.show(welFareFragment);
+                    fragmentTransaction.show(girlsFragment);
                 }
                 break;
             case R.id.nav_history:
@@ -248,8 +247,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     }
 
     private void hideFragments(FragmentTransaction transaction) {
-        if (welFareFragment != null) {
-            transaction.hide(welFareFragment);
+        if (girlsFragment != null) {
+            transaction.hide(girlsFragment);
         }
         if (collectFragment != null) {
             transaction.hide(collectFragment);
@@ -347,7 +346,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
             skinBroadcastReceiver = new SkinBroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    welFareFragment = null;
+                    girlsFragment = null;
                     collectFragment = null;
                     categoryFragment = null;
                     timeFragment = null;

@@ -19,9 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
 import com.ldoublem.thumbUplib.ThumbUpView;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.GankEntity;
@@ -38,10 +36,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static android.R.attr.numberPickerStyle;
-import static android.R.attr.resource;
-import static android.R.attr.width;
 
 /**
  * Created by maning on 16/5/17.
@@ -130,11 +124,11 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (0 == viewType) {
-            View inflate = layoutInflater.inflate(R.layout.item_welfare_header, parent, false);
+            View inflate = layoutInflater.inflate(R.layout.item_girl_header, parent, false);
             myViewHolderHeader = new MyViewHolderHeader(inflate);
             return myViewHolderHeader;
         } else {
-            View inflate = layoutInflater.inflate(R.layout.item_welfare_staggered, parent, false);
+            View inflate = layoutInflater.inflate(R.layout.item_girl_staggered, parent, false);
             return new MyViewHolder(inflate);
         }
 
@@ -171,8 +165,7 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             final MyViewHolder viewHolder = (MyViewHolder) holder;
             final GankEntity resultsEntity = commonDataResults.get(newPosition);
 
-            String time = resultsEntity.getPublishedAt().split("T")[0];
-            viewHolder.tvShowTime.setText(time);
+            viewHolder.tvShowTime.setText(resultsEntity.getDesc());
 
             //图片显示
             String url = resultsEntity.getUrl();

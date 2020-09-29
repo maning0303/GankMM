@@ -17,7 +17,7 @@ import com.maning.gankmm.ui.activity.MainActivity;
 import com.maning.gankmm.ui.adapter.RecyclePicAdapter;
 import com.maning.gankmm.ui.base.BaseFragment;
 import com.maning.gankmm.ui.iView.IWelFareView;
-import com.maning.gankmm.ui.presenter.impl.WelFarePresenterImpl;
+import com.maning.gankmm.ui.presenter.impl.GirlPresenterImpl;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * 福利Fragment
  */
-public class WelFareFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, IWelFareView {
+public class GirlsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, IWelFareView {
 
     @Bind(R.id.swipe_target)
     RecyclerView swipeTarget;
@@ -38,10 +38,10 @@ public class WelFareFragment extends BaseFragment implements OnRefreshListener, 
 
     private RecyclePicAdapter recyclePicAdapter;
 
-    private WelFarePresenterImpl welFarePresenter;
+    private GirlPresenterImpl welFarePresenter;
 
-    public static WelFareFragment newInstance() {
-        return new WelFareFragment();
+    public static GirlsFragment newInstance() {
+        return new GirlsFragment();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class WelFareFragment extends BaseFragment implements OnRefreshListener, 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        welFarePresenter = new WelFarePresenterImpl(getActivity(), this);
+        welFarePresenter = new GirlPresenterImpl(getActivity(), this);
 
         swipeToLoadLayout.postDelayed(new Runnable() {
             @Override

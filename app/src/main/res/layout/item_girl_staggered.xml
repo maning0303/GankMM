@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="240dp"
     android:background="?app_background"
-    android:paddingRight="6dp"
-    android:paddingTop="6dp">
+    android:paddingTop="6dp"
+    android:paddingRight="6dp">
 
     <ImageView
         android:id="@+id/image"
@@ -21,17 +21,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="?girl_pic_trans_item">
+        android:background="?girl_pic_trans_item"
+        android:padding="10dp">
 
         <com.ldoublem.thumbUplib.ThumbUpView
             android:id="@+id/btn_collect2"
             android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             app:bgColor="@color/translate"
             app:cracksColor="@color/translate"
             app:edgeColor="?collect_btn_border"
@@ -42,13 +42,17 @@
         <TextView
             android:id="@+id/tvShowTime"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/btn_collect2"
-            android:gravity="center"
-            android:text="时间"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="2"
+            android:text="与其安慰自己平凡可贵，不如拼尽全力活得漂亮不如拼尽全力活得漂亮不如拼尽全力活得漂亮。"
             android:textColor="?girl_pic_trans_item_text_color"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
