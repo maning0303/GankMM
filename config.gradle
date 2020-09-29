@@ -1,10 +1,10 @@
 ext {
 
     android = [
-            compileSdkVersion: 27,
-            buildToolsVersion: "27.0.3",
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
             minSdkVersion    : 16,
-            targetSdkVersion : 27,
+            targetSdkVersion : 28,
             versionCode      : 180,
             versionName      : "1.8.0",
             packageName      : "com.maning.gankmm",
@@ -14,12 +14,12 @@ ext {
     ]
 
     dependencies = [
-            supportV7   : 'com.android.support:appcompat-v7:27.1.0',
-            supportV4   : 'com.android.support:support-v4:27.1.0',
+            supportV7   : 'com.android.support:appcompat-v7:28.0.0',
+            supportV4   : 'com.android.support:support-v4:28.0.0',
             multidex    : 'com.android.support:multidex:1.0.3',
-            design      : 'com.android.support:design:27.1.0',
-            recyclerview: 'com.android.support:recyclerview-v7:27.1.0',
-            cardview    : 'com.android.support:cardview-v7:27.1.0',
+            design      : 'com.android.support:design:28.0.0',
+            recyclerview: 'com.android.support:recyclerview-v7:28.0.0',
+            cardview    : 'com.android.support:cardview-v7:28.0.0',
             constraint  : 'com.android.support.constraint:constraint-layout:1.1.3'
     ]
 
