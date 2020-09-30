@@ -4,10 +4,10 @@
         android:id="@+id/first_group"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_fuli"
+            android:id="@+id/nav_girl"
             android:checked="true"
             android:icon="@drawable/gank_icon_girl"
-            android:title="福利" />
+            android:title="妹纸" />
 
         <item
             android:id="@+id/nav_history"
@@ -33,7 +33,8 @@
         <item
             android:id="@+id/nav_codes"
             android:icon="@drawable/gank_icon_jcode"
-            android:title="泡在网上的日子" />
+            android:title="泡在网上的日子"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_cocoa_china"

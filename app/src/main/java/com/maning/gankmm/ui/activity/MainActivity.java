@@ -79,8 +79,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private CategoryFragment categoryFragmentArticle;
     private HistoryFragment timeFragment;
 
-    private int navigationCheckedItemId = R.id.nav_fuli;
-    private String navigationCheckedTitle = "福利";
+    private int navigationCheckedItemId = R.id.nav_girl;
+    private String navigationCheckedTitle = "妹纸";
     private static final String savedInstanceStateItemId = "navigationCheckedItemId";
     private static final String savedInstanceStateTitle = "navigationCheckedTitle";
 
@@ -209,7 +209,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(fragmentTransaction);
         switch (flag) {
-            case R.id.nav_fuli:
+            case R.id.nav_girl:
                 if (girlsFragment == null) {
                     girlsFragment = GirlsFragment.newInstance();
                     fragmentTransaction.add(R.id.frame_content, girlsFragment);
@@ -285,7 +285,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 setTitle(menuItem.getTitle()); // 改变页面标题，标明导航状态
                 drawerLayout.closeDrawers(); // 关闭导航菜单
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_fuli:
+                    case R.id.nav_girl:
                     case R.id.nav_history:
                     case R.id.nav_category_ganhuo:
                     case R.id.nav_category_article:
