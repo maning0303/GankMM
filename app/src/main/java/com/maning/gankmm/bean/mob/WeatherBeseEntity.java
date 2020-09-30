@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean;
+package com.maning.gankmm.bean.mob;
 
 import java.io.Serializable;
 import java.util.List;

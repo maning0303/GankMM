@@ -1,6 +1,6 @@
 package com.maning.gankmm.ui.iView;
 
-import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
 
 /**
  * Created by maning on 16/6/21.

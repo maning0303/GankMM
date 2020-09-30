@@ -1,6 +1,6 @@
 package com.maning.gankmm.http.update;
 
-import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 

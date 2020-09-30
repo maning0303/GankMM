@@ -1,7 +1,7 @@
 package com.maning.gankmm.ui.iView;
 
-import com.maning.gankmm.bean.AppUpdateInfo;
-import com.maning.gankmm.bean.WeatherBeseEntity;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
+import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 
 /**
  * Created by maning on 16/6/21.

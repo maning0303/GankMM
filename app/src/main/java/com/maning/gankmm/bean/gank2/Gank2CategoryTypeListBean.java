@@ -1,7 +1,5 @@
 package com.maning.gankmm.bean.gank2;
 
-import com.maning.gankmm.bean.GankEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 

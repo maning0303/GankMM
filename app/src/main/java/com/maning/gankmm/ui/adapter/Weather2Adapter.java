@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.WeatherBeseEntity;
+import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.utils.SharePreUtil;
 
 import butterknife.Bind;

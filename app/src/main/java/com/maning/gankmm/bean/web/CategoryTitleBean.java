@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean;
+package com.maning.gankmm.bean.web;
 
 /**
  * Created by maning on 16/6/22.

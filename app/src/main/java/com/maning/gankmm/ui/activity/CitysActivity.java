@@ -10,11 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.CitysEntity;
+import com.maning.gankmm.bean.mob.CitysEntity;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCitysAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MyToast;
 import com.maning.gankmm.utils.UserUtils;
 
 import java.util.ArrayList;

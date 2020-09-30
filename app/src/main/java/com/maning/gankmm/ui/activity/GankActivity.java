@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleGankAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;

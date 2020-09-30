@@ -12,7 +12,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.CategoryContentBean;
+import com.maning.gankmm.bean.web.CategoryContentBean;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 
 import java.util.ArrayList;
 

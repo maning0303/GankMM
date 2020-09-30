@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.iView.ISettingView;

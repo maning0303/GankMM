@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.ui.activity.AboutActivity;
 import com.maning.gankmm.ui.activity.GankActivity;
 import com.maning.gankmm.ui.activity.MoreActivity;

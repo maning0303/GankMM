@@ -3,10 +3,9 @@ package com.maning.gankmm.ui.presenter.impl;
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.maning.gankmm.bean.CategoryContentBean;
-import com.maning.gankmm.bean.CategoryTitleBean;
+import com.maning.gankmm.bean.web.CategoryContentBean;
+import com.maning.gankmm.bean.web.CategoryTitleBean;
 import com.maning.gankmm.ui.activity.CodesActivity;
 import com.maning.gankmm.ui.iView.ICodesView;
 import com.maning.gankmm.ui.presenter.ICodesPresenter;

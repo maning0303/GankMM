@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;

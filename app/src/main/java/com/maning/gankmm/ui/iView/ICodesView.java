@@ -1,7 +1,7 @@
 package com.maning.gankmm.ui.iView;
 
-import com.maning.gankmm.bean.CategoryContentBean;
-import com.maning.gankmm.bean.CategoryTitleBean;
+import com.maning.gankmm.bean.web.CategoryContentBean;
+import com.maning.gankmm.bean.web.CategoryTitleBean;
 
 import java.util.ArrayList;
 

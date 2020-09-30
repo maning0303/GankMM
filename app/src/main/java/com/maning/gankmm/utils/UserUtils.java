@@ -1,7 +1,7 @@
 package com.maning.gankmm.utils;
 
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.CitysEntity;
+import com.maning.gankmm.bean.mob.CitysEntity;
 import com.maning.gankmm.bean.mob.MobUserInfo;
 
 /**

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 
 import java.util.ArrayList;
 import java.util.List;

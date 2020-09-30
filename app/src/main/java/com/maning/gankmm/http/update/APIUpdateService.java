@@ -1,6 +1,6 @@
 package com.maning.gankmm.http.update;
 
-import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.constant.Constants;
 
 import retrofit2.Call;

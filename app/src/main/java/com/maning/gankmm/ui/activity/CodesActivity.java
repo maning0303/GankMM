@@ -20,8 +20,8 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.bumptech.glide.Glide;
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.CategoryContentBean;
-import com.maning.gankmm.bean.CategoryTitleBean;
+import com.maning.gankmm.bean.web.CategoryContentBean;
+import com.maning.gankmm.bean.web.CategoryTitleBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCodesContentAdapter;
@@ -34,7 +34,6 @@ import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.SharePreUtil;
-import com.umeng.analytics.MobclickAgent;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;

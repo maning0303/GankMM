@@ -1,7 +1,6 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,8 @@ import android.widget.TextView;
 
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.CategoryTitleBean;
+import com.maning.gankmm.bean.web.CategoryTitleBean;
 import com.maning.gankmm.skin.SkinManager;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 

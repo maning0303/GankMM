@@ -3,7 +3,7 @@ package com.maning.gankmm.ui.presenter.impl;
 import android.content.Context;
 import android.view.View;
 
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.gank2.GankApi2;

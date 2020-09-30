@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.CalendarInfoEntity;
-import com.maning.gankmm.bean.WeatherBeseEntity;
+import com.maning.gankmm.bean.mob.CalendarInfoEntity;
+import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.ui.view.ArcProgressView;
 import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 

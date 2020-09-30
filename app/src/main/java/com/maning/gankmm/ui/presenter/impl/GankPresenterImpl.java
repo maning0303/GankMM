@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.bean.gank.GankDayBean;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.gank.GankApi;

@@ -4,10 +4,10 @@ import android.text.TextUtils;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.CalendarInfoEntity;
-import com.maning.gankmm.bean.CitysEntity;
-import com.maning.gankmm.bean.MobBaseEntity;
-import com.maning.gankmm.bean.WeatherBeseEntity;
+import com.maning.gankmm.bean.mob.CalendarInfoEntity;
+import com.maning.gankmm.bean.mob.CitysEntity;
+import com.maning.gankmm.bean.mob.MobBaseEntity;
+import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.mob.MobBankCard;
 import com.maning.gankmm.bean.mob.MobCarDetailsEntity;
 import com.maning.gankmm.bean.mob.MobCarEntity;

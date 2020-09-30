@@ -12,7 +12,7 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.ui.activity.MainActivity;
 import com.maning.gankmm.ui.adapter.RecyclePicAdapter;
 import com.maning.gankmm.ui.base.BaseFragment;

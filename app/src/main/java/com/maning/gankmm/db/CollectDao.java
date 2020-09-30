@@ -2,7 +2,7 @@ package com.maning.gankmm.db;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 
 import java.util.ArrayList;
 

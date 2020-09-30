@@ -1,7 +1,6 @@
 package com.maning.gankmm.bean.gank;
 
-import com.maning.gankmm.bean.GankEntity;
-import com.maning.gankmm.bean.gank.GankBaseBean;
+import com.maning.gankmm.bean.gank2.GankEntity;
 
 import java.io.Serializable;
 import java.util.List;

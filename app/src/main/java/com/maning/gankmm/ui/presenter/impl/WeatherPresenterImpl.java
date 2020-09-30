@@ -3,9 +3,8 @@ package com.maning.gankmm.ui.presenter.impl;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.maning.gankmm.bean.CalendarInfoEntity;
-import com.maning.gankmm.bean.WeatherBeseEntity;
-import com.maning.gankmm.http.gank.GankApi;
+import com.maning.gankmm.bean.mob.CalendarInfoEntity;
+import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.ui.iView.IWeatherView;

@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.ldoublem.thumbUplib.ThumbUpView;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.db.GankDaoManager;
 import com.maning.gankmm.utils.MySnackbar;
 
