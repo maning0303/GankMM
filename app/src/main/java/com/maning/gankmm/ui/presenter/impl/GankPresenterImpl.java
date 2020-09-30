@@ -5,10 +5,10 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.DayEntity;
 import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank.GankDayBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.gank.GankApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.ui.iView.IGankView;
 import com.maning.gankmm.ui.presenter.IGankPresenter;
 import com.socks.library.KLog;
@@ -20,62 +20,6 @@ import java.util.List;
  * Created by maning on 16/6/21.
  */
 public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements IGankPresenter {
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onSuccess(int what, Object result) {
-            if (mView == null) {
-                return;
-            }
-            final DayEntity dayEntity = (DayEntity) result;
-            if (dayEntity != null) {
-                DayEntity.ResultsEntity results = dayEntity.getResults();
-                if (results != null) {
-
-                    List<GankEntity> 福利 = dayEntity.getResults().get福利();
-                    if (福利 != null && 福利.size() > 0) {
-                        String url = dayEntity.getResults().get福利().get(0).getUrl();
-                        mView.setProgressBarVisility(View.GONE);
-                        mView.showImageView(url);
-                    } else {
-                        mView.setProgressBarVisility(View.GONE);
-                        mView.showToast("糟糕，图片没找到");
-                    }
-                    try {
-                        //初始化数据
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                initDatas(dayEntity);
-                            }
-                        }).start();
-                    } catch (Exception e) {
-                        mView.showToast("抱歉，出错了...");
-                    }
-                } else {
-                    mView.showToast("抱歉，当天数据没有...");
-                }
-            } else {
-                mView.showToast("抱歉，当天数据没有...");
-            }
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            if (mView == null) {
-                return;
-            }
-            mView.hideBaseProgressDialog();
-            if (!TextUtils.isEmpty(result)) {
-                mView.showToast(result);
-            }
-        }
-    };
 
     private Context context;
 
@@ -92,17 +36,62 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
         //切割
         String[] dayArray = timeStr.split("-");
         if (dayArray.length > 2) {
-            GankApi.getOneDayData(dayArray[0], dayArray[1], dayArray[2], 0x001, httpCallBack);
+            GankApi.getOneDayData(dayArray[0], dayArray[1], dayArray[2], new CommonHttpCallback<GankDayBean>() {
+                @Override
+                public void onSuccess(final GankDayBean result) {
+                    if (result != null) {
+                        GankDayBean.ResultsEntity results = result.getResults();
+                        if (results != null) {
+
+                            List<GankEntity> 福利 = result.getResults().get福利();
+                            if (福利 != null && 福利.size() > 0) {
+                                String url = result.getResults().get福利().get(0).getUrl();
+                                mView.setProgressBarVisility(View.GONE);
+                                mView.showImageView(url);
+                            } else {
+                                mView.setProgressBarVisility(View.GONE);
+                                mView.showToast("糟糕，图片没找到");
+                            }
+                            try {
+                                //初始化数据
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        initDatas(result);
+                                    }
+                                }).start();
+                            } catch (Exception e) {
+                                mView.showToast("抱歉，出错了...");
+                            }
+                        } else {
+                            mView.showToast("抱歉，当天数据没有...");
+                        }
+                    } else {
+                        mView.showToast("抱歉，当天数据没有...");
+                    }
+                }
+
+                @Override
+                public void onFail(int code, String message) {
+                    if (mView == null) {
+                        return;
+                    }
+                    mView.hideBaseProgressDialog();
+                    if (!TextUtils.isEmpty(message)) {
+                        mView.showToast(message);
+                    }
+                }
+            });
         }
     }
 
 
     private List<GankEntity> dayEntityArrayList = new ArrayList<>();
 
-    private void initDatas(DayEntity dayEntity) {
+    private void initDatas(GankDayBean gankDayBean) {
         dayEntityArrayList.clear();
 
-        List<GankEntity> androidEntityList = dayEntity.getResults().getAndroid();
+        List<GankEntity> androidEntityList = gankDayBean.getResults().getAndroid();
         if (androidEntityList != null && androidEntityList.size() > 0) {
             GankEntity gankEntity_title = new GankEntity();
             gankEntity_title.setType("title");
@@ -112,7 +101,7 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
         }
 
 
-        List<GankEntity> iosEntityList = dayEntity.getResults().getIOS();
+        List<GankEntity> iosEntityList = gankDayBean.getResults().getIOS();
         if (iosEntityList != null && iosEntityList.size() > 0) {
             GankEntity gankEntity_title = new GankEntity();
             gankEntity_title.setType("title");
@@ -122,7 +111,7 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
         }
 
 
-        List<GankEntity> 休息视频EntityList = dayEntity.getResults().get休息视频();
+        List<GankEntity> 休息视频EntityList = gankDayBean.getResults().get休息视频();
         if (休息视频EntityList != null && 休息视频EntityList.size() > 0) {
             GankEntity gankEntity_title = new GankEntity();
             gankEntity_title.setType("title");
@@ -132,7 +121,7 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
         }
 
 
-        List<GankEntity> 拓展资源EntityList = dayEntity.getResults().get拓展资源();
+        List<GankEntity> 拓展资源EntityList = gankDayBean.getResults().get拓展资源();
         if (拓展资源EntityList != null && 拓展资源EntityList.size() > 0) {
             GankEntity gankEntity_title = new GankEntity();
             gankEntity_title.setType("title");
