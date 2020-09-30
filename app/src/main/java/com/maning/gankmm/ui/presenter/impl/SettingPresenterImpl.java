@@ -109,7 +109,8 @@ public class SettingPresenterImpl extends BasePresenterImpl<ISettingView> implem
             @Override
             public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
                 //保存选择的类型
-                SharePreUtil.saveStringData(context, Constants.SPSwitcherDataType, String.valueOf(text));
+                String result = String.valueOf(text);
+                SharePreUtil.saveStringData(context, Constants.SPSwitcherDataType, result);
                 mView.updateHeadLine(String.valueOf(text));
             }
         });

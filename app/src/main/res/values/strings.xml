@@ -63,13 +63,14 @@
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
 
-    <!--数据类型：福利 | Android | iOS | 休息视频 | 拓展资源 | 前端-->
+    <!--数据类型-->
     <string-array name="gankHeadLineTypes">
         <item>Android</item>
         <item>iOS</item>
-        <item>休息视频</item>
-        <item>拓展资源</item>
+        <item>Flutter</item>
         <item>前端</item>
+        <item>后端</item>
+        <item>APP</item>
     </string-array>
 
     <!--性别：男女 -->

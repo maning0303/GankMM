@@ -97,9 +97,16 @@ public class GirlPresenterImpl extends BasePresenterImpl<IWelFareView> implement
 
     @Override
     public void getRandomDatas() {
-        //查看配置的干活类型:默认Android
+        //查看配置的干活类型:默认Android, //Android,iOS,Flutter,frontend,backend,app
         String headLineType = SharePreUtil.getStringData(context, Constants.SPSwitcherDataType, "Android");
-        GankApi2.getRandomDatas("GanHuo", headLineType, 10, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
+        if ("前端".equals(headLineType)) {
+            headLineType = "frontend";
+        } else if ("后端".equals(headLineType)) {
+            headLineType = "backend";
+        } else if ("APP".equals(headLineType)) {
+            headLineType = "app";
+        }
+        GankApi2.getRandomDatas("Article", headLineType, 10, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
             @Override
             public void onSuccess(Gank2CategoryTypeListBean result) {
                 randomLists = result.getData();
