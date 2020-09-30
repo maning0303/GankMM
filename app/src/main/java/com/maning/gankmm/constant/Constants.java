@@ -15,6 +15,8 @@ public class Constants {
 
     public static final String GANK2_BASEURL = "https://gank.io/api/v2/";
 
+    public static final String FIR_BASEURL = "http://api.fir.im/";
+
     //干活历史日期
     public static final String URL_HistoryDate = "http://gank.io/api/day/history";
 

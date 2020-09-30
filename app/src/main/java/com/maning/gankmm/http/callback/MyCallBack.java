@@ -1,4 +1,4 @@
-package com.maning.gankmm.http;
+package com.maning.gankmm.http.callback;
 
 import java.util.List;
 

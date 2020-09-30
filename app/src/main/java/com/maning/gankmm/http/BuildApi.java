@@ -2,7 +2,13 @@ package com.maning.gankmm.http;
 
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.constant.Constants;
+import com.maning.gankmm.http.gank.APIGankService;
 import com.maning.gankmm.http.gank2.APIGank2Service;
+import com.maning.gankmm.http.mob.APIMobService;
+import com.maning.gankmm.http.update.APIUpdateService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -13,29 +19,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class BuildApi {
 
-    private static Retrofit retrofit;
-    private static Retrofit gank2_api;
+    private static Map<String, Retrofit> retrofitMap = new HashMap<>();
 
-    public static APIService getAPIService() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.BASEURL) //设置Base的访问路径
-                    .addConverterFactory(GsonConverterFactory.create()) //设置默认的解析库：Gson
-                    .client(MyApplication.defaultOkHttpClient())
-                    .build();
+    public static <T> T getInterface(String baseUrl, Class<T> classs) {
+        return getRetrofit(baseUrl).create(classs);
+    }
+
+    private static Retrofit getRetrofit(String baseUrl) {
+        if (retrofitMap.containsKey(baseUrl)) {
+            return retrofitMap.get(baseUrl);
         }
-        return retrofit.create(APIService.class);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(MyApplication.defaultOkHttpClient())
+                .build();
+        retrofitMap.put(baseUrl, retrofit);
+        return retrofitMap.get(baseUrl);
+    }
+
+
+    public static APIGankService getGankAPIService() {
+        return getInterface(Constants.BASEURL, APIGankService.class);
+    }
+
+    public static APIMobService getMobAPIService() {
+        return getInterface(Constants.URL_Mob, APIMobService.class);
     }
 
     public static APIGank2Service getGank2APIService() {
-        if (gank2_api == null) {
-            gank2_api = new Retrofit.Builder()
-                    .baseUrl(Constants.GANK2_BASEURL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(MyApplication.defaultOkHttpClient())
-                    .build();
-        }
-        return gank2_api.create(APIGank2Service.class);
+        return getInterface(Constants.GANK2_BASEURL, APIGank2Service.class);
+    }
+
+    public static APIUpdateService getUpdateAPIService() {
+        return getInterface(Constants.FIR_BASEURL, APIUpdateService.class);
     }
 
 }

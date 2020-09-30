@@ -12,7 +12,7 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobTrainEntity;
 import com.maning.gankmm.bean.mob.MobTrainNoEntity;
 import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleTrainAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;

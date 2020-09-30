@@ -3,8 +3,8 @@ package com.maning.gankmm.ui.presenter.impl;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.maning.gankmm.http.GankApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.gank.GankApi;
+import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.ui.iView.IHistoryView;
 import com.maning.gankmm.ui.presenter.IHistoryPresenter;
 

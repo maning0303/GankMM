@@ -2,7 +2,6 @@ package com.maning.gankmm.ui.presenter.impl;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +13,7 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.AppUpdateInfo;
 import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.http.MyCallBack;
-import com.maning.gankmm.http.UpdateApi;
+import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.activity.SettingActivity;
@@ -29,7 +27,6 @@ import com.socks.library.KLog;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 

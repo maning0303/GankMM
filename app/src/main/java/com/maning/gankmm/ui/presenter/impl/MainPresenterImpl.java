@@ -9,9 +9,10 @@ import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.AppUpdateInfo;
 import com.maning.gankmm.bean.WeatherBeseEntity;
 import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.http.GankApi;
-import com.maning.gankmm.http.MyCallBack;
-import com.maning.gankmm.http.UpdateApi;
+import com.maning.gankmm.http.gank.GankApi;
+import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.http.mob.MobApi;
+import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.IMainPresenter;
@@ -128,7 +129,7 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
     @Override
     public void getCitys() {
-        GankApi.getCitys(0x002, httpCallBack);
+        MobApi.getCitys(0x002, httpCallBack);
     }
 
     @Override
@@ -190,7 +191,7 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
     @Override
     public void getCityWeather(String provinceName, String cityName) {
         mView.updateLocationInfo(provinceName, cityName);
-        GankApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
+        MobApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
     }
 
 }

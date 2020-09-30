@@ -1,6 +1,7 @@
-package com.maning.gankmm.http;
+package com.maning.gankmm.http.update;
 
 import com.maning.gankmm.bean.AppUpdateInfo;
+import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 
 /**
@@ -11,7 +12,7 @@ import com.maning.gankmm.http.callback.CommonHttpCallback;
 public class UpdateApi {
 
     public static void getAppUpdateInfo(CommonHttpCallback<AppUpdateInfo> httpCallback) {
-        BuildApi.getAPIService().getTheLastAppInfo().enqueue(httpCallback);
+        BuildApi.getUpdateAPIService().getTheLastAppInfo().enqueue(httpCallback);
     }
 
 }

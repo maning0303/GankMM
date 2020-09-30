@@ -3,13 +3,13 @@ package com.maning.gankmm.ui.activity.mob;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.CalendarInfoEntity;
-import com.maning.gankmm.http.GankApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.gank.GankApi;
+import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 
@@ -60,7 +60,7 @@ public class ChineseCalendarActivity extends BaseActivity {
         showProgressDialog("正在查询...");
         //获取当天日期
         String dateString = sdf.format(date);
-        GankApi.getCalendarInfo(dateString, 0x001, new MyCallBack() {
+        MobApi.getCalendarInfo(dateString, 0x001, new MyCallBack() {
             @Override
             public void onSuccess(int what, Object result) {
                 dissmissProgressDialog();

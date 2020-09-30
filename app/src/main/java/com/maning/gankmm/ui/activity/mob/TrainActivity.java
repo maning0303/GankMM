@@ -17,7 +17,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobTrainEntity;
 import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;

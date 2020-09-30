@@ -17,7 +17,7 @@ import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.mob.MobCookCategoryEntity;
 import com.maning.gankmm.bean.mob.MobCookDetailEntity;
 import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCookDetailItemAdapter;

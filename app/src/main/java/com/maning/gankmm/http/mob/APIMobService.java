@@ -1,10 +1,7 @@
-package com.maning.gankmm.http;
+package com.maning.gankmm.http.mob;
 
-import com.maning.gankmm.bean.AppUpdateInfo;
 import com.maning.gankmm.bean.CalendarInfoEntity;
 import com.maning.gankmm.bean.CitysEntity;
-import com.maning.gankmm.bean.DayEntity;
-import com.maning.gankmm.bean.HttpResult;
 import com.maning.gankmm.bean.MobBaseEntity;
 import com.maning.gankmm.bean.WeatherBeseEntity;
 import com.maning.gankmm.bean.mob.MobBankCard;
@@ -32,37 +29,17 @@ import com.maning.gankmm.bean.mob.MobWxCategoryEntity;
 import com.maning.gankmm.constant.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
 /**
  * 接口调用的工具类
  */
-public interface APIService {
-
-    //这里填写全部路径就会覆盖掉Build得BaseUrl
-    @Headers("Cache-Control: public, max-age=3600")
-    @GET(Constants.URL_HistoryDate)
-    Call<HttpResult<List<String>>> getGankHistoryDate();
-
-    //http://gank.io/api/day/2015/08/06 --- 每日数据
-    @Headers("Cache-Control: public, max-age=300")
-    @GET("day/{year}/{month}/{day}")
-    Call<DayEntity> getOneDayData(@Path("year") String year,
-                                  @Path("month") String month,
-                                  @Path("day") String day
-    );
-
-    //获取fir.im中的GankMM的最新版本
-    @Headers("Cache-Control: public, max-age=3600")
-    @GET(Constants.URL_AppUpdateInfo)
-    Call<AppUpdateInfo> getTheLastAppInfo();
+public interface APIMobService {
 
     //获取天气信息
     @Headers("Cache-Control: public, max-age=300")
@@ -304,6 +281,4 @@ public interface APIService {
                                       @Query("newPassword") String newPassword,
                                       @Query("mode") String mode    //模式：1-用户输入旧密码;2-由用户通过找回密码接口获取系统随机码，默认为1
     );
-
-
 }

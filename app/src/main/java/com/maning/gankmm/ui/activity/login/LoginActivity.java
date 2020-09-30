@@ -10,7 +10,7 @@ import android.widget.EditText;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobUserInfo;
 import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
