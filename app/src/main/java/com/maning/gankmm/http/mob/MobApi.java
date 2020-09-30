@@ -1,4 +1,4 @@
-package com.maning.gankmm.http;
+package com.maning.gankmm.http.mob;
 
 import android.text.TextUtils;
 
@@ -28,6 +28,8 @@ import com.maning.gankmm.bean.mob.MobUserInfo;
 import com.maning.gankmm.bean.mob.MobWxArticleListEntity;
 import com.maning.gankmm.bean.mob.MobWxCategoryEntity;
 import com.maning.gankmm.constant.Constants;
+import com.maning.gankmm.http.BuildApi;
+import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.utils.EncodeUtils;
 import com.maning.gankmm.utils.UserUtils;
 import com.socks.library.KLog;

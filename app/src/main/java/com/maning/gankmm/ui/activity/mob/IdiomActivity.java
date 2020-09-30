@@ -9,10 +9,9 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobDictEntity;
 import com.maning.gankmm.bean.mob.MobIdiomEntity;
 import com.maning.gankmm.bean.mob.MobItemEntity;
-import com.maning.gankmm.http.MobApi;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;

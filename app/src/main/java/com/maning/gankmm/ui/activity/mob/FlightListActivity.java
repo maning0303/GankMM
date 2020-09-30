@@ -6,20 +6,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobFlightEntity;
-import com.maning.gankmm.bean.mob.MobTrainEntity;
-import com.maning.gankmm.bean.mob.MobTrainNoEntity;
-import com.maning.gankmm.http.MobApi;
-import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleFlightAdapter;
-import com.maning.gankmm.ui.adapter.RecycleTrainAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.text.ParseException;
@@ -27,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

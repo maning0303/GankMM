@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.View;
 
 import com.maning.gankmm.bean.GankEntity;
-import com.maning.gankmm.bean.gank2.Gank2CategoryListBean;
+import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.gank2.GankApi2;
-import com.maning.gankmm.http.gank2.GankHttpCallback;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.ui.iView.IWelFareView;
 import com.maning.gankmm.ui.presenter.GirlPresenter;
 import com.maning.gankmm.utils.IntentUtils;
@@ -38,9 +38,9 @@ public class GirlPresenterImpl extends BasePresenterImpl<IWelFareView> implement
     public void getNewDatas() {
         getRandomDatas();
         //获取妹子图片
-        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, pageIndex, pageSize, new GankHttpCallback<Gank2CategoryListBean>() {
+        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, pageIndex, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
             @Override
-            public void onSuccess(Gank2CategoryListBean result) {
+            public void onSuccess(Gank2CategoryTypeListBean result) {
                 if (result == null || result.getData() == null) {
                     mView.overRefresh();
                     return;
@@ -63,9 +63,9 @@ public class GirlPresenterImpl extends BasePresenterImpl<IWelFareView> implement
 
     @Override
     public void getMoreDatas() {
-        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, pageIndex, pageSize, new GankHttpCallback<Gank2CategoryListBean>() {
+        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, pageIndex, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
             @Override
-            public void onSuccess(Gank2CategoryListBean result) {
+            public void onSuccess(Gank2CategoryTypeListBean result) {
                 List<GankEntity> results = result.getData();
                 if (results == null) {
                     mView.overRefresh();
@@ -99,9 +99,9 @@ public class GirlPresenterImpl extends BasePresenterImpl<IWelFareView> implement
     public void getRandomDatas() {
         //查看配置的干活类型:默认Android
         String headLineType = SharePreUtil.getStringData(context, Constants.SPSwitcherDataType, "Android");
-        GankApi2.getRandomDatas("GanHuo", headLineType, 10, new GankHttpCallback<Gank2CategoryListBean>() {
+        GankApi2.getRandomDatas("GanHuo", headLineType, 10, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
             @Override
-            public void onSuccess(Gank2CategoryListBean result) {
+            public void onSuccess(Gank2CategoryTypeListBean result) {
                 randomLists = result.getData();
                 mView.setRandomList(randomLists);
             }

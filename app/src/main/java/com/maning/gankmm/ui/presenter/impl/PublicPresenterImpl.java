@@ -5,9 +5,13 @@ import android.text.TextUtils;
 
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.GankEntity;
+import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
+import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.db.PublicDao;
 import com.maning.gankmm.http.GankApi;
 import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.gank2.GankApi2;
 import com.maning.gankmm.ui.iView.IPublicView;
 import com.maning.gankmm.ui.presenter.IPublicPresenter;
 import com.maning.gankmm.utils.IntentUtils;
@@ -22,86 +26,21 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
 
     private Context context;
     //标记来自哪个标签的
-    private String flagFragment;
+    //GanHuo,Article
+    private String category;
+    //Android,iOS,Flutter...
+    private String type;
 
     private List<GankEntity> publicList;
     private int pageSize = 20;
     private int pageIndex = 1;
 
-    public PublicPresenterImpl(Context context, IPublicView iPublicView, String flagFragment) {
+    public PublicPresenterImpl(Context context, IPublicView iPublicView, String category, String type) {
         this.context = context;
-        this.flagFragment = flagFragment;
+        this.category = category;
+        this.type = type;
         attachView(iPublicView);
     }
-
-    private MyCallBack myCallBack = new MyCallBack() {
-
-        @Override
-        public void onSuccessList(int what, List results) {
-            if(mView == null){
-                return;
-            }
-            if (results == null) {
-                mView.overRefresh();
-                return;
-            }
-            switch (what) {
-                case 0x001:
-                    if (publicList == null) {
-                        publicList = new ArrayList<>();
-                    }
-                    List<GankEntity> gankEntityList = results;
-                    //过滤一下数据,筛除重的
-                    if (publicList.size() > 0) {
-                        for (int i = 0; i < results.size(); i++) {
-                            GankEntity resultEntity2 = gankEntityList.get(i);
-                            for (int j = 0; j < publicList.size(); j++) {
-                                GankEntity resultsEntity1 = publicList.get(j);
-                                if (resultEntity2.get_id().equals(resultsEntity1.get_id())) {
-                                    //删除
-                                    gankEntityList.remove(i);
-                                }
-                            }
-                        }
-                    }
-                    publicList.addAll(gankEntityList);
-                    if (publicList == null || publicList.size() == 0 || publicList.size() < pageIndex * pageSize) {
-                        mView.setLoadMoreEnabled(false);
-                    } else {
-                        mView.setLoadMoreEnabled(true);
-                    }
-                    pageIndex++;
-                    mView.setPublicList(publicList);
-                    mView.overRefresh();
-                    break;
-                case 0x002: //下拉刷新
-                    pageIndex = 1;
-                    pageIndex++;
-                    publicList = results;
-                    //保存到数据库
-                    saveToDB(publicList);
-                    mView.setPublicList(publicList);
-                    mView.overRefresh();
-                    break;
-            }
-        }
-
-        @Override
-        public void onSuccess(int what, Object result) {
-
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            if(mView == null){
-                return;
-            }
-            mView.overRefresh();
-            if (!TextUtils.isEmpty(result)) {
-                mView.showToast(result);
-            }
-        }
-    };
 
     /**
      * 保存到数据库
@@ -112,7 +51,7 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
         new Thread(new Runnable() {
             @Override
             public void run() {
-                new PublicDao().insertList(results, flagFragment);
+                new PublicDao().insertList(results, category, type);
             }
         }).start();
     }
@@ -120,12 +59,71 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
 
     @Override
     public void getNewDatas() {
-        GankApi.getCommonDataNew(flagFragment, pageSize, 1, 0x002, myCallBack);
+        GankApi2.getCategorys(category, type, 1, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
+            @Override
+            public void onSuccess(Gank2CategoryTypeListBean result) {
+                pageIndex = 1;
+                pageIndex++;
+                publicList = result.getData();
+                //保存到数据库
+                saveToDB(publicList);
+                mView.setPublicList(publicList);
+                mView.overRefresh();
+            }
+
+            @Override
+            public void onFail(int code, String message) {
+                onHttpFail(message);
+            }
+        });
     }
 
     @Override
     public void getMoreDatas() {
-        GankApi.getCommonDataNew(flagFragment, pageSize, pageIndex, 0x001, myCallBack);
+        GankApi2.getCategorys(category, type, pageIndex, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
+            @Override
+            public void onSuccess(Gank2CategoryTypeListBean result) {
+                if (publicList == null) {
+                    publicList = new ArrayList<>();
+                }
+                List<GankEntity> gankEntityList = result.getData();
+                //过滤一下数据,筛除重的
+                if (publicList.size() > 0) {
+                    for (int i = 0; i < gankEntityList.size(); i++) {
+                        GankEntity resultEntity2 = gankEntityList.get(i);
+                        for (int j = 0; j < publicList.size(); j++) {
+                            GankEntity resultsEntity1 = publicList.get(j);
+                            if (resultEntity2.get_id().equals(resultsEntity1.get_id())) {
+                                //删除
+                                gankEntityList.remove(i);
+                            }
+                        }
+                    }
+                }
+                publicList.addAll(gankEntityList);
+                if (publicList == null || publicList.size() == 0 || publicList.size() < pageIndex * pageSize) {
+                    mView.setLoadMoreEnabled(false);
+                } else {
+                    mView.setLoadMoreEnabled(true);
+                }
+                pageIndex++;
+                mView.setPublicList(publicList);
+                mView.overRefresh();
+            }
+
+            @Override
+            public void onFail(int code, String message) {
+                onHttpFail(message);
+            }
+        });
+    }
+
+    private void onHttpFail(String message) {
+        if (mView == null) {
+            return;
+        }
+        mView.overRefresh();
+        mView.showToast(message);
     }
 
     @Override
@@ -134,11 +132,11 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
             @Override
             public void run() {
                 //获取数据库的数据
-                publicList = new PublicDao().queryAllCollectByType(flagFragment);
+                publicList = new PublicDao().queryAllCollectByType(category, type);
                 MyApplication.getHandler().post(new Runnable() {
                     @Override
                     public void run() {
-                        if(mView == null){
+                        if (mView == null) {
                             return;
                         }
                         if (publicList != null && publicList.size() > 0) {
@@ -156,7 +154,7 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
     @Override
     public void itemClick(int position) {
         GankEntity resultsEntity = publicList.get(position);
-        IntentUtils.startToWebActivity(context, flagFragment, resultsEntity.getDesc(), resultsEntity.getUrl());
+        IntentUtils.startToWebActivity(context, type, resultsEntity.getDesc(), resultsEntity.getUrl());
     }
 
 }

@@ -20,6 +20,7 @@ import com.maning.gankmm.ui.iView.IPublicView;
 import com.maning.gankmm.ui.presenter.impl.PublicPresenterImpl;
 import com.maning.gankmm.utils.MySnackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -38,12 +39,14 @@ public class PublicFragment extends BaseFragment implements OnRefreshListener, O
 
     private RecyclePublicAdapter recyclePublicAdapter;
 
-    private String flagFragment;
+    private String category;
+    private String type;
 
-    public static PublicFragment newInstance(String flag) {
+    public static PublicFragment newInstance(String category, String type) {
         PublicFragment publicFragment = new PublicFragment();
         Bundle args = new Bundle();
-        args.putString(Constants.FlagFragment, flag);
+        args.putString("category", category);
+        args.putString("type", type);
         publicFragment.setArguments(args);
         return publicFragment;
     }
@@ -52,9 +55,10 @@ public class PublicFragment extends BaseFragment implements OnRefreshListener, O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            flagFragment = getArguments().getString(Constants.FlagFragment);
+            category = getArguments().getString("category");
+            type = getArguments().getString("type");
             //这个页面单独统计
-            className = "CategoryFragment-" + flagFragment;
+            className = "CategoryFragment-" + type;
         }
     }
 
@@ -74,13 +78,15 @@ public class PublicFragment extends BaseFragment implements OnRefreshListener, O
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        publicPresenter = new PublicPresenterImpl(getActivity(), this, flagFragment);
+        publicPresenter = new PublicPresenterImpl(getActivity(), this, category, type);
 
         publicPresenter.getDBDatas();
     }
 
-    private void initAdapter(final List<GankEntity> publicList) {
-
+    private void initAdapter(List<GankEntity> publicList) {
+        if(publicList == null){
+            publicList = new ArrayList<>();
+        }
         if (recyclePublicAdapter == null) {
             recyclePublicAdapter = new RecyclePublicAdapter(context, publicList);
             swipeTarget.setAdapter(recyclePublicAdapter);

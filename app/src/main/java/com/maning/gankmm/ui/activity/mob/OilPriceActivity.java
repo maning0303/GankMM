@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.kelin.scrollablepanel.library.ScrollablePanel;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobOilPriceEntity;
-import com.maning.gankmm.http.MobApi;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.OilPriceAdapter;
@@ -19,8 +19,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

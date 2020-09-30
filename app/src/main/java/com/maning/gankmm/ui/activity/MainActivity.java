@@ -75,7 +75,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private Context context;
     private GirlsFragment girlsFragment;
     private CollectFragment collectFragment;
-    private CategoryFragment categoryFragment;
+    private CategoryFragment categoryFragmentGanhuo;
+    private CategoryFragment categoryFragmentArticle;
     private HistoryFragment timeFragment;
 
     private int navigationCheckedItemId = R.id.nav_fuli;
@@ -224,12 +225,20 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                     fragmentTransaction.show(timeFragment);
                 }
                 break;
-            case R.id.nav_category:
-                if (categoryFragment == null) {
-                    categoryFragment = CategoryFragment.newInstance();
-                    fragmentTransaction.add(R.id.frame_content, categoryFragment);
+            case R.id.nav_category_ganhuo:
+                if (categoryFragmentGanhuo == null) {
+                    categoryFragmentGanhuo = CategoryFragment.newInstance(Constants.Catrgory_GankHuo);
+                    fragmentTransaction.add(R.id.frame_content, categoryFragmentGanhuo);
                 } else {
-                    fragmentTransaction.show(categoryFragment);
+                    fragmentTransaction.show(categoryFragmentGanhuo);
+                }
+                break;
+            case R.id.nav_category_article:
+                if (categoryFragmentArticle == null) {
+                    categoryFragmentArticle = CategoryFragment.newInstance(Constants.Catrgory_Article);
+                    fragmentTransaction.add(R.id.frame_content, categoryFragmentArticle);
+                } else {
+                    fragmentTransaction.show(categoryFragmentArticle);
                 }
                 break;
             case R.id.nav_collect:
@@ -253,8 +262,11 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         if (collectFragment != null) {
             transaction.hide(collectFragment);
         }
-        if (categoryFragment != null) {
-            transaction.hide(categoryFragment);
+        if (categoryFragmentGanhuo != null) {
+            transaction.hide(categoryFragmentGanhuo);
+        }
+        if (categoryFragmentArticle != null) {
+            transaction.hide(categoryFragmentArticle);
         }
         if (timeFragment != null) {
             transaction.hide(timeFragment);
@@ -275,7 +287,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 switch (menuItem.getItemId()) {
                     case R.id.nav_fuli:
                     case R.id.nav_history:
-                    case R.id.nav_category:
+                    case R.id.nav_category_ganhuo:
+                    case R.id.nav_category_article:
                     case R.id.nav_collect:
                         navigationCheckedItemId = menuItem.getItemId();
                         navigationCheckedTitle = menuItem.getTitle().toString();
@@ -348,7 +361,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 public void onReceive(Context context, Intent intent) {
                     girlsFragment = null;
                     collectFragment = null;
-                    categoryFragment = null;
+                    categoryFragmentGanhuo = null;
+                    categoryFragmentArticle = null;
                     timeFragment = null;
                     recreate();
                 }

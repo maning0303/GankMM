@@ -17,7 +17,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobWxArticleListEntity;
 import com.maning.gankmm.bean.mob.MobWxCategoryEntity;
-import com.maning.gankmm.http.MobApi;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.skin.SkinManager;

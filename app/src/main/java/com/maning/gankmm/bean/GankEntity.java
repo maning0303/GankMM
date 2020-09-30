@@ -21,6 +21,15 @@ public class GankEntity implements Serializable{
     private String who;
     private int itemHeight;
     private List<String> images;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public List<String> getImages() {
         return images;

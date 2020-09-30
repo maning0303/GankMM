@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobFlightEntity;
-import com.maning.gankmm.http.MobApi;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.MyCallBack;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;

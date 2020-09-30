@@ -16,9 +16,14 @@
             android:title="时间浏览" />
 
         <item
-            android:id="@+id/nav_category"
+            android:id="@+id/nav_category_ganhuo"
             android:icon="@drawable/gank_icon_category"
-            android:title="分类浏览" />
+            android:title="干货分类" />
+
+        <item
+            android:id="@+id/nav_category_article"
+            android:icon="@drawable/gank_icon_category"
+            android:title="文章分类" />
 
         <item
             android:id="@+id/nav_collect"

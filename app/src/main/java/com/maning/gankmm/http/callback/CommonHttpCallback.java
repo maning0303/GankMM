@@ -1,4 +1,4 @@
-package com.maning.gankmm.http.gank2;
+package com.maning.gankmm.http.callback;
 
 import com.maning.gankmm.bean.gank2.Gank2BaseBean;
 
@@ -15,7 +15,7 @@ import retrofit2.Response;
  * @date : 2020-09-29
  * @desc : 回调
  */
-public abstract class GankHttpCallback<T> implements Callback<T> {
+public abstract class CommonHttpCallback<T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {

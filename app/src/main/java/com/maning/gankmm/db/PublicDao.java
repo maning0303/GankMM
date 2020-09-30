@@ -28,13 +28,16 @@ public class PublicDao {
     /**
      * 往数据库中插入一条收藏数据
      */
-    public synchronized void insertList(List<GankEntity> list,String type) {
+    public synchronized void insertList(List<GankEntity> list,String category,String type) {
+        if(list == null || list.size() == 0){
+            return;
+        }
         db = helper.getWritableDatabase();
         //插入
         db.beginTransaction();
 
         //删除
-        deleteAll(type);
+        deleteAll(category,type);
 
         for (int i = 0; i < list.size(); i++) {
             GankEntity gankResult = list.get(i);
@@ -50,6 +53,7 @@ public class PublicDao {
                 values.put(GankMMHelper.type, gankResult.getType());
                 values.put(GankMMHelper.url, gankResult.getUrl());
                 values.put(GankMMHelper.who, gankResult.getWho());
+                values.put(GankMMHelper.category, gankResult.getCategory());
                 if (gankResult.isUsed()) {
                     values.put(GankMMHelper.used, "true");
                 } else {
@@ -74,8 +78,12 @@ public class PublicDao {
     }
 
     //删除之前的所有，在保存（保证每次只保存最新刷新的20条即可）
-    private synchronized void deleteAll(String type) {
-        db.delete(GankMMHelper.TABLE_NAME_PUBLIC, GankMMHelper.type + "=?", new String[]{type});
+    private synchronized void deleteAll(String categroy,String type) {
+        try {
+            db.delete(GankMMHelper.TABLE_NAME_PUBLIC, "type=? and category=?", new String[]{type, categroy});
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -100,9 +108,9 @@ public class PublicDao {
      * @param type
      * @return 集合数据
      */
-    public synchronized ArrayList<GankEntity> queryAllCollectByType(String type) {
+    public synchronized ArrayList<GankEntity> queryAllCollectByType(String categroy,String type) {
         db = helper.getReadableDatabase();
-        Cursor cursor = db.query(GankMMHelper.TABLE_NAME_PUBLIC, null, GankMMHelper.type + "=?", new String[]{type}, null, null, null);
+        Cursor cursor = db.query(GankMMHelper.TABLE_NAME_PUBLIC, null, "type=? and category=?", new String[]{type,categroy}, null, null, null);
 
         ArrayList<GankEntity> collectList = new ArrayList<>();
         GankEntity collect;
@@ -116,6 +124,7 @@ public class PublicDao {
             String url = cursor.getString(cursor.getColumnIndex(GankMMHelper.url));
             String who = cursor.getString(cursor.getColumnIndex(GankMMHelper.who));
             String imageUrl = cursor.getString(cursor.getColumnIndex(GankMMHelper.imageUrl));
+            String category = cursor.getString(cursor.getColumnIndex(GankMMHelper.category));
 
             collect = new GankEntity();
             collect.set_id(GankID);
@@ -126,6 +135,7 @@ public class PublicDao {
             collect.setType(type);
             collect.setUrl(url);
             collect.setWho(who);
+            collect.setCategory(category);
 
             List<String> images = new ArrayList<>();
             images.add(imageUrl);

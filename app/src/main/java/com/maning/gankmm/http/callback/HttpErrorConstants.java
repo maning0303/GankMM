@@ -1,4 +1,4 @@
-package com.maning.gankmm.http.gank2;
+package com.maning.gankmm.http.callback;
 
 /**
  * 错误代码表

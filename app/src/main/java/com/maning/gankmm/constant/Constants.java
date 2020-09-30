@@ -34,6 +34,9 @@ public class Constants {
 
 
     //标签
+    public static final String Catrgory_GankHuo = "GanHuo";
+    public static final String Catrgory_Article = "Article";
+
     public static final String FlagFragment = "Flag";
     public static final String FlagWelFare = "福利";
     public static final String FlagGirls = "Girl";
