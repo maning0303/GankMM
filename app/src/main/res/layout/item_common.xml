@@ -1,85 +1,110 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="?item_bg"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/iv_show"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pic_gray_bg"
-        android:visibility="visible" />
-
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_toRightOf="@id/iv_show">
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?item_bg"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvShowTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="一种新的 Header View + RecyclerView 实现方式asdasdasdasdasdasdasdasdasdasdasda"
-            android:textColor="?main_text_color"
-            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/iv_show"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic_gray_bg"
+            android:visibility="visible" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@id/iv_show"
+            android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/tvShowWho"
+                android:id="@+id/tvShowTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:text="daimajia"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Header View"
+                android:textColor="?main_text_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvShowSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvShowTitle"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="一种新的 Header View + RecyclerView 实现方式asdasdasdasdasdasdasdasdasdasdasda"
                 android:textColor="?black_text3_color"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-
-                <com.ldoublem.thumbUplib.ThumbUpView
-                    android:id="@+id/btn_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    app:bgColor="@color/translate"
-                    app:cracksColor="@color/translate"
-                    app:edgeColor="?collect_btn_border"
-                    app:fillColor="?icon_like_color"
-                    app:unlikeType="0" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_below="@+id/tvShowSubTitle"
+                android:layout_marginTop="4dp">
 
                 <TextView
-                    android:id="@+id/tvShowTime"
+                    android:id="@+id/tvShowWho"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:text="2016-3-4"
+                    android:text="daimajia"
                     android:textColor="?black_text3_color"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/tvShowWho"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+
+                    <com.ldoublem.thumbUplib.ThumbUpView
+                        android:id="@+id/btn_collect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        app:bgColor="@color/translate"
+                        app:cracksColor="@color/translate"
+                        app:edgeColor="?collect_btn_border"
+                        app:fillColor="?icon_like_color"
+                        app:unlikeType="0" />
+
+                    <TextView
+                        android:singleLine="true"
+                        android:id="@+id/tvShowTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:gravity="center"
+                        android:text="2016-3-4"
+                        android:textColor="?black_text3_color"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -91,4 +116,4 @@
         android:layout_alignParentBottom="true"
         android:background="?lineColor" />
 
-</RelativeLayout>
+</LinearLayout>

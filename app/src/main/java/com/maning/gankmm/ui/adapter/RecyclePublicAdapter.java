@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ldoublem.thumbUplib.ThumbUpView;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.GankEntity;
-import com.maning.gankmm.db.CollectDao;
+import com.maning.gankmm.db.GankDaoManager;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
@@ -61,9 +61,13 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
 
         final GankEntity resultsEntity = commonDataResults.get(position);
 
-        viewHolder.tvShowWho.setText(resultsEntity.getWho());
-        viewHolder.tvShowTitle.setText(resultsEntity.getDesc());
-        viewHolder.tvShowTime.setText(resultsEntity.getPublishedAt().split("T")[0]);
+        viewHolder.tvShowWho.setText(resultsEntity.getAuthor());
+        viewHolder.tvShowTitle.setText(resultsEntity.getTitle());
+        viewHolder.tvShowSubTitle.setText(resultsEntity.getDesc());
+        String publishedAt = resultsEntity.getPublishedAt();
+        if (!TextUtils.isEmpty(publishedAt) && publishedAt.length() > 10) {
+            viewHolder.tvShowTime.setText(publishedAt.substring(0, 10));
+        }
 
         //图片展示
         String imageUrl = "";
@@ -85,7 +89,7 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
         }
 
         //查询是否存在收藏
-        boolean isCollect = new CollectDao().queryOneCollectByID(resultsEntity.get_id());
+        boolean isCollect = GankDaoManager.getCollectDao().queryOneCollectByID(resultsEntity.get_id());
         if (isCollect) {
             viewHolder.btnCollect.setLike();
         } else {
@@ -96,7 +100,7 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
             @Override
             public void like(boolean like) {
                 if (like) {
-                    boolean insertResult = new CollectDao().insertOneCollect(resultsEntity);
+                    boolean insertResult = GankDaoManager.getCollectDao().insertOneCollect(resultsEntity);
                     if (insertResult) {
                         MySnackbar.makeSnackBarBlack(viewHolder.tvShowTime, "收藏成功");
                     } else {
@@ -104,7 +108,7 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
                         MySnackbar.makeSnackBarRed(viewHolder.tvShowTime, "收藏失败");
                     }
                 } else {
-                    boolean deleteResult = new CollectDao().deleteOneCollect(resultsEntity.get_id());
+                    boolean deleteResult = GankDaoManager.getCollectDao().deleteOneCollect(resultsEntity.get_id());
                     if (deleteResult) {
                         MySnackbar.makeSnackBarBlack(viewHolder.tvShowTime, "取消收藏成功");
                     } else {
@@ -138,6 +142,8 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
         TextView tvShowWho;
         @Bind(R.id.tvShowTitle)
         TextView tvShowTitle;
+        @Bind(R.id.tvShowSubTitle)
+        TextView tvShowSubTitle;
         @Bind(R.id.tvShowTime)
         TextView tvShowTime;
         @Bind(R.id.btn_collect)

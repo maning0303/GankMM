@@ -14,8 +14,9 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.AppUpdateInfo;
 import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.http.GankApi;
 import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.UpdateApi;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.activity.SettingActivity;
 import com.maning.gankmm.ui.iView.ISettingView;
@@ -39,58 +40,6 @@ public class SettingPresenterImpl extends BasePresenterImpl<ISettingView> implem
 
     private Context context;
     private long lastTime = System.currentTimeMillis();
-
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onSuccess(int what, Object result) {
-            if (mView == null) {
-                return;
-            }
-            switch (what) {
-                case 0x001:
-                    if (result == null) {
-                        return;
-                    }
-                    //获取当前APP的版本号
-                    int newVersion;
-                    AppUpdateInfo appUpdateInfo;
-                    try {
-                        appUpdateInfo = (AppUpdateInfo) result;
-                        newVersion = Integer.parseInt(appUpdateInfo.getBuild());
-                    } catch (Exception e) {
-                        newVersion = 1;
-                        appUpdateInfo = new AppUpdateInfo();
-                    }
-                    if (MyApplication.getVersionCode() < newVersion) {
-                        //需要版本更新
-                        if (mView != null) {
-                            mView.showAppUpdateDialog(appUpdateInfo);
-                        }
-                    } else {
-                        if (mView != null) {
-                            mView.showToast(context.getResources().getString(R.string.gank_update_apk));
-                        }
-                    }
-
-                    break;
-            }
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            if (!TextUtils.isEmpty(result)) {
-                if (mView != null) {
-                    mView.showToast("检测新版本发生错误");
-                }
-            }
-        }
-    };
 
     public SettingPresenterImpl(Context context, ISettingView iSettingView) {
         this.context = context;
@@ -242,7 +191,34 @@ public class SettingPresenterImpl extends BasePresenterImpl<ISettingView> implem
     public void checkAppUpdate() {
         //版本更新检查
         if (NetUtils.hasNetWorkConection(context)) {
-            GankApi.getAppUpdateInfo(0x001, httpCallBack);
+            UpdateApi.getAppUpdateInfo(new CommonHttpCallback<AppUpdateInfo>() {
+                @Override
+                public void onSuccess(AppUpdateInfo result) {
+                    if (result == null) {
+                        return;
+                    }
+                    //获取当前APP的版本号
+                    AppUpdateInfo appUpdateInfo = result;
+                    int newVersion = Integer.parseInt(appUpdateInfo.getBuild());
+                    if (MyApplication.getVersionCode() < newVersion) {
+                        //需要版本更新
+                        if (mView != null) {
+                            mView.showAppUpdateDialog(appUpdateInfo);
+                        }
+                    } else {
+                        if (mView != null) {
+                            mView.showToast(context.getResources().getString(R.string.gank_update_apk));
+                        }
+                    }
+                }
+
+                @Override
+                public void onFail(int code, String message) {
+                    if (mView != null) {
+                        mView.showToast("检测新版本发生错误");
+                    }
+                }
+            });
         } else {
             if (mView != null) {
                 mView.showToast(context.getString(R.string.mm_no_net));

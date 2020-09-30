@@ -36,7 +36,6 @@ import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.fragment.CategoryFragment;
 import com.maning.gankmm.ui.fragment.GirlsFragment;
 import com.maning.gankmm.ui.fragment.HistoryFragment;
-import com.maning.gankmm.ui.fragment.collect.CollectFragment;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.impl.MainPresenterImpl;
 import com.maning.gankmm.utils.DialogUtils;
@@ -74,7 +73,6 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
 
     private Context context;
     private GirlsFragment girlsFragment;
-    private CollectFragment collectFragment;
     private CategoryFragment categoryFragmentGanhuo;
     private CategoryFragment categoryFragmentArticle;
     private HistoryFragment timeFragment;
@@ -241,15 +239,6 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                     fragmentTransaction.show(categoryFragmentArticle);
                 }
                 break;
-            case R.id.nav_collect:
-                if (collectFragment == null) {
-                    collectFragment = CollectFragment.newInstance();
-                    fragmentTransaction.add(R.id.frame_content, collectFragment);
-                } else {
-                    fragmentTransaction.show(collectFragment);
-                }
-                break;
-
         }
         fragmentTransaction.commit();
 
@@ -258,9 +247,6 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private void hideFragments(FragmentTransaction transaction) {
         if (girlsFragment != null) {
             transaction.hide(girlsFragment);
-        }
-        if (collectFragment != null) {
-            transaction.hide(collectFragment);
         }
         if (categoryFragmentGanhuo != null) {
             transaction.hide(categoryFragmentGanhuo);
@@ -360,7 +346,6 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     girlsFragment = null;
-                    collectFragment = null;
                     categoryFragmentGanhuo = null;
                     categoryFragmentArticle = null;
                     timeFragment = null;

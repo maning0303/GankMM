@@ -2,6 +2,7 @@ package com.maning.gankmm.http.gank2;
 
 import com.maning.gankmm.bean.gank2.Gank2CategoryListBean;
 import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
+import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
@@ -37,6 +38,10 @@ public class GankApi2 {
 
     public static void getCategoriesArticle(CommonHttpCallback<Gank2CategoryListBean> httpCallback) {
         BuildApi.getGank2APIService().getCategoriesArticle().enqueue(httpCallback);
+    }
+
+    public static void getSearchDatas(String keyword, int page, int count, CommonHttpCallback<Gank2SearchListBean> httpCallback) {
+        BuildApi.getGank2APIService().getSearchDatas(keyword, page, count).enqueue(httpCallback);
     }
 
 }

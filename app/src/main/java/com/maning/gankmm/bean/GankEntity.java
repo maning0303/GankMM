@@ -10,34 +10,35 @@ public class GankEntity implements Serializable{
 
     private static final long serialVersionUID = -2600330151554512031L;
 
+    /**
+     * _id : 5f12cc060bd5529b54e71328
+     * author : blue
+     * category : GanHuo
+     * createdAt : 2020-07-18 18:16:38
+     * desc : 类似京东、淘宝首页体验的嵌套滑动吸顶效果
+     * images : ["https://gank.io/images/15781a5c1376483ba1327c7b7fefec7b"]
+     * likeCounts : 0
+     * publishedAt : 2020-07-18 18:16:38
+     * stars : 1
+     * title : NestedCeilingEffect
+     * type : Android
+     * url : https://github.com/solartcc/NestedCeilingEffect
+     * views : 22
+     */
+
     private String _id;
+    private String author;
+    private String category;
     private String createdAt;
     private String desc;
+    private String likeCounts;
     private String publishedAt;
-    private String source;
+    private String stars;
+    private String title;
     private String type;
     private String url;
-    private boolean used;
-    private String who;
-    private int itemHeight;
+    private String views;
     private List<String> images;
-    private String category;
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
 
     public String get_id() {
         return _id;
@@ -45,6 +46,22 @@ public class GankEntity implements Serializable{
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCreatedAt() {
@@ -63,6 +80,14 @@ public class GankEntity implements Serializable{
         this.desc = desc;
     }
 
+    public String getLikeCounts() {
+        return likeCounts;
+    }
+
+    public void setLikeCounts(String likeCounts) {
+        this.likeCounts = likeCounts;
+    }
+
     public String getPublishedAt() {
         return publishedAt;
     }
@@ -71,12 +96,20 @@ public class GankEntity implements Serializable{
         this.publishedAt = publishedAt;
     }
 
-    public String getSource() {
-        return source;
+    public String getStars() {
+        return stars;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setStars(String stars) {
+        this.stars = stars;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getType() {
@@ -95,44 +128,19 @@ public class GankEntity implements Serializable{
         this.url = url;
     }
 
-    public boolean isUsed() {
-        return used;
+    public String getViews() {
+        return views;
     }
 
-    public void setUsed(boolean used) {
-        this.used = used;
+    public void setViews(String views) {
+        this.views = views;
     }
 
-    public String getWho() {
-        return who;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setWho(String who) {
-        this.who = who;
-    }
-
-    public int getItemHeight() {
-        return itemHeight;
-    }
-
-    public void setItemHeight(int itemHeight) {
-        this.itemHeight = itemHeight;
-    }
-
-    @Override
-    public String toString() {
-        return "GankEntity{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                ", itemHeight=" + itemHeight +
-                ", images=" + images +
-                '}';
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

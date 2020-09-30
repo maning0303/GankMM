@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.SearchBean;
+import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 import com.maning.gankmm.ui.adapter.RecycleSearchAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.iView.ISearchView;
@@ -24,7 +24,6 @@ import com.maning.gankmm.ui.view.ProgressWheel;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
-import com.umeng.analytics.MobclickAgent;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
@@ -52,7 +51,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, OnLoadM
 
     private SearchPresenterImpl searchPresenter;
 
-    private List<SearchBean> resultList;
+    private List<Gank2SearchListBean.DataEntity> resultList;
     private RecycleSearchAdapter recyclePicAdapter;
 
     @Override
@@ -118,7 +117,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, OnLoadM
     }
 
     @Override
-    public void setSearchList(List<SearchBean> resultList) {
+    public void setSearchList(List<Gank2SearchListBean.DataEntity> resultList) {
         this.resultList = resultList;
         initRecycleAdapter();
     }
@@ -141,7 +140,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, OnLoadM
                 @Override
                 public void onItemClick(View view, int position) {
                     //跳转页面
-                    SearchBean searchBean = resultList.get(position);
+                    Gank2SearchListBean.DataEntity searchBean = resultList.get(position);
                     IntentUtils.startToWebActivity(SearchActivity.this, searchBean.getType(), searchBean.getDesc(), searchBean.getUrl());
                 }
             });

@@ -25,6 +25,7 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.bean.GankEntity;
 import com.maning.gankmm.bean.PicSizeEntity;
 import com.maning.gankmm.db.CollectDao;
+import com.maning.gankmm.db.GankDaoManager;
 import com.maning.gankmm.utils.DensityUtil;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
@@ -210,7 +211,7 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     .into(viewHolder.image);
 
             //查询是否存在收藏
-            boolean isCollect = new CollectDao().queryOneCollectByID(resultsEntity.get_id());
+            boolean isCollect = GankDaoManager.getCollectDao().queryOneCollectByID(resultsEntity.get_id());
             if (isCollect) {
                 viewHolder.btnCollect2.setLike();
             } else {
@@ -221,7 +222,7 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 @Override
                 public void like(boolean like) {
                     if (like) {
-                        boolean insertResult = new CollectDao().insertOneCollect(resultsEntity);
+                        boolean insertResult = GankDaoManager.getCollectDao().insertOneCollect(resultsEntity);
                         if (insertResult) {
                             MySnackbar.makeSnackBarBlack(viewHolder.tvShowTime, "收藏成功");
                         } else {
@@ -229,7 +230,7 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                             MySnackbar.makeSnackBarRed(viewHolder.tvShowTime, "收藏失败");
                         }
                     } else {
-                        boolean deleteResult = new CollectDao().deleteOneCollect(resultsEntity.get_id());
+                        boolean deleteResult = GankDaoManager.getCollectDao().deleteOneCollect(resultsEntity.get_id());
                         if (deleteResult) {
                             MySnackbar.makeSnackBarBlack(viewHolder.tvShowTime, "取消收藏成功");
                         } else {

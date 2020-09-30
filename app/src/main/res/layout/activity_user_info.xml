@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?app_background"
-    >
+    android:background="?app_background">
 
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -19,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@mipmap/icon_user_background"
-            />
+            android:src="@mipmap/icon_user_background" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,8 +25,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="30dp"
-            >
+            android:paddingTop="30dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"
@@ -38,7 +34,7 @@
                 android:elevation="15dp"
                 android:src="@drawable/icon_default_avatar"
                 app:civ_border_color="@color/white"
-                app:civ_border_width="2dp"/>
+                app:civ_border_width="2dp" />
 
             <TextView
                 android:id="@+id/tv_user_name"
@@ -48,22 +44,20 @@
                 android:layout_marginTop="10dp"
                 android:text="--"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/btn_edit_info"
                 android:layout_width="60dp"
                 android:layout_height="24dp"
                 android:layout_below="@id/avatar"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_bg_half_circle"
                 android:gravity="center"
                 android:text="编辑"
                 android:textColor="@color/white"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -77,7 +71,7 @@
             android:background="@drawable/circle_black_trance"
             android:padding="4dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/gank_ic_back_white"/>
+            app:srcCompat="@drawable/gank_ic_back_white" />
 
 
     </RelativeLayout>
@@ -87,45 +81,23 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        >
-    </LinearLayout>
+        android:orientation="vertical"></LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_top"
-        >
+        android:layout_below="@id/rl_top">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?lineColor"/>
-
-            <com.maning.gankmm.ui.view.MySettingItemView
-                android:id="@+id/item_app_collect"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="?item_setting_bg"
-                app:setting_red_dot="false"
-                app:setting_title="我的收藏"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?lineColor"/>
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="20dp"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
             <com.maning.gankmm.ui.view.MySettingItemView
                 android:id="@+id/item_app_setting"
@@ -133,12 +105,12 @@
                 android:layout_height="44dp"
                 android:background="?item_setting_bg"
                 app:setting_red_dot="false"
-                app:setting_title="设置"/>
+                app:setting_title="设置" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
             <com.maning.gankmm.ui.view.MySettingItemView
                 android:id="@+id/item_app_psd"
@@ -146,18 +118,18 @@
                 android:layout_height="44dp"
                 android:background="?item_setting_bg"
                 app:setting_red_dot="false"
-                app:setting_title="修改密码"/>
+                app:setting_title="修改密码" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="20dp"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
             <com.maning.gankmm.ui.view.MySettingItemView
                 android:id="@+id/item_app_market"
@@ -165,12 +137,12 @@
                 android:layout_height="44dp"
                 android:background="?item_setting_bg"
                 app:setting_red_dot="false"
-                app:setting_title="给干货营评分"/>
+                app:setting_title="给干货营评分" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
             <com.maning.gankmm.ui.view.MySettingItemView
                 android:id="@+id/item_app_support"
@@ -178,12 +150,12 @@
                 android:layout_height="44dp"
                 android:background="?item_setting_bg"
                 app:setting_red_dot="false"
-                app:setting_title="请作者喝一杯咖啡 (￣▽￣)~*"/>
+                app:setting_title="请作者喝一杯咖啡 (￣▽￣)~*" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="?lineColor"/>
+                android:background="?lineColor" />
 
 
             <Button
@@ -194,8 +166,7 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/head_lines_bg"
                 android:text="退出登录"
-                android:textColor="?setting_text_color"
-                />
+                android:textColor="?setting_text_color" />
 
 
         </LinearLayout>

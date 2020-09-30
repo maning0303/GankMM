@@ -4,9 +4,6 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.AppUpdateInfo;
@@ -14,18 +11,15 @@ import com.maning.gankmm.bean.WeatherBeseEntity;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.GankApi;
 import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.http.UpdateApi;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.IMainPresenter;
 import com.maning.gankmm.utils.LocationUtils;
-import com.maning.gankmm.utils.MySnackbar;
-import com.maning.gankmm.utils.MyToast;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.SharePreUtil;
-import com.socks.library.KLog;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,34 +55,6 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
         @Override
         public void onSuccess(int what, Object result) {
-            if (mView == null) {
-                return;
-            }
-            switch (what) {
-                case 0x001:
-                    if (result == null) {
-                        return;
-                    }
-                    //获取当前APP的版本号
-                    int newVersion;
-                    AppUpdateInfo appUpdateInfo;
-                    try {
-                        appUpdateInfo = (AppUpdateInfo) result;
-                        newVersion = Integer.parseInt(appUpdateInfo.getBuild());
-                    } catch (Exception e) {
-                        newVersion = 1;
-                        appUpdateInfo = new AppUpdateInfo();
-                    }
-                    if (MyApplication.getVersionCode() < newVersion) {
-                        SharePreUtil.saveBooleanData(context, Constants.SPAppUpdate + MyApplication.getVersionCode(), true);
-                        //需要版本更新
-                        if (mView != null) {
-                            mView.showAppUpdateDialog(appUpdateInfo);
-                        }
-                    }
-
-                    break;
-            }
         }
 
         @Override
@@ -115,7 +81,31 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
     public void initAppUpdate() {
         if (NetUtils.hasNetWorkConection(context)) {
             //版本更新
-            GankApi.getAppUpdateInfo(0x001, httpCallBack);
+            UpdateApi.getAppUpdateInfo(new CommonHttpCallback<AppUpdateInfo>() {
+                @Override
+                public void onSuccess(AppUpdateInfo result) {
+                    if (result == null) {
+                        return;
+                    }
+                    //获取当前APP的版本号
+                    AppUpdateInfo appUpdateInfo = result;
+                    int newVersion = Integer.parseInt(appUpdateInfo.getBuild());
+                    if (MyApplication.getVersionCode() < newVersion) {
+                        SharePreUtil.saveBooleanData(context, Constants.SPAppUpdate + MyApplication.getVersionCode(), true);
+                        //需要版本更新
+                        if (mView != null) {
+                            mView.showAppUpdateDialog(appUpdateInfo);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFail(int code, String message) {
+                    if (mView != null) {
+                        mView.showToast("检测新版本发生错误");
+                    }
+                }
+            });
         }
     }
 

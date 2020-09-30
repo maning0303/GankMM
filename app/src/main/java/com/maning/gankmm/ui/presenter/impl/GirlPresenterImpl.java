@@ -38,7 +38,7 @@ public class GirlPresenterImpl extends BasePresenterImpl<IWelFareView> implement
     public void getNewDatas() {
         getRandomDatas();
         //获取妹子图片
-        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, pageIndex, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
+        GankApi2.getCategorys(Constants.FlagGirls, Constants.FlagGirls, 1, pageSize, new CommonHttpCallback<Gank2CategoryTypeListBean>() {
             @Override
             public void onSuccess(Gank2CategoryTypeListBean result) {
                 if (result == null || result.getData() == null) {

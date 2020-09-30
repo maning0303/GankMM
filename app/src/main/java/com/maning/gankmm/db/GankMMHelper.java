@@ -12,75 +12,82 @@ import com.socks.library.KLog;
  */
 public class GankMMHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "GankMM";
+    private static final String DB_NAME = "gankmm2";
     public static final String TABLE_NAME_COLLECT = "collect";
     public static final String TABLE_NAME_PUBLIC = "public";
-    private static final int version = 3;
+    private static final int version = 1;
     //升级添加字段
     private static final String INSERT_URL_COLLECT = "ALTER TABLE collect ADD imageUrl TEXT default ''";
     private static final String INSERT_URL_PUBLIC = "ALTER TABLE public ADD imageUrl TEXT default ''";
 
-    private static final String INSERT_CATEGORY_COLLECT = "ALTER TABLE public ADD category TEXT default ''";
-    private static final String INSERT_CATEGORY_PUBLIC = "ALTER TABLE public ADD category TEXT default ''";
-
-    /**
-     * _id : 56d6481e6776592a03e624a4
-     * _ns : ganhuo
-     * createdAt : 2016-03-02T09:55:42.63Z
-     * desc : 3.2
-     * publishedAt : 2016-03-02T12:06:37.242Z
-     * source : chrome
-     * type : 福利
-     * url : http://ww3.sinaimg.cn/large/7a8aed7bjw1f1ia8qj5qbj20nd0zkmzp.jpg
-     * used : true
-     * who : 张涵宇
-     */
+    //    {
+//        "_id": "5f12cc060bd5529b54e71328",
+//        "author": "blue",
+//        "category": "GanHuo",
+//        "createdAt": "2020-07-18 18:16:38",
+//        "desc": "类似京东、淘宝首页体验的嵌套滑动吸顶效果",
+//        "images": [
+//            "https://gank.io/images/15781a5c1376483ba1327c7b7fefec7b"
+//        ],
+//        "likeCounts": 0,
+//        "publishedAt": "2020-07-18 18:16:38",
+//        "stars": 1,
+//        "title": "NestedCeilingEffect",
+//        "type": "Android",
+//        "url": "https://github.com/solartcc/NestedCeilingEffect",
+//        "views": 22
+//    }
     private static final String ID = "id";
-    public static final String GankID = "gankID";
-    public static final String NS = "_ns";
+    public static final String gankId = "gankId";
+    public static final String author = "author";
+    public static final String category = "category";
     public static final String createdAt = "createdAt";
     public static final String desc = "desc";
+    public static final String likeCounts = "likeCounts";
     public static final String publishedAt = "publishedAt";
-    public static final String source = "source";
+    public static final String stars = "stars";
+    public static final String title = "title";
     public static final String type = "type";
     public static final String url = "url";
-    public static final String used = "used";
-    public static final String who = "who";
-    //版本2添加的新字段
-    public static final String imageUrl = "imageUrl";
-    //版本3添加新字段
-    public static final String category = "category";
+    public static final String views = "views";
+    public static final String imgUrl = "imgUrl";
 
 
     //收藏表
     private static final String sql_collect = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME_COLLECT + " ("
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + GankID + " TEXT, "
-            + NS + " TEXT, "
+            + author + " TEXT, "
+            + category + " TEXT, "
             + createdAt + " TEXT, "
             + desc + " TEXT, "
+            + likeCounts + " TEXT, "
             + publishedAt + " TEXT, "
-            + source + " TEXT, "
+            + stars + " TEXT, "
+            + title + " TEXT, "
             + type + " TEXT, "
             + url + " TEXT, "
-            + used + " TEXT, "
-            + who + " TEXT)";
+            + views + " views, "
+            + imgUrl + " imgUrl, "
+            + gankId + " TEXT)";
 
     //公共阅读表
     private static final String sql_public = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME_PUBLIC + " ("
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + GankID + " TEXT, "
-            + NS + " TEXT, "
+            + author + " TEXT, "
+            + category + " TEXT, "
             + createdAt + " TEXT, "
             + desc + " TEXT, "
+            + likeCounts + " TEXT, "
             + publishedAt + " TEXT, "
-            + source + " TEXT, "
+            + stars + " TEXT, "
+            + title + " TEXT, "
             + type + " TEXT, "
             + url + " TEXT, "
-            + used + " TEXT, "
-            + who + " TEXT)";
+            + views + " views, "
+            + imgUrl + " imgUrl, "
+            + gankId + " TEXT)";
 
     public GankMMHelper(Context context) {
         super(context, DB_NAME, null, version);
@@ -92,9 +99,6 @@ public class GankMMHelper extends SQLiteOpenHelper {
         try {
             db.execSQL(sql_collect);
             db.execSQL(sql_public);
-            //升级
-            updateTableToVersion(db, 2);
-            updateTableToVersion(db, 3);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,13 +120,8 @@ public class GankMMHelper extends SQLiteOpenHelper {
         switch (version) {
             case 2:
                 KLog.e("数据库升级了2");
-                db.execSQL(INSERT_URL_COLLECT);
-                db.execSQL(INSERT_URL_PUBLIC);
-                break;
-            case 3:
-                KLog.e("数据库升级了3");
-                db.execSQL(INSERT_CATEGORY_COLLECT);
-                db.execSQL(INSERT_CATEGORY_PUBLIC);
+//                db.execSQL(INSERT_URL_COLLECT);
+//                db.execSQL(INSERT_URL_PUBLIC);
                 break;
         }
     }

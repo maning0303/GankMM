@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.SearchBean;
+import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ import butterknife.ButterKnife;
 public class RecycleSearchAdapter extends RecyclerView.Adapter<RecycleSearchAdapter.MyViewHolder> {
 
     private Context context;
-    private List<SearchBean> mDatas;
+    private List<Gank2SearchListBean.DataEntity> mDatas;
     private LayoutInflater layoutInflater;
 
-    public RecycleSearchAdapter(Context context, List<SearchBean> mDatas) {
+    public RecycleSearchAdapter(Context context, List<Gank2SearchListBean.DataEntity> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
         layoutInflater = LayoutInflater.from(this.context);
@@ -46,29 +46,27 @@ public class RecycleSearchAdapter extends RecyclerView.Adapter<RecycleSearchAdap
 
     @Override
     public void onBindViewHolder(final RecycleSearchAdapter.MyViewHolder viewHolder, final int position) {
-        SearchBean searchBean = mDatas.get(position);
+        Gank2SearchListBean.DataEntity searchBean = mDatas.get(position);
         viewHolder.tvDesc.setText(searchBean.getDesc());
         viewHolder.tvType.setText(searchBean.getType());
-        viewHolder.tvTime.setText(searchBean.getPublishedAt().split("T")[0]);
+        viewHolder.tvTime.setText(searchBean.getPublishedAt());
 
-        // Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+        // Android | iOS | Flutter | frontend | backend | app
         String type = searchBean.getType();
         if("Android".equals(type)){
             viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_01));
         }else if("iOS".equals(type)){
             viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_02));
-        }else if("休息视频".equals(type)){
+        }else if("Flutter".equals(type)){
             viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_03));
-        }else if("福利".equals(type)){
+        }else if("frontend".equals(type)){
             viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_04));
-        }else if("拓展资源".equals(type)){
+        }else if("backend".equals(type)){
             viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_05));
-        }else if("前端".equals(type)){
-            viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_06));
-        }else if("瞎推荐".equals(type)){
-            viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_07));
         }else if("App".equals(type)){
-            viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_08));
+            viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_06));
+        }else{
+            viewHolder.tvType.setBackgroundColor(context.getResources().getColor(R.color.type_07));
         }
 
         //如果设置了回调，则设置点击事件
@@ -87,7 +85,7 @@ public class RecycleSearchAdapter extends RecyclerView.Adapter<RecycleSearchAdap
         return mDatas.size();
     }
 
-    public void setNewDatas(List<SearchBean> mDatas) {
+    public void setNewDatas(List<Gank2SearchListBean.DataEntity> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }

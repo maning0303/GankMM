@@ -30,6 +30,7 @@ import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.GankEntity;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.db.CollectDao;
+import com.maning.gankmm.db.GankDaoManager;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.ui.dialog.ListFragmentDialog;
 import com.maning.gankmm.ui.view.ProgressWheel;
@@ -257,7 +258,7 @@ public class MNImageBrowserActivity2 extends AppCompatActivity {
         if (welFareLists != null && welFareLists.size() > 0) {
             GankEntity gankEntity = welFareLists.get(currentPosition);
             //查询是否存在收藏
-            boolean isCollect = new CollectDao().queryOneCollectByID(gankEntity.get_id());
+            boolean isCollect = GankDaoManager.getCollectDao().queryOneCollectByID(gankEntity.get_id());
             if (isCollect) {
                 mListDialogDatas.add("取消收藏");
             } else {
@@ -289,10 +290,10 @@ public class MNImageBrowserActivity2 extends AppCompatActivity {
                     if (welFareLists != null && welFareLists.size() > 0) {
                         GankEntity gankEntity = welFareLists.get(currentPosition);
                         //查询是否存在收藏
-                        boolean isCollect = new CollectDao().queryOneCollectByID(gankEntity.get_id());
+                        boolean isCollect = GankDaoManager.getCollectDao().queryOneCollectByID(gankEntity.get_id());
                         if (isCollect) {
                             //取消收藏
-                            boolean deleteResult = new CollectDao().deleteOneCollect(gankEntity.get_id());
+                            boolean deleteResult = GankDaoManager.getCollectDao().deleteOneCollect(gankEntity.get_id());
                             if (deleteResult) {
                                 new MStatusDialog(context).show("取消收藏成功", getResources().getDrawable(R.drawable.mn_icon_dialog_success));
                             } else {
@@ -300,7 +301,7 @@ public class MNImageBrowserActivity2 extends AppCompatActivity {
                             }
                         } else {
                             //收藏
-                            boolean insertResult = new CollectDao().insertOneCollect(gankEntity);
+                            boolean insertResult = GankDaoManager.getCollectDao().insertOneCollect(gankEntity);
                             if (insertResult) {
                                 new MStatusDialog(context).show("收藏成功", getResources().getDrawable(R.drawable.mn_icon_dialog_success));
                             } else {

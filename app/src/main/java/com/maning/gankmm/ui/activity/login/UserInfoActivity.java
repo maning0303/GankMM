@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobUserInfo;
-import com.maning.gankmm.ui.activity.CollectActivity;
 import com.maning.gankmm.ui.activity.SettingActivity;
 import com.maning.gankmm.ui.activity.SupportPayActivity;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -54,12 +53,6 @@ public class UserInfoActivity extends BaseActivity {
     @OnClick(R.id.btn_back)
     public void btn_back() {
         this.finish();
-    }
-
-
-    @OnClick(R.id.item_app_collect)
-    public void item_app_collect() {
-        startActivity(new Intent(this, CollectActivity.class));
     }
 
     @OnClick(R.id.item_app_setting)

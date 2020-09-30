@@ -2,15 +2,11 @@ package com.maning.gankmm.http;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.bean.AppUpdateInfo;
 import com.maning.gankmm.bean.CalendarInfoEntity;
 import com.maning.gankmm.bean.CitysEntity;
 import com.maning.gankmm.bean.DayEntity;
-import com.maning.gankmm.bean.GankEntity;
 import com.maning.gankmm.bean.HttpResult;
 import com.maning.gankmm.bean.MobBaseEntity;
-import com.maning.gankmm.bean.RandomEntity;
-import com.maning.gankmm.bean.SearchBean;
 import com.maning.gankmm.bean.WeatherBeseEntity;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.utils.UserUtils;
@@ -32,41 +28,6 @@ public class GankApi {
     public final static String GET_DATA_FAIL = MyApplication.getIntstance().getString(R.string.gank_get_data_fail);
     public final static String NET_FAIL = MyApplication.getIntstance().getString(R.string.gank_net_fail);
 
-    public static Call<HttpResult<List<GankEntity>>> getCommonDataNew(String type, int count, int pageIndex, final int what, final MyCallBack myCallBack) {
-        Call<HttpResult<List<GankEntity>>> commonDateNew = BuildApi.getAPIService().getCommonDateNew(type, count, pageIndex);
-
-        commonDateNew.enqueue(new Callback<HttpResult<List<GankEntity>>>() {
-            @Override
-            public void onResponse(Call<HttpResult<List<GankEntity>>> call, Response<HttpResult<List<GankEntity>>> response) {
-                if (response.isSuccessful()) {
-                    HttpResult<List<GankEntity>> httpResult = response.body();
-                    if (httpResult != null) {
-                        KLog.i(httpResult.toString());
-                        if (!httpResult.isError()) {
-                            List<GankEntity> gankEntityList = httpResult.getResults();
-                            myCallBack.onSuccessList(what, gankEntityList);
-                        } else {
-                            myCallBack.onFail(what, GET_DATA_FAIL);
-                        }
-                    } else {
-                        myCallBack.onFail(what, GET_DATA_FAIL);
-                    }
-                } else {
-                    myCallBack.onFail(what, GET_DATA_FAIL);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<HttpResult<List<GankEntity>>> call, Throwable t) {
-                KLog.e("getCommonDataNew-----onFailure：" + t.toString());
-                //数据错误
-                myCallBack.onFail(what, NET_FAIL);
-            }
-        });
-
-        return commonDateNew;
-
-    }
 
     public static Call<HttpResult<List<String>>> getHistoryData(final int what, final MyCallBack myCallBack) {
 
@@ -148,127 +109,6 @@ public class GankApi {
         });
 
         return oneDayData;
-    }
-
-
-    public static Call<RandomEntity> getRandomDatas(String type, int count, final int what, final MyCallBack myCallBack) {
-
-        Call<RandomEntity> randomDatasCall = BuildApi.getAPIService().getRandomDatas(type, count);
-
-        randomDatasCall.enqueue(new Callback<RandomEntity>() {
-            @Override
-            public void onResponse(Call<RandomEntity> call, Response<RandomEntity> response) {
-                if (response.isSuccessful()) {
-                    RandomEntity body = response.body();
-                    if (body != null) {
-                        if (!body.isError()) {
-                            KLog.i("getRandomDatas---success：" + body.toString());
-                            myCallBack.onSuccessList(what, body.getResults());
-                        } else {
-                            myCallBack.onFail(what, GET_DATA_FAIL);
-                        }
-                    } else {
-                        myCallBack.onFail(what, GET_DATA_FAIL);
-                    }
-                } else {
-                    myCallBack.onFail(what, GET_DATA_FAIL);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RandomEntity> call, Throwable t) {
-                KLog.e("getRandomDatas-----onFailure：" + t.toString());
-                //数据错误
-                myCallBack.onFail(what, NET_FAIL);
-            }
-        });
-
-        return randomDatasCall;
-    }
-
-
-    public static Call<AppUpdateInfo> getAppUpdateInfo(final int what, final MyCallBack myCallBack) {
-
-        Call<AppUpdateInfo> theLastAppInfoCall = BuildApi.getAPIService().getTheLastAppInfo();
-
-        theLastAppInfoCall.enqueue(new Callback<AppUpdateInfo>() {
-            @Override
-            public void onResponse(Call<AppUpdateInfo> call, Response<AppUpdateInfo> response) {
-                if (response.isSuccessful()) {
-                    AppUpdateInfo body = response.body();
-                    if (body != null) {
-                        if (body.getName().equals("干货营")) {
-                            myCallBack.onSuccess(what, body);
-                        } else {
-                            myCallBack.onFail(what, GET_DATA_FAIL);
-                        }
-                    } else {
-                        myCallBack.onFail(what, GET_DATA_FAIL);
-                    }
-                } else {
-                    myCallBack.onFail(what, GET_DATA_FAIL);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AppUpdateInfo> call, Throwable t) {
-                KLog.e("getRandomDatas-----onFailure：" + t.toString());
-                //数据错误
-                myCallBack.onFail(what, NET_FAIL);
-            }
-        });
-
-        return theLastAppInfoCall;
-    }
-
-
-    /**
-     * 获取搜索结果
-     *
-     * @param keyWord    关键字
-     * @param type       类型  category 后面可接受参数 all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
-     * @param count      搜索长度
-     * @param indexPage  页码
-     * @param what
-     * @param myCallBack
-     * @return
-     */
-    public static Call<HttpResult<List<SearchBean>>> getSearchData(String keyWord, String type, int count, int indexPage, final int what, final MyCallBack myCallBack) {
-
-        Call<HttpResult<List<SearchBean>>> ganSearchData = BuildApi.getAPIService().getSearchData(keyWord, type, count, indexPage);
-
-        ganSearchData.enqueue(new Callback<HttpResult<List<SearchBean>>>() {
-            @Override
-            public void onResponse(Call<HttpResult<List<SearchBean>>> call, Response<HttpResult<List<SearchBean>>> response) {
-                if (response.isSuccessful()) {
-                    HttpResult<List<SearchBean>> httpResult = response.body();
-                    if (httpResult != null) {
-                        if (!httpResult.isError()) {
-                            List<SearchBean> gankEntityList = httpResult.getResults();
-                            KLog.i("getHistoryData---success：" + gankEntityList.toString());
-                            myCallBack.onSuccessList(what, gankEntityList);
-                        } else {
-                            myCallBack.onFail(what, GET_DATA_FAIL);
-                        }
-                    } else {
-                        myCallBack.onFail(what, GET_DATA_FAIL);
-                    }
-                } else {
-                    myCallBack.onFail(what, GET_DATA_FAIL);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<HttpResult<List<SearchBean>>> call, Throwable t) {
-                KLog.e("getHistoryData-----onFailure：" + t.toString());
-                //数据错误
-                myCallBack.onFail(what, NET_FAIL);
-            }
-        });
-
-
-        return ganSearchData;
-
     }
 
     /***

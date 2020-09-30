@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
+            android:visibility="visible"
             app:bgColor="@color/translate"
             app:cracksColor="@color/translate"
             app:edgeColor="?collect_btn_border"

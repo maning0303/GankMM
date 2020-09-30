@@ -2,6 +2,7 @@ package com.maning.gankmm.http.gank2;
 
 import com.maning.gankmm.bean.gank2.Gank2CategoryListBean;
 import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
+import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -41,5 +42,14 @@ public interface APIGank2Service {
     //https://gank.io/api/v2/categories/Article
     @GET("categories/Article")
     Call<Gank2CategoryListBean> getCategoriesArticle();
+
+    //搜索
+    //https://gank.io/api/v2/search/android/category/All/type/All/page/1/count/10
+    @Headers("Cache-Control: public, max-age=120")
+    @GET("search/{keyword}/category/All/type/All/page/{page}/count/{count}")
+    Call<Gank2SearchListBean> getSearchDatas(@Path("keyword") String keyword,
+                                            @Path("page") int page,
+                                            @Path("count") int count
+    );
 
 }

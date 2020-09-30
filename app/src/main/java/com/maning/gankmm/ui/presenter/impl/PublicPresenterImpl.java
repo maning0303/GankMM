@@ -1,15 +1,11 @@
 package com.maning.gankmm.ui.presenter.impl;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.GankEntity;
 import com.maning.gankmm.bean.gank2.Gank2CategoryTypeListBean;
-import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.db.PublicDao;
-import com.maning.gankmm.http.GankApi;
-import com.maning.gankmm.http.MyCallBack;
+import com.maning.gankmm.db.GankDaoManager;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.gank2.GankApi2;
 import com.maning.gankmm.ui.iView.IPublicView;
@@ -51,7 +47,7 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
         new Thread(new Runnable() {
             @Override
             public void run() {
-                new PublicDao().insertList(results, category, type);
+                GankDaoManager.getPublicDao().insertList(results, category, type);
             }
         }).start();
     }
@@ -67,8 +63,10 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
                 publicList = result.getData();
                 //保存到数据库
                 saveToDB(publicList);
-                mView.setPublicList(publicList);
-                mView.overRefresh();
+                if(mView != null){
+                    mView.setPublicList(publicList);
+                    mView.overRefresh();
+                }
             }
 
             @Override
@@ -132,7 +130,7 @@ public class PublicPresenterImpl extends BasePresenterImpl<IPublicView> implemen
             @Override
             public void run() {
                 //获取数据库的数据
-                publicList = new PublicDao().queryAllCollectByType(category, type);
+                publicList = GankDaoManager.getPublicDao().queryAll(category, type);
                 MyApplication.getHandler().post(new Runnable() {
                     @Override
                     public void run() {

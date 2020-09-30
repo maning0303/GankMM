@@ -11,7 +11,6 @@
 
         <item
             android:id="@+id/nav_history"
-            android:checked="true"
             android:icon="@drawable/gank_icon_time"
             android:title="时间浏览" />
 
@@ -28,7 +27,8 @@
         <item
             android:id="@+id/nav_collect"
             android:icon="@drawable/gank_icon_collect"
-            android:title="收藏" />
+            android:title="收藏"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_codes"

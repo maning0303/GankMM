@@ -1,6 +1,6 @@
 package com.maning.gankmm.ui.iView;
 
-import com.maning.gankmm.bean.SearchBean;
+import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ISearchView extends IBaseView {
 
-    void setSearchList(List<SearchBean> resultList);
+    void setSearchList(List<Gank2SearchListBean.DataEntity> resultList);
 
     void showToast(String msg);
 
