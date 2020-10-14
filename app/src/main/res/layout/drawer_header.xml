@@ -1,39 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_header"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="wrap_content"
     android:background="?app_toolbar_bg">
 
     <RelativeLayout
         android:id="@+id/rl_weather"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content"
+        android:paddingTop="60dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/header_tv_temperature"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="-°"
-                android:textColor="?text1_color"
-                android:textSize="50sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/header_tv_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="--°"
+                    android:textColor="?text1_color"
+                    android:textSize="50sp"
+                    tools:text="10°" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/header_tv_other"
+                android:id="@+id/header_tv_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="-- -- "
+                android:lineSpacingExtra="4dp"
+                android:text="--"
                 android:textColor="?text1_color"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                tools:text="多云" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_weather_wind_scale"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?text1_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="1级" />
+
+                <TextView
+                    android:id="@+id/tv_weather_humidity"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?text1_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="90%" />
+
+                <TextView
+                    android:id="@+id/tv_weather_feels_like"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?text1_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="16°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_weather_wind_direction"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?text1_color"
+                    android:textSize="12sp"
+                    tools:text="西北" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="湿度"
+                    android:textColor="?text1_color"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="体感"
+                    android:textColor="?text1_color"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -42,33 +126,20 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:src="@drawable/icon_weather_none" />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="干货~营"
-        android:textColor="?text1_color"
-        android:textSize="24sp"
-        android:visibility="gone" />
-
     <LinearLayout
         android:id="@+id/header_ll_choose_city"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="16dp"
+        android:layout_below="@+id/rl_weather"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -84,6 +155,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="6dp"
+            android:visibility="gone"
             app:srcCompat="?arrow_down_white" />
 
     </LinearLayout>
@@ -92,7 +164,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/header_ll_choose_city"
         android:background="?toolbar_line_color" />
 
 </RelativeLayout>

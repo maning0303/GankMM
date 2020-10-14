@@ -8,11 +8,14 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.weather.WeatherBean;
+import com.maning.gankmm.bean.weather.WeatherNowBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.weather.WeatherApi;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.IMainPresenter;
 import com.maning.gankmm.utils.LocationUtils;
@@ -30,40 +33,6 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
     private Context context;
 
     private String cityName;
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccessList(int what, List results) {
-            if (mView == null) {
-                return;
-            }
-            if (results == null) {
-                return;
-            }
-            switch (what) {
-                case 0x003:
-                    List<WeatherBeseEntity.WeatherBean> weathers = results;
-                    if (weathers.size() > 0) {
-                        WeatherBeseEntity.WeatherBean resultBean = weathers.get(0);
-                        if (resultBean != null) {
-                            mView.initWeatherInfo(resultBean);
-                        }
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onSuccess(int what, Object result) {
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            if (!TextUtils.isEmpty(result)) {
-                mView.showToast(result);
-            }
-        }
-    };
     private String provinceName;
 
 
@@ -128,7 +97,6 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
     @Override
     public void getCitys() {
-        MobApi.getCitys(0x002, httpCallBack);
     }
 
     @Override
@@ -162,6 +130,9 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
         LocationUtils.getLocation(context, new LocationUtils.OnLocationListener() {
             @Override
             public void onSuccess(AMapLocation aMapLocation) {
+                //获取经纬度
+                double longitude = aMapLocation.getLongitude();
+                double latitude = aMapLocation.getLatitude();
                 //获取城市
                 cityName = aMapLocation.getCity();
                 if (cityName.endsWith("市")) {
@@ -171,7 +142,7 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
                 if (provinceName.endsWith("省") || provinceName.endsWith("市")) {
                     provinceName = provinceName.substring(0, provinceName.length() - 1);
                 }
-                getCityWeather(provinceName, cityName);
+                getCityWeather(provinceName, cityName, longitude, latitude);
             }
 
             @Override
@@ -188,9 +159,19 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
 
     @Override
-    public void getCityWeather(String provinceName, String cityName) {
+    public void getCityWeather(String provinceName, String cityName, double longitude, double latitude) {
         mView.updateLocationInfo(provinceName, cityName);
-        MobApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
+        WeatherApi.getWeatherFromCaiyun(longitude, latitude, new WeatherApi.OnWeatherCallback() {
+            @Override
+            public void onSuccess(WeatherBean weatherBean) {
+                mView.initWeatherInfo(weatherBean);
+            }
+
+            @Override
+            public void onFail(String msg) {
+                mView.showToast(msg);
+            }
+        });
     }
 
 }

@@ -6,6 +6,7 @@ import com.maning.gankmm.http.gank.APIGankService;
 import com.maning.gankmm.http.gank2.APIGank2Service;
 import com.maning.gankmm.http.mob.APIMobService;
 import com.maning.gankmm.http.update.APIUpdateService;
+import com.maning.gankmm.http.weather.APIWeatherService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,10 @@ public class BuildApi {
 
     public static APIUpdateService getUpdateAPIService() {
         return getInterface(Constants.FIR_BASEURL, APIUpdateService.class);
+    }
+
+    public static APIWeatherService getWeatherAPIService() {
+        return getInterface(Constants.BASEURL_WEATHER, APIWeatherService.class);
     }
 
 }

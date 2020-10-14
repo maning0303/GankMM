@@ -134,7 +134,7 @@ dependencies {
     /*菜单*/
     implementation 'io.github.yavski:fab-speed-dial:1.0.4'
     /*高德地图*/
-    implementation files('libs/AMap_Location_V3.3.0_20170118.jar')
+    implementation 'com.amap.api:location:latest.integration'
     /* 模糊 */
     implementation 'jp.wasabeef:blurry:2.1.1'
     /*网络监测*/

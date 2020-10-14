@@ -21,7 +21,7 @@ import java.util.Date;
  * </pre>
  */
 public class LocationUtils {
-
+    //48cc89a5931e80321bced46714a03563
     //声明mlocationClient对象
     private static AMapLocationClient mlocationClient;
     //声明mLocationOption对象

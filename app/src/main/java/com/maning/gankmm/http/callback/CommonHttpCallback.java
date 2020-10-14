@@ -1,6 +1,10 @@
 package com.maning.gankmm.http.callback;
 
+import android.text.TextUtils;
+
 import com.maning.gankmm.bean.gank2.Gank2BaseBean;
+import com.maning.gankmm.bean.weather.CaiyunWeatherBaseBean;
+import com.maning.gankmm.bean.weather.WeatherBaseBean;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -23,11 +27,29 @@ public abstract class CommonHttpCallback<T> implements Callback<T> {
         if (200 == response.code()) {
             T body = response.body();
             if (body instanceof Gank2BaseBean) {
+                //gankio
                 Gank2BaseBean gank2BaseBean = (Gank2BaseBean) response.body();
                 if (gank2BaseBean.getStatus() == 100) {
                     onSuccess(response.body());
                 } else {
                     onFail(gank2BaseBean.getStatus(), gank2BaseBean.getMsg());
+                }
+            } else if (body instanceof CaiyunWeatherBaseBean) {
+                //彩云天气
+                CaiyunWeatherBaseBean caiyunWeather = (CaiyunWeatherBaseBean) response.body();
+                String status = caiyunWeather.getStatus();
+                String api_status = caiyunWeather.getApi_status();
+                if ("ok".equals(status) && "active".equals(api_status)) {
+                    onSuccess(response.body());
+                } else {
+                    onFail(1000, "彩云天气接口出错啦~~~");
+                }
+            } else if (body instanceof WeatherBaseBean) {
+                WeatherBaseBean weatherBaseBean = (WeatherBaseBean) response.body();
+                if (TextUtils.isEmpty(weatherBaseBean.getStatus())) {
+                    onSuccess(response.body());
+                } else {
+                    onFail(1000, weatherBaseBean.getStatus());
                 }
             } else {
                 onSuccess(body);

@@ -45,9 +45,9 @@ import retrofit2.Response;
 
 /**
  * Created by maning on 2017/5/9.
- * Mob SDK 相关的API
+ * Mob SDK 相关的API,接口已经被废弃
  */
-
+@Deprecated
 public class MobApi {
 
     public final static String GET_DATA_FAIL = MyApplication.getIntstance().getString(R.string.gank_get_data_fail);

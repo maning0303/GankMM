@@ -227,8 +227,7 @@
         <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="5374d05f8aaee3db9c2de3353db345c4"/>
-
+            android:value="48cc89a5931e80321bced46714a03563"/>
         <service android:name="com.amap.api.location.APSService"/>
 
         <activity

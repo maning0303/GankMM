@@ -27,6 +27,8 @@ import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.mob.MobUserInfo;
+import com.maning.gankmm.bean.weather.WeatherBean;
+import com.maning.gankmm.bean.weather.WeatherNowBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.skin.SkinBroadcastReceiver;
 import com.maning.gankmm.skin.SkinManager;
@@ -67,7 +69,10 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private ImageView header_iv_weather;
     private RelativeLayout rl_weather;
     private TextView header_tv_temperature;
-    private TextView header_tv_other;
+    private TextView tv_weather_wind_scale;
+    private TextView tv_weather_humidity;
+    private TextView tv_weather_feels_like;
+    private TextView tv_weather_wind_direction;
     private TextView header_tv_city_name;
     private LinearLayout header_ll_choose_city;
 
@@ -97,6 +102,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     private List<GankEntity> welFareList;
     private String provinceName;
     private String cityName;
+    private TextView header_tv_weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -333,7 +339,11 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         header_iv_weather = (ImageView) headerLayout.findViewById(R.id.header_iv_weather);
         rl_weather = (RelativeLayout) headerLayout.findViewById(R.id.rl_weather);
         header_tv_temperature = (TextView) headerLayout.findViewById(R.id.header_tv_temperature);
-        header_tv_other = (TextView) headerLayout.findViewById(R.id.header_tv_other);
+        tv_weather_wind_scale = (TextView) headerLayout.findViewById(R.id.tv_weather_wind_scale);
+        tv_weather_humidity = (TextView) headerLayout.findViewById(R.id.tv_weather_humidity);
+        tv_weather_feels_like = (TextView) headerLayout.findViewById(R.id.tv_weather_feels_like);
+        tv_weather_wind_direction = (TextView) headerLayout.findViewById(R.id.tv_weather_wind_direction);
+        header_tv_weather = (TextView) headerLayout.findViewById(R.id.header_tv_weather);
         header_tv_city_name = (TextView) headerLayout.findViewById(R.id.header_tv_city_name);
         header_ll_choose_city = (LinearLayout) headerLayout.findViewById(R.id.header_ll_choose_city);
         header_ll_choose_city.setOnClickListener(this);
@@ -540,8 +550,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         switch (view.getId()) {
             case R.id.header_ll_choose_city:
                 //切换城市
-                Intent intent = new Intent(MainActivity.this, CitysActivity.class);
-                startActivityForResult(intent, citysChooseRequestCode);
+//                Intent intent = new Intent(MainActivity.this, CitysActivity.class);
+//                startActivityForResult(intent, citysChooseRequestCode);
                 break;
             case R.id.rl_weather:
                 //切换城市
@@ -560,22 +570,20 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     }
 
     @Override
-    public void initWeatherInfo(WeatherBeseEntity.WeatherBean weatherEntity) {
-        //初始化天气信息
-        this.weatherEntity = weatherEntity;
-        //当前温度
-        String temperature = weatherEntity.getTemperature();
-        //空气
-        String airCondition = weatherEntity.getAirCondition();
+    public void initWeatherInfo(WeatherBean weatherBean) {
         //天气
-        String weather = weatherEntity.getWeather();
+        String weather = weatherBean.getWeather_desc();
         //城市
-        String cityName = weatherEntity.getCity();
+        header_tv_city_name.setText(provinceName + "-" + cityName);
         //赋值
-        header_tv_temperature.setText(temperature);
-        header_tv_other.setText(weather + "  空气" + airCondition);
+        header_tv_temperature.setText(weatherBean.getTemperature() + "°");
+        header_tv_weather.setText(weather);
         header_iv_weather.setImageDrawable(getResources().getDrawable(SharePreUtil.getIntData(context, weather, R.drawable.icon_weather_none)));
-        header_tv_city_name.setText(cityName);
+        //其他数据可能没有
+        tv_weather_wind_direction.setText(weatherBean.getWind_direction() + "风");
+        tv_weather_wind_scale.setText(weatherBean.getWind_scale() + "级");
+        tv_weather_feels_like.setText(weatherBean.getFeels_like() + "°");
+        tv_weather_humidity.setText(weatherBean.getHumidity() + "%");
     }
 
     @Override
@@ -591,7 +599,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
             if (data != null) {
                 provinceName = data.getStringExtra("provinceName");
                 cityName = data.getStringExtra("cityName");
-                mainPresenter.getCityWeather(provinceName, cityName);
+                mainPresenter.getCityWeather(provinceName, cityName, 0, 0);
             }
         }
     }

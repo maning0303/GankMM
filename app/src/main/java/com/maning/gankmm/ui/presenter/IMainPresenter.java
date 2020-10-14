@@ -17,6 +17,6 @@ public interface IMainPresenter {
 
     void initDatas();
 
-    void getCityWeather(String provinceName,String cityName);
+    void getCityWeather(String provinceName, String cityName,double longitude,double latitude);
 
 }

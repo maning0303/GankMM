@@ -80,7 +80,7 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
 
     @Override
     public void getCityWeather(String provinceName, String cityName) {
-        MobApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
+//        MobApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
     }
 
     @Override
