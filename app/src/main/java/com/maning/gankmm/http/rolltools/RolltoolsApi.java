@@ -3,6 +3,7 @@ package com.maning.gankmm.http.rolltools;
 import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.http.BuildApi;
@@ -61,6 +62,15 @@ public class RolltoolsApi {
      */
     public static void getRubbishType(String content, CommonHttpCallback<RubbishTypeResultBean> httpCallback) {
         BuildApi.getRooltoolsAPIService().getRubbishType(content).enqueue(httpCallback);
+    }
+
+    /**
+     * 手机号码归属地查询
+     * @param phone
+     * @param httpCallback
+     */
+    public static void getMobileLocation(String phone, CommonHttpCallback<MobileLocationResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getMobileLocation(phone).enqueue(httpCallback);
     }
 
 

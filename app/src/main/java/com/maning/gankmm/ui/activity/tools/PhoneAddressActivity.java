@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobItemEntity;
-import com.maning.gankmm.bean.mob.MobPhoneAddressEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -22,7 +22,6 @@ import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -98,37 +97,27 @@ public class PhoneAddressActivity extends BaseActivity {
         }
 
         showProgressDialog("正在查询...");
-        MobApi.queryPhoneAddress(phoneNumber, 0x001, new MyCallBack() {
+        RolltoolsApi.getMobileLocation(phoneNumber, new CommonHttpCallback<MobileLocationResultBean>() {
             @Override
-            public void onSuccess(int what, Object result) {
+            public void onSuccess(MobileLocationResultBean result) {
                 dissmissProgressDialog();
-                if (result != null) {
-                    MobPhoneAddressEntity mobPhone = (MobPhoneAddressEntity) result;
-                    initAdapter(mobPhone);
-                }
+                initAdapter(result.getData());
             }
 
             @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
+            public void onFail(int code, String message) {
                 dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(toolbar, result);
+                MySnackbar.makeSnackBarRed(toolbar, message);
             }
         });
 
     }
 
-    private void initAdapter(MobPhoneAddressEntity mobPhone) {
-
+    private void initAdapter(MobileLocationResultBean.DataEntity mobPhone) {
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("营运商:", mobPhone.getOperator()));
-        mDatas.put("1", new MobItemEntity("城市:", mobPhone.getProvince() + " " + mobPhone.getCity()));
-        mDatas.put("2", new MobItemEntity("城市区号:", mobPhone.getCityCode()));
-        mDatas.put("3", new MobItemEntity("邮政编码:", mobPhone.getZipCode()));
+        mDatas.put("0", new MobItemEntity("手机号码:", mobPhone.getMobile()));
+        mDatas.put("1", new MobItemEntity("归属地省份:", mobPhone.getProvince()));
+        mDatas.put("2", new MobItemEntity("归属地描述:", mobPhone.getCarrier()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);
