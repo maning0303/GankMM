@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 
 import java.util.HashMap;
 
@@ -45,10 +45,10 @@ public class RecycleMobQueryAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         if (viewHolder instanceof MyViewHolder) {
             final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-            MobItemEntity mobItemEntity = (MobItemEntity) mDatas.get(String.valueOf(position));
-            if (mobItemEntity != null) {
-                myViewHolder.tvTitle.setText(mobItemEntity.getTitle());
-                myViewHolder.tvDesc.setText(mobItemEntity.getDesc());
+            CommonItemEntity commonItemEntity = (CommonItemEntity) mDatas.get(String.valueOf(position));
+            if (commonItemEntity != null) {
+                myViewHolder.tvTitle.setText(commonItemEntity.getTitle());
+                myViewHolder.tvDesc.setText(commonItemEntity.getDesc());
             }
         }
     }

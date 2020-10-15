@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobIdCardEntity;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
@@ -119,9 +119,9 @@ public class IDCardQueryActivity extends BaseActivity {
     private void initAdapter(MobIdCardEntity result) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("地区:", result.getArea()));
-        mDatas.put("1", new MobItemEntity("生日:", result.getBirthday()));
-        mDatas.put("2", new MobItemEntity("性别:", result.getSex()));
+        mDatas.put("0", new CommonItemEntity("地区:", result.getArea()));
+        mDatas.put("1", new CommonItemEntity("生日:", result.getBirthday()));
+        mDatas.put("2", new CommonItemEntity("性别:", result.getSex()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

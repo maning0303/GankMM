@@ -3,6 +3,7 @@ package com.maning.gankmm.http.rolltools;
 import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.bean.rolltools.IpResultBean;
 import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
@@ -73,6 +74,22 @@ public interface APIRolltoolsService {
     @GET("mobile_location/aim_mobile")
     Call<MobileLocationResultBean> getMobileLocation(
             @Query("mobile") String mobile
+    );
+
+    @Headers({
+            "app_id:" + Constants.ROLL_TOOLS_APP_ID,
+            "app_secret:" + Constants.ROLL_TOOLS_APP_SECRET
+    })
+    @GET("ip/self")
+    Call<IpResultBean> getIpLocationSelf();
+
+    @Headers({
+            "app_id:" + Constants.ROLL_TOOLS_APP_ID,
+            "app_secret:" + Constants.ROLL_TOOLS_APP_SECRET
+    })
+    @GET("ip/aim_ip")
+    Call<IpResultBean> getIpLocation(
+            @Query("ip") String ip
     );
 
 }

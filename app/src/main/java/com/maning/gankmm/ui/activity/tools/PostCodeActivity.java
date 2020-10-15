@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.bean.mob.MobPostCodeEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
@@ -120,10 +120,10 @@ public class PostCodeActivity extends BaseActivity {
     private void initAdapter(MobPostCodeEntity result) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("省份:", result.getProvince()));
-        mDatas.put("1", new MobItemEntity("城市:", result.getCity()));
-        mDatas.put("2", new MobItemEntity("区县:", result.getDistrict()));
-        mDatas.put("3", new MobItemEntity("详细地址:", result.getAddress().toString()));
+        mDatas.put("0", new CommonItemEntity("省份:", result.getProvince()));
+        mDatas.put("1", new CommonItemEntity("城市:", result.getCity()));
+        mDatas.put("2", new CommonItemEntity("区县:", result.getDistrict()));
+        mDatas.put("3", new CommonItemEntity("详细地址:", result.getAddress().toString()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

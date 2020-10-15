@@ -3,6 +3,7 @@ package com.maning.gankmm.http.rolltools;
 import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.bean.rolltools.IpResultBean;
 import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
@@ -57,6 +58,7 @@ public class RolltoolsApi {
 
     /**
      * 垃圾分类
+     *
      * @param content
      * @param httpCallback
      */
@@ -66,11 +68,31 @@ public class RolltoolsApi {
 
     /**
      * 手机号码归属地查询
+     *
      * @param phone
      * @param httpCallback
      */
     public static void getMobileLocation(String phone, CommonHttpCallback<MobileLocationResultBean> httpCallback) {
         BuildApi.getRooltoolsAPIService().getMobileLocation(phone).enqueue(httpCallback);
+    }
+
+    /**
+     * 获取Ip地址
+     *
+     * @param httpCallback
+     */
+    public static void getIpLocationSelf(CommonHttpCallback<IpResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getIpLocationSelf().enqueue(httpCallback);
+    }
+
+    /**
+     * 获取Ip地址
+     *
+     * @param ip
+     * @param httpCallback
+     */
+    public static void getIpLocation(String ip, CommonHttpCallback<IpResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getIpLocation(ip).enqueue(httpCallback);
     }
 
 

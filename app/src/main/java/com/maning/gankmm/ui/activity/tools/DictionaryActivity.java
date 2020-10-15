@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.rolltools.RolltoolsApi;
@@ -110,12 +110,12 @@ public class DictionaryActivity extends BaseActivity {
 
     private void initAdapter(DictionaryResultBean.DataEntity dataEntity) {
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("原内容:", dataEntity.getWord()));
-        mDatas.put("1", new MobItemEntity("繁体:", dataEntity.getTraditional()));
-        mDatas.put("2", new MobItemEntity("拼音:", dataEntity.getPinyin()));
-        mDatas.put("3", new MobItemEntity("偏旁部首:", dataEntity.getRadicals()));
-        mDatas.put("4", new MobItemEntity("汉字释义:", dataEntity.getExplanation()));
-        mDatas.put("5", new MobItemEntity("汉字笔画数:", String.valueOf(dataEntity.getStrokes())));
+        mDatas.put("0", new CommonItemEntity("原内容:", dataEntity.getWord()));
+        mDatas.put("1", new CommonItemEntity("繁体:", dataEntity.getTraditional()));
+        mDatas.put("2", new CommonItemEntity("拼音:", dataEntity.getPinyin()));
+        mDatas.put("3", new CommonItemEntity("偏旁部首:", dataEntity.getRadicals()));
+        mDatas.put("4", new CommonItemEntity("汉字释义:", dataEntity.getExplanation()));
+        mDatas.put("5", new CommonItemEntity("汉字笔画数:", String.valueOf(dataEntity.getStrokes())));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

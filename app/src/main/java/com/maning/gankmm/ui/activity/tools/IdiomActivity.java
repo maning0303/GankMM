@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobIdiomEntity;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
@@ -119,11 +119,11 @@ public class IdiomActivity extends BaseActivity {
     private void initAdapter(MobIdiomEntity result) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("拼音:", result.getPinyin()));
-        mDatas.put("1", new MobItemEntity("释义:", result.getPretation()));
-        mDatas.put("2", new MobItemEntity("出自:", result.getSource()));
-        mDatas.put("3", new MobItemEntity("示例:", result.getSample()));
-        mDatas.put("4", new MobItemEntity("示例出自:", result.getSampleFrom()));
+        mDatas.put("0", new CommonItemEntity("拼音:", result.getPinyin()));
+        mDatas.put("1", new CommonItemEntity("释义:", result.getPretation()));
+        mDatas.put("2", new CommonItemEntity("出自:", result.getSource()));
+        mDatas.put("3", new CommonItemEntity("示例:", result.getSample()));
+        mDatas.put("4", new CommonItemEntity("示例出自:", result.getSampleFrom()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

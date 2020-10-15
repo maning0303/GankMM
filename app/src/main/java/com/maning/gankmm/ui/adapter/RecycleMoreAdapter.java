@@ -73,12 +73,12 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ArrayList<String> mDatasItem = new ArrayList<>();
             if (position == 0) {
                 mDatasItem.add("手机号码归属地");
-                mDatasItem.add("邮编查询");
-                mDatasItem.add("菜谱查询");
-                mDatasItem.add("身份证查询");
                 mDatasItem.add("IP地址");
-                mDatasItem.add("中国彩票开奖结果");
-                mDatasItem.add("微信精选");
+//                mDatasItem.add("邮编查询");
+//                mDatasItem.add("菜谱查询");
+//                mDatasItem.add("身份证查询");
+//                mDatasItem.add("中国彩票开奖结果");
+//                mDatasItem.add("微信精选");
             } else if (position == 1) {
 //                mDatasItem.add("银行卡信息");
                 mDatasItem.add("货币汇率");

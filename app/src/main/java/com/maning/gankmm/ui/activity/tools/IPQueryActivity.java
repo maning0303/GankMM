@@ -7,12 +7,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.maning.gankmm.R;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.bean.mob.MobIpEntity;
-import com.maning.gankmm.bean.mob.MobItemEntity;
-import com.maning.gankmm.http.mob.MobApi;
+import com.maning.gankmm.bean.rolltools.IpResultBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.http.mob.MobApi;
+import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -78,7 +82,26 @@ public class IPQueryActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.btn_query)
+    @OnClick({R.id.btn_query_self})
+    public void btnQuerySelf() {
+        showProgressDialog("正在查询...");
+        RolltoolsApi.getIpLocationSelf(new CommonHttpCallback<IpResultBean>() {
+            @Override
+            public void onSuccess(IpResultBean result) {
+                dissmissProgressDialog();
+                IpResultBean.DataEntity data = result.getData();
+                initAdapter(data);
+            }
+
+            @Override
+            public void onFail(int code, String message) {
+                dissmissProgressDialog();
+                MySnackbar.makeSnackBarRed(toolbar, message);
+            }
+        });
+    }
+
+    @OnClick({R.id.btn_query})
     public void btnQuery() {
 
         KeyboardUtils.hideSoftInput(this);
@@ -90,38 +113,32 @@ public class IPQueryActivity extends BaseActivity {
             MySnackbar.makeSnackBarRed(toolbar, "IP号码不能为空");
             return;
         }
-
         showProgressDialog("正在查询...");
-        MobApi.queryIp(number, 0x001, new MyCallBack() {
+        RolltoolsApi.getIpLocation(number, new CommonHttpCallback<IpResultBean>() {
             @Override
-            public void onSuccess(int what, Object object) {
+            public void onSuccess(IpResultBean result) {
                 dissmissProgressDialog();
-                if (object != null) {
-                    MobIpEntity result = (MobIpEntity) object;
-                    initAdapter(result);
-                }
+                IpResultBean.DataEntity data = result.getData();
+                initAdapter(data);
             }
 
             @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
+            public void onFail(int code, String message) {
                 dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(toolbar, result);
+                MySnackbar.makeSnackBarRed(toolbar, message);
             }
         });
 
+
     }
 
-    private void initAdapter(MobIpEntity result) {
+    private void initAdapter(IpResultBean.DataEntity data) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("IP:", result.getIp()));
-        mDatas.put("1", new MobItemEntity("国家:", result.getCountry()));
-        mDatas.put("2", new MobItemEntity("城市:", result.getProvince() + " " + result.getCity()));
+        mDatas.put("0", new CommonItemEntity("IP:", data.getIp()));
+        mDatas.put("1", new CommonItemEntity("服务商名称:", data.getIsp()));
+        mDatas.put("2", new CommonItemEntity("IP描述:", data.getDesc()));
+        mDatas.put("3", new CommonItemEntity("城市:", data.getProvince() + " " + data.getCity()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

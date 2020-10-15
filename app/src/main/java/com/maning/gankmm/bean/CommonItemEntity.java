@@ -1,18 +1,18 @@
-package com.maning.gankmm.bean.mob;
+package com.maning.gankmm.bean;
 
 /**
  * Created by maning on 2017/5/8.
  */
 
-public class MobItemEntity {
+public class CommonItemEntity {
 
     private String title;
     private String desc;
 
-    public MobItemEntity() {
+    public CommonItemEntity() {
     }
 
-    public MobItemEntity(String title, String desc) {
+    public CommonItemEntity(String title, String desc) {
         this.title = title;
         this.desc = desc;
     }

@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobBankCard;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
@@ -119,11 +119,11 @@ public class BankCardActivity extends BaseActivity {
     private void initAdapter(MobBankCard result) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("所属银行:", result.getBank()));
-        mDatas.put("1", new MobItemEntity("卡名:", result.getCardName()));
-        mDatas.put("2", new MobItemEntity("卡片类型:", result.getCardType()));
-        mDatas.put("3", new MobItemEntity("卡号长度:", String.valueOf(result.getCardNumber())));
-        mDatas.put("4", new MobItemEntity("bin码:", result.getBin()));
+        mDatas.put("0", new CommonItemEntity("所属银行:", result.getBank()));
+        mDatas.put("1", new CommonItemEntity("卡名:", result.getCardName()));
+        mDatas.put("2", new CommonItemEntity("卡片类型:", result.getCardType()));
+        mDatas.put("3", new CommonItemEntity("卡号长度:", String.valueOf(result.getCardNumber())));
+        mDatas.put("4", new CommonItemEntity("bin码:", result.getBin()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

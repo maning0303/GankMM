@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobItemEntity;
+import com.maning.gankmm.bean.CommonItemEntity;
 import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.rolltools.RolltoolsApi;
@@ -115,9 +115,9 @@ public class PhoneAddressActivity extends BaseActivity {
 
     private void initAdapter(MobileLocationResultBean.DataEntity mobPhone) {
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("手机号码:", mobPhone.getMobile()));
-        mDatas.put("1", new MobItemEntity("归属地省份:", mobPhone.getProvince()));
-        mDatas.put("2", new MobItemEntity("归属地描述:", mobPhone.getCarrier()));
+        mDatas.put("0", new CommonItemEntity("手机号码:", mobPhone.getMobile()));
+        mDatas.put("1", new CommonItemEntity("归属地省份:", mobPhone.getProvince()));
+        mDatas.put("2", new CommonItemEntity("归属地描述:", mobPhone.getCarrier()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);
