@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.view.ArcProgressView;
 import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
@@ -25,21 +27,24 @@ import butterknife.ButterKnife;
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
-    private WeatherBeseEntity.WeatherBean weatherEntity;
+    private WeatherInfoBean weatherEntity;
     private CalendarInfoEntity calendarInfoEntity;
     private LayoutInflater layoutInflater;
+    private ZhixinSuggestionEntity lifeSuggestionBean;
 
 
-    public WeatherAdapter(Context context, WeatherBeseEntity.WeatherBean weatherEntity, CalendarInfoEntity calendarInfoEntity) {
+    public WeatherAdapter(Context context, WeatherInfoBean weatherEntity, CalendarInfoEntity calendarInfoEntity, ZhixinSuggestionEntity lifeSuggestionBean) {
         this.mContext = context;
         this.weatherEntity = weatherEntity;
         this.calendarInfoEntity = calendarInfoEntity;
+        this.lifeSuggestionBean = lifeSuggestionBean;
         layoutInflater = LayoutInflater.from(this.mContext);
     }
 
-    public void updateDatas(WeatherBeseEntity.WeatherBean weatherEntity, CalendarInfoEntity calendarInfoEntity) {
+    public void updateDatas(WeatherInfoBean weatherEntity, CalendarInfoEntity calendarInfoEntity, ZhixinSuggestionEntity lifeSuggestionBean) {
         this.weatherEntity = weatherEntity;
         this.calendarInfoEntity = calendarInfoEntity;
+        this.lifeSuggestionBean = lifeSuggestionBean;
         notifyDataSetChanged();
     }
 
@@ -52,8 +57,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             View inflate = layoutInflater.inflate(R.layout.item_weather_later, parent, false);
             return new WeatherAdapter.MyViewHolder02(inflate);
         } else if (viewType == 2) {
-            View inflate = layoutInflater.inflate(R.layout.item_weather_air, parent, false);
-            return new WeatherAdapter.MyViewHolder03(inflate);
+            View inflate = layoutInflater.inflate(R.layout.item_weather_suggestion, parent, false);
+            return new WeatherAdapter.MyViewHolderSuggestion(inflate);
         } else if (viewType == 3) {
             View inflate = layoutInflater.inflate(R.layout.item_weather_calendar, parent, false);
             return new WeatherAdapter.MyViewHolder04(inflate);
@@ -66,11 +71,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder01) {
             final MyViewHolder01 myViewHolder01 = (MyViewHolder01) holder;
-            myViewHolder01.tv_01.setText(weatherEntity.getTemperature());
-            myViewHolder01.tv_02.setText(weatherEntity.getWeather());
-            myViewHolder01.tv_03.setText(weatherEntity.getFuture().get(0).getTemperature());
-            myViewHolder01.tv_04.setText(weatherEntity.getAirCondition());
-            myViewHolder01.tv_05.setText(weatherEntity.getWind());
+            myViewHolder01.tv_01.setText(weatherEntity.getTemperature() + "°");
+            myViewHolder01.tv_02.setText(weatherEntity.getWeather_desc());
+            myViewHolder01.tv_03.setText("湿度：" + weatherEntity.getHumidity() + "%");
+            myViewHolder01.tv_04.setText("体感：" + weatherEntity.getFeels_like() + "°");
+            myViewHolder01.tv_05.setText(weatherEntity.getWind_direction() + " " + weatherEntity.getWind_scale() + "级");
 
         } else if (holder instanceof MyViewHolder02) {
             final MyViewHolder02 myViewHolder02 = (MyViewHolder02) holder;
@@ -81,13 +86,27 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             myViewHolder02.recycle_later.setItemAnimator(new DefaultItemAnimator());
             myViewHolder02.recycle_later.addItemDecoration(new VerticalDividerItemDecoration.Builder(mContext).color(mContext.getResources().getColor(R.color.lineColor)).build());
 
-            Weather2Adapter weather2Adapter = new Weather2Adapter(mContext, weatherEntity);
-            myViewHolder02.recycle_later.setAdapter(weather2Adapter);
+//            Weather2Adapter weather2Adapter = new Weather2Adapter(mContext, weatherEntity);
+//            myViewHolder02.recycle_later.setAdapter(weather2Adapter);
 
-        } else if (holder instanceof MyViewHolder03) {
-            final MyViewHolder03 myViewHolder03 = (MyViewHolder03) holder;
-            String pollutionIndex = weatherEntity.getPollutionIndex();
-            myViewHolder03.arc_progress.setCurrentCount(500, Integer.parseInt(pollutionIndex));
+        } else if (holder instanceof MyViewHolderSuggestion) {
+            final MyViewHolderSuggestion viewHolderSuggestion = (MyViewHolderSuggestion) holder;
+            //生活指数
+            if (lifeSuggestionBean != null) {
+                viewHolderSuggestion.tv_suggestion_01.setText(lifeSuggestionBean.getCar_washing().getBrief());
+                viewHolderSuggestion.tv_suggestion_02.setText(lifeSuggestionBean.getDressing().getBrief());
+                viewHolderSuggestion.tv_suggestion_03.setText(lifeSuggestionBean.getFlu().getBrief());
+                viewHolderSuggestion.tv_suggestion_04.setText(lifeSuggestionBean.getSport().getBrief());
+                viewHolderSuggestion.tv_suggestion_05.setText(lifeSuggestionBean.getTravel().getBrief());
+                viewHolderSuggestion.tv_suggestion_06.setText(lifeSuggestionBean.getUv().getBrief());
+            }else{
+                viewHolderSuggestion.tv_suggestion_01.setText("洗车");
+                viewHolderSuggestion.tv_suggestion_02.setText("穿衣");
+                viewHolderSuggestion.tv_suggestion_03.setText("感冒");
+                viewHolderSuggestion.tv_suggestion_04.setText("运动");
+                viewHolderSuggestion.tv_suggestion_05.setText("旅游");
+                viewHolderSuggestion.tv_suggestion_06.setText("紫外线");
+            }
         } else if (holder instanceof MyViewHolder04) {
             final MyViewHolder04 myViewHolder04 = (MyViewHolder04) holder;
 
@@ -145,12 +164,33 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public static class MyViewHolder03 extends RecyclerView.ViewHolder {
+    public static class MyViewHolderSuggestion extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.tv_suggestion_01)
+        TextView tv_suggestion_01;
+        @Bind(R.id.tv_suggestion_02)
+        TextView tv_suggestion_02;
+        @Bind(R.id.tv_suggestion_03)
+        TextView tv_suggestion_03;
+        @Bind(R.id.tv_suggestion_04)
+        TextView tv_suggestion_04;
+        @Bind(R.id.tv_suggestion_05)
+        TextView tv_suggestion_05;
+        @Bind(R.id.tv_suggestion_06)
+        TextView tv_suggestion_06;
+
+        public MyViewHolderSuggestion(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+    public static class MyViewHolderAir extends RecyclerView.ViewHolder {
 
         @Bind(R.id.arc_progress)
         ArcProgressView arc_progress;
 
-        public MyViewHolder03(View itemView) {
+        public MyViewHolderAir(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

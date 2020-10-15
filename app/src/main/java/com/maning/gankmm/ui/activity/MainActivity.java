@@ -25,10 +25,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.bean.gank2.GankEntity;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.mob.MobUserInfo;
-import com.maning.gankmm.bean.weather.WeatherBean;
-import com.maning.gankmm.bean.weather.WeatherNowBean;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.skin.SkinBroadcastReceiver;
 import com.maning.gankmm.skin.SkinManager;
@@ -97,12 +95,13 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
 
     private NotifyUtil notifyUtils;
 
-    private WeatherBeseEntity.WeatherBean weatherEntity;
-
     private List<GankEntity> welFareList;
     private String provinceName;
     private String cityName;
+    private double longitude, latitude;
+
     private TextView header_tv_weather;
+    private WeatherInfoBean weatherInfoBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -555,13 +554,16 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 break;
             case R.id.rl_weather:
                 //切换城市
-                if (weatherEntity != null) {
+                if (weatherInfoBean != null) {
+                    weatherInfoBean.setCity_name(cityName);
+                    weatherInfoBean.setLatitude(latitude);
+                    weatherInfoBean.setLongitude(longitude);
                     Intent intent_weather = new Intent(MainActivity.this, WeatherActivity.class);
-                    intent_weather.putExtra(WeatherActivity.intentKey_weatherBean, weatherEntity);
+                    intent_weather.putExtra(WeatherActivity.intentKey_weatherBean, weatherInfoBean);
                     intent_weather.putExtra(WeatherActivity.intentKey_weatherProvinceName, provinceName);
                     intent_weather.putExtra(WeatherActivity.intentKey_weatherCityName, cityName);
                     if (welFareList != null && welFareList.size() > 0) {
-                        intent_weather.putStringArrayListExtra(WeatherActivity.intentKey_bg_url, (ArrayList) welFareList);
+                        intent_weather.putStringArrayListExtra(WeatherActivity.intentKey_bgUrls, (ArrayList) welFareList);
                     }
                     startActivity(intent_weather);
                 }
@@ -570,26 +572,29 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     }
 
     @Override
-    public void initWeatherInfo(WeatherBean weatherBean) {
+    public void initWeatherInfo(WeatherInfoBean weatherInfoBean) {
+        this.weatherInfoBean = weatherInfoBean;
         //天气
-        String weather = weatherBean.getWeather_desc();
+        String weather = weatherInfoBean.getWeather_desc();
         //城市
         header_tv_city_name.setText(provinceName + "-" + cityName);
         //赋值
-        header_tv_temperature.setText(weatherBean.getTemperature() + "°");
+        header_tv_temperature.setText(weatherInfoBean.getTemperature() + "°");
         header_tv_weather.setText(weather);
         header_iv_weather.setImageDrawable(getResources().getDrawable(SharePreUtil.getIntData(context, weather, R.drawable.icon_weather_none)));
         //其他数据可能没有
-        tv_weather_wind_direction.setText(weatherBean.getWind_direction() + "风");
-        tv_weather_wind_scale.setText(weatherBean.getWind_scale() + "级");
-        tv_weather_feels_like.setText(weatherBean.getFeels_like() + "°");
-        tv_weather_humidity.setText(weatherBean.getHumidity() + "%");
+        tv_weather_wind_direction.setText(weatherInfoBean.getWind_direction() + "风");
+        tv_weather_wind_scale.setText(weatherInfoBean.getWind_scale() + "级");
+        tv_weather_feels_like.setText(weatherInfoBean.getFeels_like() + "°");
+        tv_weather_humidity.setText(weatherInfoBean.getHumidity() + "%");
     }
 
     @Override
-    public void updateLocationInfo(String provinceName, String cityName) {
+    public void updateLocationInfo(String provinceName, String cityName, double longitude, double latitude) {
         this.provinceName = provinceName;
         this.cityName = cityName;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     @Override

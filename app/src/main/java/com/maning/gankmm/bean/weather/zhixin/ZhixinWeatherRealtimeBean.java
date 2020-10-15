@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean.weather;
+package com.maning.gankmm.bean.weather.zhixin;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * @date : 2020-10-14
  * @desc : 天气实况
  */
-public class WeatherNowBean extends WeatherBaseBean{
+public class ZhixinWeatherRealtimeBean extends ZhixinBaseBean {
 
     private List<ResultsEntity> results;
 

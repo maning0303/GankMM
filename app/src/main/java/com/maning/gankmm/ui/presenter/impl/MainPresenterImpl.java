@@ -1,18 +1,13 @@
 package com.maning.gankmm.ui.presenter.impl;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.amap.api.location.AMapLocation;
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.fir.AppUpdateInfo;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
-import com.maning.gankmm.bean.weather.WeatherBean;
-import com.maning.gankmm.bean.weather.WeatherNowBean;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.http.callback.MyCallBack;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.weather.WeatherApi;
@@ -22,8 +17,6 @@ import com.maning.gankmm.utils.LocationUtils;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.SharePreUtil;
-
-import java.util.List;
 
 /**
  * Created by maning on 16/6/21.
@@ -160,11 +153,11 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
     @Override
     public void getCityWeather(String provinceName, String cityName, double longitude, double latitude) {
-        mView.updateLocationInfo(provinceName, cityName);
+        mView.updateLocationInfo(provinceName, cityName, longitude, latitude);
         WeatherApi.getWeatherFromCaiyun(longitude, latitude, new WeatherApi.OnWeatherCallback() {
             @Override
-            public void onSuccess(WeatherBean weatherBean) {
-                mView.initWeatherInfo(weatherBean);
+            public void onSuccess(WeatherInfoBean weatherInfoBean) {
+                mView.initWeatherInfo(weatherInfoBean);
             }
 
             @Override

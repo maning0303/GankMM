@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean.weather;
+package com.maning.gankmm.bean.weather.caiyun;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by maning on 2017/4/1.
  */
-
+@Deprecated
 public class WeatherBeseEntity implements Serializable{
 
 

@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean.weather;
+package com.maning.gankmm.bean.weather.caiyun;
 
 /**
  * @author : maning
@@ -69,7 +69,6 @@ public class CaiyunWeatherRealTimeBean extends CaiyunWeatherBaseBean {
             private WindEntity wind;
             private double pressure;
             private double apparent_temperature;
-            private PrecipitationEntity precipitation;
             private AirQualityEntity air_quality;
             private LifeIndexEntity life_index;
 
@@ -153,14 +152,6 @@ public class CaiyunWeatherRealTimeBean extends CaiyunWeatherBaseBean {
                 this.apparent_temperature = apparent_temperature;
             }
 
-            public PrecipitationEntity getPrecipitation() {
-                return precipitation;
-            }
-
-            public void setPrecipitation(PrecipitationEntity precipitation) {
-                this.precipitation = precipitation;
-            }
-
             public AirQualityEntity getAir_quality() {
                 return air_quality;
             }
@@ -200,58 +191,6 @@ public class CaiyunWeatherRealTimeBean extends CaiyunWeatherBaseBean {
 
                 public void setDirection(double direction) {
                     this.direction = direction;
-                }
-            }
-
-            public static class PrecipitationEntity {
-                /**
-                 * local : {"status":"ok","datasource":"gfs","intensity":0}
-                 */
-
-                private LocalEntity local;
-
-                public LocalEntity getLocal() {
-                    return local;
-                }
-
-                public void setLocal(LocalEntity local) {
-                    this.local = local;
-                }
-
-                public static class LocalEntity {
-                    /**
-                     * status : ok
-                     * datasource : gfs
-                     * intensity : 0
-                     */
-
-                    private String status;
-                    private String datasource;
-                    private int intensity;
-
-                    public String getStatus() {
-                        return status;
-                    }
-
-                    public void setStatus(String status) {
-                        this.status = status;
-                    }
-
-                    public String getDatasource() {
-                        return datasource;
-                    }
-
-                    public void setDatasource(String datasource) {
-                        this.datasource = datasource;
-                    }
-
-                    public int getIntensity() {
-                        return intensity;
-                    }
-
-                    public void setIntensity(int intensity) {
-                        this.intensity = intensity;
-                    }
                 }
             }
 

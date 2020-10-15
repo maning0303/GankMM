@@ -4,9 +4,13 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinLifeSuggestionResultBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.http.mob.MobApi;
+import com.maning.gankmm.http.weather.WeatherApi;
 import com.maning.gankmm.ui.iView.IWeatherView;
 import com.maning.gankmm.ui.presenter.IWeatherPresenter;
 
@@ -25,23 +29,6 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
         @Override
         public void onSuccessList(int what, List results) {
             mView.overRefresh();
-            if (mView == null) {
-                return;
-            }
-            if (results == null) {
-                return;
-            }
-            switch (what) {
-                case 0x003:
-                    List<WeatherBeseEntity.WeatherBean> weathers = results;
-                    if (weathers.size() > 0) {
-                        WeatherBeseEntity.WeatherBean resultBean = weathers.get(0);
-                        if (resultBean != null) {
-                            mView.initWeatherInfo(resultBean);
-                        }
-                    }
-                    break;
-            }
         }
 
         @Override
@@ -63,7 +50,7 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
 
         @Override
         public void onFail(int what, String result) {
-            if(mView == null){
+            if (mView == null) {
                 return;
             }
             mView.overRefresh();
@@ -79,8 +66,21 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
     }
 
     @Override
-    public void getCityWeather(String provinceName, String cityName) {
-//        MobApi.getCityWeather(cityName, provinceName, 0x003, httpCallBack);
+    public void getCityWeather(String provinceName, String cityName, double longitude, double latitude) {
+        WeatherApi.getWeatherFromCaiyun(longitude, latitude, new WeatherApi.OnWeatherCallback() {
+            @Override
+            public void onSuccess(WeatherInfoBean weatherInfoBean) {
+                mView.initWeatherInfo(weatherInfoBean);
+                mView.overRefresh();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                mView.showToast(msg);
+                mView.overRefresh();
+            }
+        });
+
     }
 
     @Override
@@ -89,5 +89,25 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new java.util.Date());
         MobApi.getCalendarInfo(date, 0x001, httpCallBack);
+    }
+
+    @Override
+    public void getLifeSuggestion(double longitude, double latitude) {
+        WeatherApi.getLifeSuggestionFromZhixin(longitude, latitude, new CommonHttpCallback<ZhixinLifeSuggestionResultBean>() {
+            @Override
+            public void onSuccess(ZhixinLifeSuggestionResultBean result) {
+                ZhixinLifeSuggestionResultBean.ResultsEntity resultsEntity = result.getResults().get(0);
+                ZhixinSuggestionEntity suggestion = resultsEntity.getSuggestion();
+                if (suggestion == null) {
+                    return;
+                }
+                mView.initLifeSuggestionInfo(suggestion);
+            }
+
+            @Override
+            public void onFail(int code, String message) {
+                mView.showToast(message);
+            }
+        });
     }
 }

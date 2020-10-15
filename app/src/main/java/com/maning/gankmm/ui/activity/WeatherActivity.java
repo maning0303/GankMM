@@ -20,7 +20,8 @@ import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.gank2.GankEntity;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.adapter.WeatherAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.iView.IWeatherView;
@@ -44,7 +45,7 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     public static final String intentKey_weatherBean = "intentKey_weatherBean";
     public static final String intentKey_weatherProvinceName = "intentKey_weatherProvinceName";
     public static final String intentKey_weatherCityName = "intentKey_weatherCityName";
-    public static final String intentKey_bg_url = "intentKey_bg_url";
+    public static final String intentKey_bgUrls = "intentKey_bgUrls";
     private static final String TAG = "WeatherActivity";
     private static final float defaultAlpha = 0.0f;
     private static final float maxAlpha = 1.0f;
@@ -65,13 +66,15 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     SwipeToLoadLayout swipeToLoadLayout;
 
     private CalendarInfoEntity calendarInfoEntity;
-    private WeatherBeseEntity.WeatherBean weatherEntity;
+    private WeatherInfoBean weatherInfoBean;
+    private ZhixinSuggestionEntity lifeSuggestionBean;
     private WeatherAdapter weatherAdapter;
 
     private String bgPicUrl;
     private String provinceName;
     private String cityName;
-    private List<GankEntity> welFareList;
+    private List<GankEntity> girlsList;
+    private double longitude, latitude;
 
     private WeatherPresenterImpl weatherPresenter;
 
@@ -98,15 +101,16 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
 
     public void initPresenter() {
         weatherPresenter = new WeatherPresenterImpl(this, this);
+        weatherPresenter.getLifeSuggestion(longitude,latitude);
         weatherPresenter.getCalendarInfo();
     }
 
     private void initBackgroundPic() {
 
-        if (welFareList != null && welFareList.size() > 0) {
+        if (girlsList != null && girlsList.size() > 0) {
             Random random = new Random();
-            int randomIndex = random.nextInt(welFareList.size() - 1);
-            bgPicUrl = welFareList.get(randomIndex).getUrl();
+            int randomIndex = random.nextInt(girlsList.size() - 1);
+            bgPicUrl = girlsList.get(randomIndex).getUrl();
             if (!TextUtils.isEmpty(bgPicUrl)) {
                 RequestOptions options = new RequestOptions();
                 options.centerCrop();
@@ -135,8 +139,8 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     }
 
     private void initViews() {
-        if (weatherEntity != null) {
-            tvTitle.setText(weatherEntity.getCity());
+        if (weatherInfoBean != null) {
+            tvTitle.setText(weatherInfoBean.getCity_name());
         }
 
         //初始化RecycleView
@@ -180,10 +184,14 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     }
 
     private void initIntent() {
-        weatherEntity = (WeatherBeseEntity.WeatherBean) getIntent().getSerializableExtra(intentKey_weatherBean);
-        welFareList = (List<GankEntity>) getIntent().getSerializableExtra(intentKey_bg_url);
+        weatherInfoBean = (WeatherInfoBean) getIntent().getSerializableExtra(intentKey_weatherBean);
+        girlsList = (List<GankEntity>) getIntent().getSerializableExtra(intentKey_bgUrls);
         provinceName = getIntent().getStringExtra(intentKey_weatherProvinceName);
         cityName = getIntent().getStringExtra(intentKey_weatherCityName);
+        if (weatherInfoBean != null) {
+            longitude = weatherInfoBean.getLongitude();
+            latitude = weatherInfoBean.getLatitude();
+        }
     }
 
     @OnClick(R.id.rl_back)
@@ -193,10 +201,10 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
 
     private void initAdapter() {
         if (weatherAdapter == null) {
-            weatherAdapter = new WeatherAdapter(this, weatherEntity, calendarInfoEntity);
+            weatherAdapter = new WeatherAdapter(this, weatherInfoBean, calendarInfoEntity, lifeSuggestionBean);
             swipeTarget.setAdapter(weatherAdapter);
         } else {
-            weatherAdapter.updateDatas(weatherEntity, calendarInfoEntity);
+            weatherAdapter.updateDatas(weatherInfoBean, calendarInfoEntity, lifeSuggestionBean);
         }
 
     }
@@ -204,7 +212,8 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     @Override
     public void onRefresh() {
         if (weatherPresenter != null) {
-            weatherPresenter.getCityWeather(provinceName, cityName);
+            weatherPresenter.getCityWeather(provinceName, cityName, longitude, latitude);
+            weatherPresenter.getLifeSuggestion(longitude, latitude);
         }
     }
 
@@ -214,10 +223,16 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     }
 
     @Override
-    public void initWeatherInfo(WeatherBeseEntity.WeatherBean weatherEntity) {
-        this.weatherEntity = weatherEntity;
+    public void initWeatherInfo(WeatherInfoBean weatherInfoBean) {
+        this.weatherInfoBean = weatherInfoBean;
         initAdapter();
         initBackgroundPic();
+    }
+
+    @Override
+    public void initLifeSuggestionInfo(ZhixinSuggestionEntity lifeSuggestionBean) {
+        this.lifeSuggestionBean = lifeSuggestionBean;
+        initAdapter();
     }
 
     @Override

@@ -2,9 +2,10 @@ package com.maning.gankmm.http.weather;
 
 import android.text.TextUtils;
 
-import com.maning.gankmm.bean.weather.CaiyunWeatherRealTimeBean;
-import com.maning.gankmm.bean.weather.WeatherBean;
-import com.maning.gankmm.bean.weather.WeatherNowBean;
+import com.maning.gankmm.bean.weather.caiyun.CaiyunWeatherRealTimeBean;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinLifeSuggestionResultBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinWeatherRealtimeBean;
 import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 
@@ -18,45 +19,66 @@ import java.util.HashMap;
 public class WeatherApi {
 
     public interface OnWeatherCallback {
-        void onSuccess(WeatherBean weatherBean);
+        void onSuccess(WeatherInfoBean weatherInfoBean);
 
         void onFail(String msg);
     }
-    
 
+    private static final String ZHIXIN_KEY = "SkAwmmz_N361lNLX3";
+
+
+    /**
+     * 生活指数
+     *
+     * @param longitude
+     * @param latitude
+     */
+    public static void getLifeSuggestionFromZhixin(double longitude, double latitude, CommonHttpCallback<ZhixinLifeSuggestionResultBean> httpCallback) {
+        //经纬度（格式是 纬度:经度，英文冒号分隔）
+        String location = latitude + ":" + longitude;
+        BuildApi.getWeatherAPIService().getLifeSuggestion(ZHIXIN_KEY, location).enqueue(httpCallback);
+    }
+
+    /**
+     * 天气实况
+     *
+     * @param longitude
+     * @param latitude
+     * @param onWeatherCallback
+     */
     public static void getWeatherFromZhixin(double longitude, double latitude, final OnWeatherCallback onWeatherCallback) {
         //经纬度（格式是 纬度:经度，英文冒号分隔）
         String location = latitude + ":" + longitude;
-        BuildApi.getWeatherAPIService().getWeatherNow("SkAwmmz_N361lNLX3", location).enqueue(new CommonHttpCallback<WeatherNowBean>() {
+        BuildApi.getWeatherAPIService().getWeatherNow(ZHIXIN_KEY, location).enqueue(new CommonHttpCallback<ZhixinWeatherRealtimeBean>() {
             @Override
-            public void onSuccess(WeatherNowBean result) {
+            public void onSuccess(ZhixinWeatherRealtimeBean result) {
                 if (result == null || result.getResults() == null || result.getResults().size() == 0) {
                     if (onWeatherCallback != null) {
                         onWeatherCallback.onFail("天气数据获取异常");
                     }
                     return;
                 }
-                WeatherNowBean.ResultsEntity resultsEntity = result.getResults().get(0);
+                ZhixinWeatherRealtimeBean.ResultsEntity resultsEntity = result.getResults().get(0);
                 if (resultsEntity == null) {
                     if (onWeatherCallback != null) {
                         onWeatherCallback.onFail("天气数据获取异常");
                     }
                     return;
                 }
-                WeatherNowBean.ResultsEntity.NowEntity nowEntity = resultsEntity.getNow();
+                ZhixinWeatherRealtimeBean.ResultsEntity.NowEntity nowEntity = resultsEntity.getNow();
 
-                WeatherBean weatherBean = new WeatherBean();
-                weatherBean.setWeather_desc(nowEntity.getText());
-                weatherBean.setFeels_like(nowEntity.getFeels_like());
-                weatherBean.setHumidity(nowEntity.getHumidity());
-                weatherBean.setPressure(nowEntity.getPressure());
-                weatherBean.setTemperature(nowEntity.getTemperature());
-                weatherBean.setVisibility(nowEntity.getVisibility());
-                weatherBean.setWind_direction(nowEntity.getWind_direction());
-                weatherBean.setWind_scale(nowEntity.getWind_scale());
-                weatherBean.setWind_speed(nowEntity.getWind_speed());
+                WeatherInfoBean weatherInfoBean = new WeatherInfoBean();
+                weatherInfoBean.setWeather_desc(nowEntity.getText());
+                weatherInfoBean.setFeels_like(nowEntity.getFeels_like());
+                weatherInfoBean.setHumidity(nowEntity.getHumidity());
+                weatherInfoBean.setPressure(nowEntity.getPressure());
+                weatherInfoBean.setTemperature(nowEntity.getTemperature());
+                weatherInfoBean.setVisibility(nowEntity.getVisibility());
+                weatherInfoBean.setWind_direction(nowEntity.getWind_direction());
+                weatherInfoBean.setWind_scale(nowEntity.getWind_scale());
+                weatherInfoBean.setWind_speed(nowEntity.getWind_speed());
                 if (onWeatherCallback != null) {
-                    onWeatherCallback.onSuccess(weatherBean);
+                    onWeatherCallback.onSuccess(weatherInfoBean);
                 }
             }
 
@@ -69,6 +91,13 @@ public class WeatherApi {
         });
     }
 
+    /**
+     * 天气实况
+     *
+     * @param longitude
+     * @param latitude
+     * @param onWeatherCallback
+     */
     public static void getWeatherFromCaiyun(double longitude, double latitude, final OnWeatherCallback onWeatherCallback) {
         String location = longitude + "," + latitude;
         BuildApi.getWeatherAPIService().getWeatherFromCaiyun(location).enqueue(new CommonHttpCallback<CaiyunWeatherRealTimeBean>() {
@@ -83,20 +112,20 @@ public class WeatherApi {
                     return;
                 }
 
-                WeatherBean weatherBean = new WeatherBean();
-                weatherBean.setWeather_desc(CaiyunUtils.getWeatherText(realtime.getSkycon()));
-                weatherBean.setTemperature(String.valueOf(realtime.getTemperature()));
-                weatherBean.setFeels_like(String.valueOf(realtime.getApparent_temperature()));
-                weatherBean.setHumidity(String.valueOf(realtime.getHumidity() * 100));
-                weatherBean.setPressure(String.valueOf(realtime.getPressure()));
-                weatherBean.setVisibility(String.valueOf(realtime.getVisibility()));
+                WeatherInfoBean weatherInfoBean = new WeatherInfoBean();
+                weatherInfoBean.setWeather_desc(CaiyunUtils.getWeatherText(realtime.getSkycon()));
+                weatherInfoBean.setTemperature(String.valueOf(realtime.getTemperature()));
+                weatherInfoBean.setFeels_like(String.valueOf(realtime.getApparent_temperature()));
+                weatherInfoBean.setHumidity(String.valueOf(realtime.getHumidity() * 100));
+                weatherInfoBean.setPressure(String.valueOf(realtime.getPressure()));
+                weatherInfoBean.setVisibility(String.valueOf(realtime.getVisibility()));
                 if (realtime.getWind() != null) {
-                    weatherBean.setWind_direction(CaiyunUtils.getWindDirection(realtime.getWind().getDirection()));
-                    weatherBean.setWind_scale(String.valueOf(CaiyunUtils.getWindScale(realtime.getWind().getSpeed())));
-                    weatherBean.setWind_speed(String.valueOf(realtime.getWind().getSpeed()));
+                    weatherInfoBean.setWind_direction(CaiyunUtils.getWindDirection(realtime.getWind().getDirection()));
+                    weatherInfoBean.setWind_scale(String.valueOf(CaiyunUtils.getWindScale(realtime.getWind().getSpeed())));
+                    weatherInfoBean.setWind_speed(String.valueOf(realtime.getWind().getSpeed()));
                 }
                 if (onWeatherCallback != null) {
-                    onWeatherCallback.onSuccess(weatherBean);
+                    onWeatherCallback.onSuccess(weatherInfoBean);
                 }
             }
 

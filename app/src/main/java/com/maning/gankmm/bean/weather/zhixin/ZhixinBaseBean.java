@@ -1,11 +1,11 @@
-package com.maning.gankmm.bean.weather;
+package com.maning.gankmm.bean.weather.zhixin;
 
 /**
  * @author : maning
  * @date : 2020-10-14
  * @desc :
  */
-public class WeatherBaseBean {
+public class ZhixinBaseBean {
 
     private String status;
     private String status_code;

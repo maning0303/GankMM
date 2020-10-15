@@ -1,12 +1,16 @@
 package com.maning.gankmm.bean.weather;
 
+import java.io.Serializable;
+
 /**
  * @author : maning
  * @date : 2020-10-14
  * @desc : 自己组装使用的天气数据
  */
-public class WeatherBean {
+public class WeatherInfoBean implements Serializable {
 
+
+    private static final long serialVersionUID = 8274082861209944804L;
     //天气
     private String weather_desc;
     //温度

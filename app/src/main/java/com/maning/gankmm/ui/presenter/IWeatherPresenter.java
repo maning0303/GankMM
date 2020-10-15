@@ -5,8 +5,9 @@ package com.maning.gankmm.ui.presenter;
  */
 public interface IWeatherPresenter {
 
-    void getCityWeather(String provinceName, String cityName);
+    void getCityWeather(String provinceName, String cityName, double longitude, double latitude);
 
-    //万年历查询
     void getCalendarInfo();
+
+    void getLifeSuggestion(double longitude, double latitude);
 }

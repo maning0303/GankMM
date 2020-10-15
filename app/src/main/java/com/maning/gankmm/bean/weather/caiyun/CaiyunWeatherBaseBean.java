@@ -1,4 +1,4 @@
-package com.maning.gankmm.bean.weather;
+package com.maning.gankmm.bean.weather.caiyun;
 
 import java.util.List;
 

@@ -3,8 +3,8 @@ package com.maning.gankmm.http.callback;
 import android.text.TextUtils;
 
 import com.maning.gankmm.bean.gank2.Gank2BaseBean;
-import com.maning.gankmm.bean.weather.CaiyunWeatherBaseBean;
-import com.maning.gankmm.bean.weather.WeatherBaseBean;
+import com.maning.gankmm.bean.weather.caiyun.CaiyunWeatherBaseBean;
+import com.maning.gankmm.bean.weather.zhixin.ZhixinBaseBean;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -44,12 +44,12 @@ public abstract class CommonHttpCallback<T> implements Callback<T> {
                 } else {
                     onFail(1000, "彩云天气接口出错啦~~~");
                 }
-            } else if (body instanceof WeatherBaseBean) {
-                WeatherBaseBean weatherBaseBean = (WeatherBaseBean) response.body();
-                if (TextUtils.isEmpty(weatherBaseBean.getStatus())) {
+            } else if (body instanceof ZhixinBaseBean) {
+                ZhixinBaseBean zhixinBaseBean = (ZhixinBaseBean) response.body();
+                if (TextUtils.isEmpty(zhixinBaseBean.getStatus())) {
                     onSuccess(response.body());
                 } else {
-                    onFail(1000, weatherBaseBean.getStatus());
+                    onFail(1000, zhixinBaseBean.getStatus());
                 }
             } else {
                 onSuccess(body);

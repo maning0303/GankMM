@@ -1,9 +1,7 @@
 package com.maning.gankmm.ui.iView;
 
 import com.maning.gankmm.bean.fir.AppUpdateInfo;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
-import com.maning.gankmm.bean.weather.WeatherBean;
-import com.maning.gankmm.bean.weather.WeatherNowBean;
+import com.maning.gankmm.bean.weather.WeatherInfoBean;
 
 /**
  * Created by maning on 16/6/21.
@@ -14,8 +12,8 @@ public interface IMainView {
 
     void showAppUpdateDialog(AppUpdateInfo appUpdateInfo);
 
-    void initWeatherInfo(WeatherBean weatherBean);
+    void initWeatherInfo(WeatherInfoBean weatherInfoBean);
 
-    void updateLocationInfo(String provinceName, String cityName);
+    void updateLocationInfo(String provinceName, String cityName, double longitude, double latitude);
 
 }
