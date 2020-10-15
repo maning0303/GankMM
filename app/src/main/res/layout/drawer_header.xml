@@ -144,6 +144,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/header_tv_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
