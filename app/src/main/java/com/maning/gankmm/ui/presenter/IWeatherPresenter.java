@@ -10,4 +10,5 @@ public interface IWeatherPresenter {
     void getCalendarInfo();
 
     void getLifeSuggestion(double longitude, double latitude);
+
 }

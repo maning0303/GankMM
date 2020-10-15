@@ -2,6 +2,7 @@ package com.maning.gankmm.ui.iView;
 
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.rolltools.HolidayBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 
@@ -18,6 +19,6 @@ public interface IWeatherView {
 
     void overRefresh();
 
-    void updateCalendarInfo(CalendarInfoEntity calendarInfoEntity);
+    void updateCalendarInfo(HolidayBean holidayBean);
 
 }

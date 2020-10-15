@@ -20,6 +20,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.gank2.GankEntity;
+import com.maning.gankmm.bean.rolltools.HolidayBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.adapter.WeatherAdapter;
@@ -65,7 +66,7 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
-    private CalendarInfoEntity calendarInfoEntity;
+    private HolidayBean holidayBean;
     private WeatherInfoBean weatherInfoBean;
     private ZhixinSuggestionEntity lifeSuggestionBean;
     private WeatherAdapter weatherAdapter;
@@ -201,10 +202,10 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
 
     private void initAdapter() {
         if (weatherAdapter == null) {
-            weatherAdapter = new WeatherAdapter(this, weatherInfoBean, calendarInfoEntity, lifeSuggestionBean);
+            weatherAdapter = new WeatherAdapter(this, weatherInfoBean, holidayBean, lifeSuggestionBean);
             swipeTarget.setAdapter(weatherAdapter);
         } else {
-            weatherAdapter.updateDatas(weatherInfoBean, calendarInfoEntity, lifeSuggestionBean);
+            weatherAdapter.updateDatas(weatherInfoBean, holidayBean, lifeSuggestionBean);
         }
 
     }
@@ -241,8 +242,8 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     }
 
     @Override
-    public void updateCalendarInfo(CalendarInfoEntity calendarInfoEntity) {
-        this.calendarInfoEntity = calendarInfoEntity;
+    public void updateCalendarInfo(HolidayBean holidayBean) {
+        this.holidayBean = holidayBean;
         initAdapter();
     }
 

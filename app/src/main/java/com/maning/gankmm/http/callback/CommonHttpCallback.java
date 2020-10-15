@@ -3,6 +3,7 @@ package com.maning.gankmm.http.callback;
 import android.text.TextUtils;
 
 import com.maning.gankmm.bean.gank2.Gank2BaseBean;
+import com.maning.gankmm.bean.rolltools.RollToolsBaseBean;
 import com.maning.gankmm.bean.weather.caiyun.CaiyunWeatherBaseBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinBaseBean;
 
@@ -28,28 +29,35 @@ public abstract class CommonHttpCallback<T> implements Callback<T> {
             T body = response.body();
             if (body instanceof Gank2BaseBean) {
                 //gankio
-                Gank2BaseBean gank2BaseBean = (Gank2BaseBean) response.body();
-                if (gank2BaseBean.getStatus() == 100) {
+                Gank2BaseBean baseBean = (Gank2BaseBean) response.body();
+                if (baseBean.getStatus() == 100) {
                     onSuccess(response.body());
                 } else {
-                    onFail(gank2BaseBean.getStatus(), gank2BaseBean.getMsg());
+                    onFail(baseBean.getStatus(), baseBean.getMsg());
                 }
             } else if (body instanceof CaiyunWeatherBaseBean) {
                 //彩云天气
-                CaiyunWeatherBaseBean caiyunWeather = (CaiyunWeatherBaseBean) response.body();
-                String status = caiyunWeather.getStatus();
-                String api_status = caiyunWeather.getApi_status();
+                CaiyunWeatherBaseBean baseBean = (CaiyunWeatherBaseBean) response.body();
+                String status = baseBean.getStatus();
+                String api_status = baseBean.getApi_status();
                 if ("ok".equals(status) && "active".equals(api_status)) {
                     onSuccess(response.body());
                 } else {
                     onFail(1000, "彩云天气接口出错啦~~~");
                 }
             } else if (body instanceof ZhixinBaseBean) {
-                ZhixinBaseBean zhixinBaseBean = (ZhixinBaseBean) response.body();
-                if (TextUtils.isEmpty(zhixinBaseBean.getStatus())) {
+                ZhixinBaseBean baseBean = (ZhixinBaseBean) response.body();
+                if (TextUtils.isEmpty(baseBean.getStatus())) {
                     onSuccess(response.body());
                 } else {
-                    onFail(1000, zhixinBaseBean.getStatus());
+                    onFail(1000, baseBean.getStatus());
+                }
+            } else if (body instanceof RollToolsBaseBean) {
+                RollToolsBaseBean baseBean = (RollToolsBaseBean) response.body();
+                if (baseBean.getCode() == 1) {
+                    onSuccess(response.body());
+                } else {
+                    onFail(baseBean.getCode(), baseBean.getMsg());
                 }
             } else {
                 onSuccess(body);

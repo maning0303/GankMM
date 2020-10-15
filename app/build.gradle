@@ -126,15 +126,15 @@ dependencies {
     /*ViewPager指示器*/
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     /*Umeng统计*/
-    implementation 'com.umeng.sdk:common:latest.integration'
-    implementation 'com.umeng.sdk:analytics:latest.integration'
+    implementation 'com.umeng.sdk:common:1.5.3'
+    implementation 'com.umeng.sdk:analytics:7.5.3'
     /*极光推送*/
     implementation files('libs/jcore-android_v1.1.2.jar')
     implementation files('libs/jpush-android_v3.0.5.jar')
     /*菜单*/
     implementation 'io.github.yavski:fab-speed-dial:1.0.4'
     /*高德地图*/
-    implementation 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:location:5.2.0'
     /* 模糊 */
     implementation 'jp.wasabeef:blurry:2.1.1'
     /*网络监测*/

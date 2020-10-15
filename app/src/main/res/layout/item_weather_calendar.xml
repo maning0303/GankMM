@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#55000000"
     android:orientation="vertical">
 
@@ -15,6 +16,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
         android:text="万年历"
+        android:textStyle="bold"
         android:textColor="@color/white" />
 
     <View
@@ -34,9 +36,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="2017-4-11"
+            tools:text="2017-4-11"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            tools:text="工作日"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_02"
@@ -44,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="三月十三"
+            tools:text="三月十三"
             android:textColor="#faee0c"
             android:textSize="40sp" />
 
@@ -54,9 +67,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="乙未 (羊) 星期五"
+            tools:text="乙未 (羊) 星期五"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
+
 
         <View
             android:layout_width="match_parent"

@@ -17,8 +17,11 @@ public class Constants {
 
     public static final String FIR_BASEURL = "http://api.fir.im/";
 
-    //https://api.seniverse.com/v3/weather/now.json?key=SkAwmmz_N361lNLX3&location=beijing&language=zh-Hans&unit=c
+    //知心API
     public static final String BASEURL_WEATHER = "https://api.seniverse.com/v3/";
+
+    //开源API:https://github.com/MZCretin/RollToolsApi
+    public static final String BASEURL_ROLL_TOOLS = "https://www.mxnzp.com/api/";
 
     //干活历史日期
     public static final String URL_HistoryDate = "http://gank.io/api/day/history";

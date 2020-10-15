@@ -5,6 +5,7 @@ import com.maning.gankmm.constant.Constants;
 import com.maning.gankmm.http.gank.APIGankService;
 import com.maning.gankmm.http.gank2.APIGank2Service;
 import com.maning.gankmm.http.mob.APIMobService;
+import com.maning.gankmm.http.rolltools.APIRolltoolsService;
 import com.maning.gankmm.http.update.APIUpdateService;
 import com.maning.gankmm.http.weather.APIWeatherService;
 
@@ -58,6 +59,10 @@ public class BuildApi {
 
     public static APIWeatherService getWeatherAPIService() {
         return getInterface(Constants.BASEURL_WEATHER, APIWeatherService.class);
+    }
+
+    public static APIRolltoolsService getRooltoolsAPIService() {
+        return getInterface(Constants.BASEURL_ROLL_TOOLS, APIRolltoolsService.class);
     }
 
 }

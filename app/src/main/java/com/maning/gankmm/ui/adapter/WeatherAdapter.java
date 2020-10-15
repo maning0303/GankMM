@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.rolltools.HolidayBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.view.ArcProgressView;
@@ -28,22 +29,22 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private Context mContext;
     private WeatherInfoBean weatherEntity;
-    private CalendarInfoEntity calendarInfoEntity;
+    private HolidayBean holidayBean;
     private LayoutInflater layoutInflater;
     private ZhixinSuggestionEntity lifeSuggestionBean;
 
 
-    public WeatherAdapter(Context context, WeatherInfoBean weatherEntity, CalendarInfoEntity calendarInfoEntity, ZhixinSuggestionEntity lifeSuggestionBean) {
+    public WeatherAdapter(Context context, WeatherInfoBean weatherEntity, HolidayBean holidayBean, ZhixinSuggestionEntity lifeSuggestionBean) {
         this.mContext = context;
         this.weatherEntity = weatherEntity;
-        this.calendarInfoEntity = calendarInfoEntity;
+        this.holidayBean = holidayBean;
         this.lifeSuggestionBean = lifeSuggestionBean;
         layoutInflater = LayoutInflater.from(this.mContext);
     }
 
-    public void updateDatas(WeatherInfoBean weatherEntity, CalendarInfoEntity calendarInfoEntity, ZhixinSuggestionEntity lifeSuggestionBean) {
+    public void updateDatas(WeatherInfoBean weatherEntity, HolidayBean holidayBean, ZhixinSuggestionEntity lifeSuggestionBean) {
         this.weatherEntity = weatherEntity;
-        this.calendarInfoEntity = calendarInfoEntity;
+        this.holidayBean = holidayBean;
         this.lifeSuggestionBean = lifeSuggestionBean;
         notifyDataSetChanged();
     }
@@ -99,7 +100,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 viewHolderSuggestion.tv_suggestion_04.setText(lifeSuggestionBean.getSport().getBrief());
                 viewHolderSuggestion.tv_suggestion_05.setText(lifeSuggestionBean.getTravel().getBrief());
                 viewHolderSuggestion.tv_suggestion_06.setText(lifeSuggestionBean.getUv().getBrief());
-            }else{
+            } else {
                 viewHolderSuggestion.tv_suggestion_01.setText("洗车");
                 viewHolderSuggestion.tv_suggestion_02.setText("穿衣");
                 viewHolderSuggestion.tv_suggestion_03.setText("感冒");
@@ -110,11 +111,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (holder instanceof MyViewHolder04) {
             final MyViewHolder04 myViewHolder04 = (MyViewHolder04) holder;
 
-            myViewHolder04.tv_01.setText(calendarInfoEntity.getDate());
-            myViewHolder04.tv_02.setText(calendarInfoEntity.getLunar());
-            myViewHolder04.tv_03.setText(calendarInfoEntity.getLunarYear() + " (" + calendarInfoEntity.getZodiac() + ") " + calendarInfoEntity.getWeekday());
-            myViewHolder04.tv_04.setText(calendarInfoEntity.getSuit());
-            myViewHolder04.tv_05.setText(calendarInfoEntity.getAvoid());
+            myViewHolder04.tv_01.setText(holidayBean.getDate());
+            myViewHolder04.tv_06.setText(holidayBean.getTypeDes());
+            myViewHolder04.tv_02.setText(holidayBean.getLunarCalendar());
+            myViewHolder04.tv_03.setText(holidayBean.getYearTips() + " (" + holidayBean.getChineseZodiac() + ")  - " + holidayBean.getSolarTerms());
+            myViewHolder04.tv_04.setText(holidayBean.getSuit());
+            myViewHolder04.tv_05.setText(holidayBean.getAvoid());
 
         }
 
@@ -123,7 +125,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        if (calendarInfoEntity == null) {
+        if (holidayBean == null) {
             return 3;
         }
         return 4;
@@ -209,6 +211,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView tv_04;
         @Bind(R.id.tv_05)
         TextView tv_05;
+        @Bind(R.id.tv_06)
+        TextView tv_06;
 
         public MyViewHolder04(View itemView) {
             super(itemView);
