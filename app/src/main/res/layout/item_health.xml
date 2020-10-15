@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -15,32 +16,19 @@
         android:textColor="@color/black_text2_color"
         android:textSize="16sp" />
 
-    <com.ms.square.android.expandabletextview.ExpandableTextView
+    <com.ctetin.expandabletextviewlibrary.ExpandableTextView
         android:id="@+id/expand_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        expandableTextView:animAlphaStart="1"
-        expandableTextView:maxCollapsedLines="4">
-
-        <TextView
-            android:id="@id/expandable_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/black_text3_color"
-            android:textSize="14sp" />
-
-        <ImageButton
-            android:id="@id/expand_collapse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:background="@android:color/transparent"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp" />
-
-    </com.ms.square.android.expandabletextview.ExpandableTextView>
+        android:lineSpacingExtra="4dp"
+        android:textSize="14sp"
+        app:ep_expand_text="展开"
+        app:ep_max_line="4"
+        app:ep_need_always_showright="true"
+        app:ep_need_animation="true"
+        app:ep_need_contract="true"
+        tools:text="1976年9月9日，中国人民的领袖，伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人毛泽东逝世，享年83岁。" />
 
 
 </LinearLayout>

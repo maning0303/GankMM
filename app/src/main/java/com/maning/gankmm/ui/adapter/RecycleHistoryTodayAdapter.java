@@ -2,20 +2,22 @@ package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.ctetin.expandabletextviewlibrary.ExpandableTextView;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobHistoryTodayEntity;
-import com.ms.square.android.expandabletextview.ExpandableTextView;
+import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,19 +28,16 @@ import butterknife.ButterKnife;
 public class RecycleHistoryTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<MobHistoryTodayEntity> mDatas;
+    private ArrayList<HistoryTodayBean.DataEntity> mDatas;
     private LayoutInflater layoutInflater;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-    private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy年MM月dd日");
-
-    public RecycleHistoryTodayAdapter(Context context, ArrayList<MobHistoryTodayEntity> mDatas) {
+    public RecycleHistoryTodayAdapter(Context context, ArrayList<HistoryTodayBean.DataEntity> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
         layoutInflater = LayoutInflater.from(this.context);
     }
 
-    public void upddateDatas(ArrayList<MobHistoryTodayEntity> mDatas){
+    public void upddateDatas(ArrayList<HistoryTodayBean.DataEntity> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
@@ -54,21 +53,27 @@ public class RecycleHistoryTodayAdapter extends RecyclerView.Adapter<RecyclerVie
         if (viewHolder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
 
-            MobHistoryTodayEntity mobHistoryTodayEntity = mDatas.get(position);
+            HistoryTodayBean.DataEntity dataEntity = mDatas.get(position);
 
-            myViewHolder.tv_title.setText(mobHistoryTodayEntity.getTitle());
+            myViewHolder.tv_title.setText(dataEntity.getTitle());
 
-            String date = mobHistoryTodayEntity.getDate();
-            try {
-                Date parse = sdf.parse(date);
-                date = sdf2.format(parse);
-            } catch (ParseException e) {
-                e.printStackTrace();
+            myViewHolder.tv_time.setText(dataEntity.getYear() + "-" + dataEntity.getMonth() + "-" + dataEntity.getDay());
+
+            myViewHolder.expand_text_view.setContent(dataEntity.getDetails());
+
+            if (TextUtils.isEmpty(dataEntity.getPicUrl())) {
+                myViewHolder.iv_show.setVisibility(View.GONE);
+            } else {
+                myViewHolder.iv_show.setVisibility(View.VISIBLE);
+
+                RequestOptions options = new RequestOptions();
+                options.fitCenter();
+                options.placeholder(R.drawable.pic_gray_bg);
+                Glide.with(context)
+                        .load(dataEntity.getPicUrl())
+                        .apply(options)
+                        .into(myViewHolder.iv_show);
             }
-            myViewHolder.tv_time.setText(date);
-
-            SparseBooleanArray mTogglePositions = new SparseBooleanArray();
-            myViewHolder.expand_text_view.setText(mobHistoryTodayEntity.getEvent(), mTogglePositions, position);
         }
     }
 
@@ -83,6 +88,8 @@ public class RecycleHistoryTodayAdapter extends RecyclerView.Adapter<RecyclerVie
         TextView tv_title;
         @Bind(R.id.tv_time)
         TextView tv_time;
+        @Bind(R.id.iv_show)
+        ImageView iv_show;
         @Bind(R.id.expand_text_view)
         ExpandableTextView expand_text_view;
 

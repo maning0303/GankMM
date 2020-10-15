@@ -1,5 +1,6 @@
 package com.maning.gankmm.http.rolltools;
 
+import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 
@@ -33,5 +34,12 @@ public interface APIRolltoolsService {
     Call<WeatherFuturedaysResultBean> getCityWeatherFutureDays(
             @Path("cityName") String cityName
     );
+
+    @Headers({
+            "app_id:olkgphoyitdqikvi",
+            "app_secret:SFdTdFB5aGVoamlXU2dZblpPZTRjQT09"
+    })
+    @GET("history/today?type=1")
+    Call<HistoryTodayBean> getHistoryToday();
 
 }

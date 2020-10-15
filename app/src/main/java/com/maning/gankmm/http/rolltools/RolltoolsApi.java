@@ -1,5 +1,6 @@
 package com.maning.gankmm.http.rolltools;
 
+import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.http.BuildApi;
@@ -30,6 +31,14 @@ public class RolltoolsApi {
      */
     public static void getCityWeatherFutureDays(String cityName, CommonHttpCallback<WeatherFuturedaysResultBean> httpCallback) {
         BuildApi.getRooltoolsAPIService().getCityWeatherFutureDays(cityName).enqueue(httpCallback);
+    }
+
+    /**
+     * 历史上的今天
+     * @param httpCallback
+     */
+    public static void getHistoryToday(CommonHttpCallback<HistoryTodayBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getHistoryToday().enqueue(httpCallback);
     }
 
 

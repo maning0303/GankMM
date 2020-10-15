@@ -7,16 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.maning.calendarlibrary.MNCalendar;
-import com.maning.calendarlibrary.listeners.OnCalendarItemClickListener;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobHistoryTodayEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleHistoryTodayAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -26,11 +21,9 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 历史上今天
@@ -41,18 +34,9 @@ public class HistoryTodayActivity extends BaseActivity {
     Toolbar toolbar;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    @Bind(R.id.tv_time)
-    TextView tvTime;
-    @Bind(R.id.mnCalendar)
-    MNCalendar mnCalendar;
-    @Bind(R.id.calendar_bg)
-    RelativeLayout CalendarBg;
 
-    private ArrayList<MobHistoryTodayEntity> mDatas;
+    private ArrayList<HistoryTodayBean.DataEntity> mDatas;
 
-    private Date currentDate = new Date();
-    private SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
-    private SimpleDateFormat sdf2 = new SimpleDateFormat("MM月dd日");
     private RecycleHistoryTodayAdapter recycleHistoryTodayAdapter;
 
     @Override
@@ -65,55 +49,27 @@ public class HistoryTodayActivity extends BaseActivity {
 
         initRecyclerView();
 
-        initCalendar();
-
         queryData();
 
-    }
-
-    private void initCalendar() {
-        mnCalendar.setOnCalendarItemClickListener(new OnCalendarItemClickListener() {
-            @Override
-            public void onClick(Date date) {
-                currentDate = date;
-                CalendarBg.setVisibility(View.GONE);
-                queryData();
-            }
-
-            @Override
-            public void onLongClick(Date date) {
-
-            }
-        });
     }
 
     private void queryData() {
         showProgressDialog("查询中...");
 
-        String timeString = sdf.format(currentDate);
-        String timeString2 = sdf2.format(currentDate);
-        tvTime.setText(timeString2);
-
-        MobApi.queryHistory(timeString, 0x001, new MyCallBack() {
+        RolltoolsApi.getHistoryToday(new CommonHttpCallback<HistoryTodayBean>() {
             @Override
-            public void onSuccess(int what, Object result) {
-
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
+            public void onSuccess(HistoryTodayBean result) {
                 dissmissProgressDialog();
-                mDatas = (ArrayList<MobHistoryTodayEntity>) results;
+                mDatas = (ArrayList<HistoryTodayBean.DataEntity>) result.getData();
                 initAdapter();
             }
 
             @Override
-            public void onFail(int what, String result) {
-                MySnackbar.makeSnackBarRed(toolbar, result);
+            public void onFail(int code, String message) {
+                MySnackbar.makeSnackBarRed(toolbar, message);
                 dissmissProgressDialog();
             }
         });
-
     }
 
     private void initAdapter() {
@@ -150,16 +106,6 @@ public class HistoryTodayActivity extends BaseActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @OnClick(R.id.tv_time)
-    public void tv_time() {
-        CalendarBg.setVisibility(View.VISIBLE);
-    }
-
-    @OnClick(R.id.calendar_bg)
-    public void calendar_bg() {
-        CalendarBg.setVisibility(View.GONE);
     }
 
 }

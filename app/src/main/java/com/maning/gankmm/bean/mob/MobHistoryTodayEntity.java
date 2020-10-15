@@ -4,7 +4,7 @@ package com.maning.gankmm.bean.mob;
  * Created by maning on 2017/5/12.
  * 历史上的今天
  */
-
+@Deprecated
 public class MobHistoryTodayEntity {
 
 

@@ -11,45 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="60dp"
-            android:background="@drawable/bg_history_time"
-            android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="0510"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <RelativeLayout
-            android:id="@+id/calendar_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#a3000000"
-            android:visibility="gone">
-
-            <com.maning.calendarlibrary.MNCalendar
-                android:id="@+id/mnCalendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:background="@color/white"
-                android:padding="10dp" />
-
-        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -2,15 +2,14 @@ package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ctetin.expandabletextviewlibrary.ExpandableTextView;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobHealthEntity;
-import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.util.ArrayList;
 
@@ -52,8 +51,7 @@ public class RecycleHealthAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             myViewHolder.tv_title.setText(mobHealth.getTitle());
 
-            SparseBooleanArray mTogglePositions = new SparseBooleanArray();
-            myViewHolder.expand_text_view.setText(mobHealth.getContent(), mTogglePositions, position);
+            myViewHolder.expand_text_view.setContent(mobHealth.getContent());
         }
     }
 
