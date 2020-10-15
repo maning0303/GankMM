@@ -22,6 +22,8 @@ public class Constants {
 
     //开源API:https://github.com/MZCretin/RollToolsApi
     public static final String BASEURL_ROLL_TOOLS = "https://www.mxnzp.com/api/";
+    public static final String ROLL_TOOLS_APP_ID = "olkgphoyitdqikvi";
+    public static final String ROLL_TOOLS_APP_SECRET = "SFdTdFB5aGVoamlXU2dZblpPZTRjQT09";
 
     //干活历史日期
     public static final String URL_HistoryDate = "http://gank.io/api/day/history";

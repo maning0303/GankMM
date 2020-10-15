@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobTrainEntity;
+import com.maning.gankmm.bean.mob.MobFlightEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -32,9 +32,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 火车
+ * 航班
  */
-public class TrainActivity extends BaseActivity {
+public class FlightActivity extends BaseActivity {
 
     @Bind(R.id.ll_query)
     LinearLayout llQuery;
@@ -57,7 +57,7 @@ public class TrainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train);
+        setContentView(R.layout.activity_flight);
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucentForImageView(this, 20, llQuery);
 
@@ -174,7 +174,7 @@ public class TrainActivity extends BaseActivity {
 
         showProgressDialog("正在查询...");
 
-        MobApi.queryByStationToStation(startName, endName, 0x001, new MyCallBack() {
+        MobApi.queryFlightLineList(startName, endName, 0x001, new MyCallBack() {
             @Override
             public void onSuccess(int what, Object result) {
 
@@ -183,10 +183,10 @@ public class TrainActivity extends BaseActivity {
             @Override
             public void onSuccessList(int what, List results) {
                 dissmissProgressDialog();
-                ArrayList<MobTrainEntity> mDatas = (ArrayList<MobTrainEntity>) results;
+                ArrayList<MobFlightEntity> mDatas = (ArrayList<MobFlightEntity>) results;
                 if (mDatas != null && mDatas.size() > 0) {
                     //跳转页面
-                    Intent intent = new Intent(mContext, TrainListActivity.class);
+                    Intent intent = new Intent(mContext, FlightListActivity.class);
                     intent.putExtra("IntentTitle", startName + "-" + endName);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("IntentDatas", mDatas);

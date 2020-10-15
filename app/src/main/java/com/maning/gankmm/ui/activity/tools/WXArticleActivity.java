@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.graphics.Color;
 import android.os.Bundle;

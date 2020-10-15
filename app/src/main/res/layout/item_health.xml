@@ -1,6 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -8,27 +6,24 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="2"
-        android:text="标题"
-        android:textColor="@color/black_text2_color"
+        android:text="西瓜"
+        android:textColor="@color/black_text3_color"
         android:textSize="16sp" />
 
-    <com.ctetin.expandabletextviewlibrary.ExpandableTextView
-        android:id="@+id/expand_text_view"
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:textSize="14sp"
-        app:ep_expand_text="展开"
-        app:ep_max_line="4"
-        app:ep_need_always_showright="true"
-        app:ep_need_animation="true"
-        app:ep_need_contract="true"
-        tools:text="1976年9月9日，中国人民的领袖，伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人毛泽东逝世，享年83岁。" />
+        android:layout_alignParentRight="true"
+        android:maxLines="2"
+        android:text="干垃圾"
+        android:textColor="@color/black_text1_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
-</LinearLayout>
+</RelativeLayout>

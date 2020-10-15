@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobItemEntity;
-import com.maning.gankmm.bean.mob.MobPostCodeEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -21,21 +21,20 @@ import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 邮编查询
+ * 新华字典查询
  */
-public class PostCodeActivity extends BaseActivity {
+public class DictionaryActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.editTextPhone)
-    MClearEditText editTextPhone;
+    @Bind(R.id.editText)
+    MClearEditText editText;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleMobQueryAdapter recycleMobQueryAdapter;
@@ -43,7 +42,7 @@ public class PostCodeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_code);
+        setContentView(R.layout.activity_dictionary);
         ButterKnife.bind(this);
 
         initMyToolBar();
@@ -61,9 +60,9 @@ public class PostCodeActivity extends BaseActivity {
     private void initMyToolBar() {
         int currentSkinType = SkinManager.getCurrentSkinType(this);
         if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(toolbar, "邮编查询", R.drawable.gank_ic_back_white);
+            initToolBar(toolbar, "新华字典查询", R.drawable.gank_ic_back_white);
         } else {
-            initToolBar(toolbar, "邮编查询", R.drawable.gank_ic_back_night);
+            initToolBar(toolbar, "新华字典查询", R.drawable.gank_ic_back_night);
         }
     }
 
@@ -83,47 +82,40 @@ public class PostCodeActivity extends BaseActivity {
 
         KeyboardUtils.hideSoftInput(this);
 
-        //获取邮政编码
-        String number = editTextPhone.getText().toString();
+        //获取输入
+        String content = editText.getText().toString();
 
-        if (TextUtils.isEmpty(number)) {
-            MySnackbar.makeSnackBarRed(toolbar, "邮政编码不能为空");
+        if (TextUtils.isEmpty(content)) {
+            MySnackbar.makeSnackBarRed(toolbar, "输入内容不能为空");
             return;
         }
 
-
         showProgressDialog("正在查询...");
-        MobApi.queryPostCode(number, 0x001, new MyCallBack() {
+        RolltoolsApi.convertDictionary(content, new CommonHttpCallback<DictionaryResultBean>() {
             @Override
-            public void onSuccess(int what, Object object) {
+            public void onSuccess(DictionaryResultBean result) {
                 dissmissProgressDialog();
-                if (object != null) {
-                    MobPostCodeEntity result = (MobPostCodeEntity) object;
-                    initAdapter(result);
-                }
+                DictionaryResultBean.DataEntity dataEntity = result.getData().get(0);
+                initAdapter(dataEntity);
             }
 
             @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
+            public void onFail(int code, String message) {
                 dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(toolbar,result);
+                MySnackbar.makeSnackBarRed(toolbar, message);
             }
         });
 
     }
 
-    private void initAdapter(MobPostCodeEntity result) {
-
+    private void initAdapter(DictionaryResultBean.DataEntity dataEntity) {
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("省份:", result.getProvince()));
-        mDatas.put("1", new MobItemEntity("城市:", result.getCity()));
-        mDatas.put("2", new MobItemEntity("区县:", result.getDistrict()));
-        mDatas.put("3", new MobItemEntity("详细地址:", result.getAddress().toString()));
+        mDatas.put("0", new MobItemEntity("原内容:", dataEntity.getWord()));
+        mDatas.put("1", new MobItemEntity("繁体:", dataEntity.getTraditional()));
+        mDatas.put("2", new MobItemEntity("拼音:", dataEntity.getPinyin()));
+        mDatas.put("3", new MobItemEntity("偏旁部首:", dataEntity.getRadicals()));
+        mDatas.put("4", new MobItemEntity("汉字释义:", dataEntity.getExplanation()));
+        mDatas.put("5", new MobItemEntity("汉字笔画数:", String.valueOf(dataEntity.getStrokes())));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

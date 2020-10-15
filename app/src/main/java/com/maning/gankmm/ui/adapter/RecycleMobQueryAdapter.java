@@ -1,9 +1,6 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +9,8 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobItemEntity;
-import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.ui.activity.mob.PhoneAddressActivity;
-import com.maning.gankmm.utils.MyToast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

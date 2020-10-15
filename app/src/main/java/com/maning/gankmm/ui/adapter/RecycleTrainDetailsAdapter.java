@@ -1,25 +1,14 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobTrainEntity;
 import com.maning.gankmm.bean.mob.MobTrainNoEntity;
-import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.ui.activity.mob.TrainListActivity;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 

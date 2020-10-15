@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,9 +18,7 @@ import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.MySnackbar;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

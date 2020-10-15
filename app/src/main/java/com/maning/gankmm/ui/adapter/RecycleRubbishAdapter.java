@@ -7,9 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.ctetin.expandabletextviewlibrary.ExpandableTextView;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobHealthEntity;
+import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 
 import java.util.ArrayList;
 
@@ -17,21 +16,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * 健康知识
+ * 垃圾分类
  */
-public class RecycleHealthAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleRubbishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<MobHealthEntity.ListBean> mDatas;
+    private ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas;
     private LayoutInflater layoutInflater;
 
-    public RecycleHealthAdapter(Context context, ArrayList<MobHealthEntity.ListBean> mDatas) {
+    public RecycleRubbishAdapter(Context context, ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
         layoutInflater = LayoutInflater.from(this.context);
     }
 
-    public void upddateDatas(ArrayList<MobHealthEntity.ListBean> mDatas) {
+    public void upddateDatas(ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
@@ -47,11 +46,10 @@ public class RecycleHealthAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (viewHolder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
 
-            MobHealthEntity.ListBean mobHealth = mDatas.get(position);
+            RubbishTypeResultBean.DataEntity.AimEntity aimEntity = mDatas.get(position);
 
-            myViewHolder.tv_title.setText(mobHealth.getTitle());
-
-            myViewHolder.expand_text_view.setContent(mobHealth.getContent());
+            myViewHolder.tv_name.setText(aimEntity.getGoodsName());
+            myViewHolder.tv_type.setText(aimEntity.getGoodsType());
         }
     }
 
@@ -62,10 +60,10 @@ public class RecycleHealthAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title)
-        TextView tv_title;
-        @Bind(R.id.expand_text_view)
-        ExpandableTextView expand_text_view;
+        @Bind(R.id.tv_name)
+        TextView tv_name;
+        @Bind(R.id.tv_type)
+        TextView tv_type;
 
         public MyViewHolder(View itemView) {
             super(itemView);

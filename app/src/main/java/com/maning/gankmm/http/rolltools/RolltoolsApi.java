@@ -1,7 +1,9 @@
 package com.maning.gankmm.http.rolltools;
 
+import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
@@ -35,10 +37,30 @@ public class RolltoolsApi {
 
     /**
      * 历史上的今天
+     *
      * @param httpCallback
      */
     public static void getHistoryToday(CommonHttpCallback<HistoryTodayBean> httpCallback) {
         BuildApi.getRooltoolsAPIService().getHistoryToday().enqueue(httpCallback);
+    }
+
+    /**
+     * 查询单个汉字的读音和含义。
+     *
+     * @param content
+     * @param httpCallback
+     */
+    public static void convertDictionary(String content, CommonHttpCallback<DictionaryResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().convertDictionary(content).enqueue(httpCallback);
+    }
+
+    /**
+     * 垃圾分类
+     * @param content
+     * @param httpCallback
+     */
+    public static void getRubbishType(String content, CommonHttpCallback<RubbishTypeResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getRubbishType(content).enqueue(httpCallback);
     }
 
 

@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobIdiomEntity;
+import com.maning.gankmm.bean.mob.MobIdCardEntity;
 import com.maning.gankmm.bean.mob.MobItemEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
@@ -28,14 +28,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 成语大全
+ * 身份证查询
  */
-public class IdiomActivity extends BaseActivity {
+public class IDCardQueryActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.editText)
-    MClearEditText editText;
+    @Bind(R.id.editTextPhone)
+    MClearEditText editTextPhone;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleMobQueryAdapter recycleMobQueryAdapter;
@@ -43,7 +43,7 @@ public class IdiomActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_idiom);
+        setContentView(R.layout.activity_idcard_query);
         ButterKnife.bind(this);
 
         initMyToolBar();
@@ -61,9 +61,9 @@ public class IdiomActivity extends BaseActivity {
     private void initMyToolBar() {
         int currentSkinType = SkinManager.getCurrentSkinType(this);
         if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(toolbar, "成语查询", R.drawable.gank_ic_back_white);
+            initToolBar(toolbar, "身份证查询", R.drawable.gank_ic_back_white);
         } else {
-            initToolBar(toolbar, "成语查询", R.drawable.gank_ic_back_night);
+            initToolBar(toolbar, "身份证查询", R.drawable.gank_ic_back_night);
         }
     }
 
@@ -84,20 +84,20 @@ public class IdiomActivity extends BaseActivity {
         KeyboardUtils.hideSoftInput(this);
 
         //获取输入
-        String content = editText.getText().toString();
+        String number = editTextPhone.getText().toString();
 
-        if (TextUtils.isEmpty(content)) {
-            MySnackbar.makeSnackBarRed(toolbar, "输入内容不能为空");
+        if (TextUtils.isEmpty(number)) {
+            MySnackbar.makeSnackBarRed(toolbar, "身份证号码不能为空");
             return;
         }
 
         showProgressDialog("正在查询...");
-        MobApi.queryIdiom(content, 0x001, new MyCallBack() {
+        MobApi.queryIDCard(number, 0x001, new MyCallBack() {
             @Override
             public void onSuccess(int what, Object object) {
                 dissmissProgressDialog();
                 if (object != null) {
-                    MobIdiomEntity result = (MobIdiomEntity) object;
+                    MobIdCardEntity result = (MobIdCardEntity) object;
                     initAdapter(result);
                 }
             }
@@ -110,20 +110,18 @@ public class IdiomActivity extends BaseActivity {
             @Override
             public void onFail(int what, String result) {
                 dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(toolbar, result);
+                MySnackbar.makeSnackBarRed(toolbar,result);
             }
         });
 
     }
 
-    private void initAdapter(MobIdiomEntity result) {
+    private void initAdapter(MobIdCardEntity result) {
 
         HashMap<String, Object> mDatas = new HashMap<>();
-        mDatas.put("0", new MobItemEntity("拼音:", result.getPinyin()));
-        mDatas.put("1", new MobItemEntity("释义:", result.getPretation()));
-        mDatas.put("2", new MobItemEntity("出自:", result.getSource()));
-        mDatas.put("3", new MobItemEntity("示例:", result.getSample()));
-        mDatas.put("4", new MobItemEntity("示例出自:", result.getSampleFrom()));
+        mDatas.put("0", new MobItemEntity("地区:", result.getArea()));
+        mDatas.put("1", new MobItemEntity("生日:", result.getBirthday()));
+        mDatas.put("2", new MobItemEntity("性别:", result.getSex()));
 
         if (recycleMobQueryAdapter == null) {
             recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);

@@ -1,4 +1,4 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -6,16 +6,16 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.CalendarInfoEntity;
-import com.maning.gankmm.http.callback.MyCallBack;
-import com.maning.gankmm.http.mob.MobApi;
+import com.maning.gankmm.bean.rolltools.HolidayBean;
+import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +23,7 @@ import butterknife.OnClick;
 
 /**
  * 老黄历页面
+ * TODO:添加一个日历控件黄历显示在下面
  */
 public class ChineseCalendarActivity extends BaseActivity {
 
@@ -40,7 +41,7 @@ public class ChineseCalendarActivity extends BaseActivity {
     TextView tv05;
 
     private Calendar calendar = Calendar.getInstance();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,33 +60,28 @@ public class ChineseCalendarActivity extends BaseActivity {
         showProgressDialog("正在查询...");
         //获取当天日期
         String dateString = sdf.format(date);
-        MobApi.getCalendarInfo(dateString, 0x001, new MyCallBack() {
+        RolltoolsApi.getHolidaySingle(dateString, new CommonHttpCallback<HolidaySingleResultBean>() {
             @Override
-            public void onSuccess(int what, Object result) {
+            public void onSuccess(HolidaySingleResultBean result) {
                 dissmissProgressDialog();
-                CalendarInfoEntity calendarInfoEntity = (CalendarInfoEntity) result;
-                RefreshView(calendarInfoEntity);
+                HolidayBean holidayBean = result.getData();
+                refreshView(holidayBean);
             }
 
             @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
+            public void onFail(int code, String message) {
                 dissmissProgressDialog();
             }
         });
     }
 
-    private void RefreshView(CalendarInfoEntity calendarInfoEntity) {
-        if (calendarInfoEntity != null) {
-            tv01.setText(calendarInfoEntity.getDate());
-            tv02.setText(calendarInfoEntity.getLunar());
-            tv03.setText(calendarInfoEntity.getLunarYear() + " (" + calendarInfoEntity.getZodiac() + ") " + calendarInfoEntity.getWeekday());
-            tv04.setText(calendarInfoEntity.getSuit());
-            tv05.setText(calendarInfoEntity.getAvoid());
+    private void refreshView(HolidayBean holidayBean) {
+        if (holidayBean != null) {
+            tv01.setText(holidayBean.getDate());
+            tv02.setText(holidayBean.getLunarCalendar());
+            tv03.setText(holidayBean.getYearTips() + " (" + holidayBean.getChineseZodiac() + ")  - " + holidayBean.getSolarTerms());
+            tv04.setText(holidayBean.getSuit());
+            tv05.setText(holidayBean.getAvoid());
         }
     }
 

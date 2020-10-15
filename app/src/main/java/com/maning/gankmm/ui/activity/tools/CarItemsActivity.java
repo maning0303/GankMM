@@ -1,22 +1,25 @@
-package com.maning.gankmm.ui.activity.mob;
+package com.maning.gankmm.ui.activity.tools;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.maning.gankmm.R;
+import com.maning.gankmm.bean.mob.MobCarEntity;
+import com.maning.gankmm.bean.mob.MobCarItemEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.skin.SkinManager;
-import com.maning.gankmm.ui.adapter.RecycleLotteryAdapter;
+import com.maning.gankmm.ui.adapter.RecycleCarItemAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.MySnackbar;
+import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,34 +27,37 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * 彩票分类
- */
-public class LotteryCategoryActivity extends BaseActivity {
+public class CarItemsActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    private ArrayList<String> mDatas = new ArrayList<>();
-    private RecycleLotteryAdapter mRecycleLotteryAdapter;
+
+    public static final String IntentKey_Car = "IntentKey_Car";
+    private MobCarEntity.SonBean mSonBean = new MobCarEntity.SonBean();
+    private ArrayList<MobCarItemEntity> mMDatas;
+    private RecycleCarItemAdapter mRecycleCarItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lottery_category);
+        setContentView(R.layout.activity_car_items);
         ButterKnife.bind(this);
+
+        mSonBean = (MobCarEntity.SonBean) getIntent().getSerializableExtra(IntentKey_Car);
 
         initMyToolBar();
 
-        initView();
+        initRecyclerView();
 
-        loadData();
+        initDatas();
+
     }
 
-    private void loadData() {
-        showProgressDialog();
-        MobApi.querylotteryList(0x001, new MyCallBack() {
+    private void initDatas() {
+        showProgressDialog("加载中...");
+        MobApi.queryCarItems(mSonBean.getType(), 0x001, new MyCallBack() {
             @Override
             public void onSuccess(int what, Object result) {
 
@@ -60,7 +66,9 @@ public class LotteryCategoryActivity extends BaseActivity {
             @Override
             public void onSuccessList(int what, List results) {
                 dissmissProgressDialog();
-                mDatas = (ArrayList<String>) results;
+                mMDatas = (ArrayList<MobCarItemEntity>) results;
+                KLog.i(mMDatas.toString());
+
                 initAdapter();
             }
 
@@ -73,23 +81,22 @@ public class LotteryCategoryActivity extends BaseActivity {
     }
 
     private void initAdapter() {
-        mRecycleLotteryAdapter = new RecycleLotteryAdapter(this, mDatas);
-        mRecyclerView.setAdapter(mRecycleLotteryAdapter);
-
-        mRecycleLotteryAdapter.setOnItemClickLitener(new OnItemClickListener() {
+        mRecycleCarItemAdapter = new RecycleCarItemAdapter(mContext, mMDatas);
+        mRecyclerView.setAdapter(mRecycleCarItemAdapter);
+        mRecycleCarItemAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 //跳转详情页面
-                String name = mDatas.get(position);
-                Intent intent = new Intent(LotteryCategoryActivity.this, LotteryDetailActivity.class);
-                intent.putExtra(LotteryDetailActivity.IntentKey_LotteryName, name);
-                startActivity(intent);
+                MobCarItemEntity mobCarItemEntity = mMDatas.get(position);
+                Intent intent = new Intent(CarItemsActivity.this, CarDetailActivity.class);
+                intent.putExtra(CarDetailActivity.IntentKey_CarItemEntity, mobCarItemEntity);
+                mContext.startActivity(intent);
             }
         });
     }
 
-    private void initView() {
-        GridLayoutManager linearLayoutManager = new GridLayoutManager(this, 3);
+    private void initRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
@@ -97,9 +104,9 @@ public class LotteryCategoryActivity extends BaseActivity {
     private void initMyToolBar() {
         int currentSkinType = SkinManager.getCurrentSkinType(this);
         if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, "彩票", R.drawable.gank_ic_back_white);
+            initToolBar(mToolbar, mSonBean.getType(), R.drawable.gank_ic_back_white);
         } else {
-            initToolBar(mToolbar, "彩票", R.drawable.gank_ic_back_night);
+            initToolBar(mToolbar, mSonBean.getType(), R.drawable.gank_ic_back_night);
         }
     }
 

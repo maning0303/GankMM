@@ -120,6 +120,8 @@ public class RecycleMoreItemAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 myViewHolder.iv_more_item.setImageResource(R.drawable.gank_icon_tools_car);
             } else if (title.equals("驾考题库")) {
                 myViewHolder.iv_more_item.setImageResource(R.drawable.gank_icon_tools_tiku_car);
+            }else if (title.equals("垃圾分类")) {
+                myViewHolder.iv_more_item.setImageResource(R.drawable.gank_icon_tools_rubbish);
             }
 
         }

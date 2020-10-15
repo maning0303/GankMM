@@ -243,41 +243,41 @@
             android:name=".ui.activity.SupportPayActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.MoreActivity"/>
-        <activity android:name=".ui.activity.mob.PhoneAddressActivity"/>
-        <activity android:name=".ui.activity.mob.PostCodeActivity"/>
-        <activity android:name=".ui.activity.mob.IDCardQueryActivity"/>
-        <activity android:name=".ui.activity.mob.IPQueryActivity"/>
-        <activity android:name=".ui.activity.mob.WXArticleActivity"/>
-        <activity android:name=".ui.activity.mob.BankCardActivity"/>
-        <activity android:name=".ui.activity.mob.ChineseCalendarActivity"/>
-        <activity android:name=".ui.activity.mob.OilPriceActivity"/>
-        <activity android:name=".ui.activity.mob.DictionaryActivity"/>
-        <activity android:name=".ui.activity.mob.IdiomActivity"/>
-        <activity android:name=".ui.activity.mob.HistoryTodayActivity"/>
-        <activity android:name=".ui.activity.mob.HealthActivity"/>
-        <activity android:name=".ui.activity.mob.TrainActivity"/>
-        <activity android:name=".ui.activity.mob.TrainListActivity"/>
-        <activity android:name=".ui.activity.mob.FlightActivity"/>
-        <activity android:name=".ui.activity.mob.FlightListActivity"/>
+        <activity android:name=".ui.activity.tools.PhoneAddressActivity"/>
+        <activity android:name=".ui.activity.tools.PostCodeActivity"/>
+        <activity android:name=".ui.activity.tools.IDCardQueryActivity"/>
+        <activity android:name=".ui.activity.tools.IPQueryActivity"/>
+        <activity android:name=".ui.activity.tools.WXArticleActivity"/>
+        <activity android:name=".ui.activity.tools.BankCardActivity"/>
+        <activity android:name=".ui.activity.tools.ChineseCalendarActivity"/>
+        <activity android:name=".ui.activity.tools.OilPriceActivity"/>
+        <activity android:name=".ui.activity.tools.DictionaryActivity"/>
+        <activity android:name=".ui.activity.tools.IdiomActivity"/>
+        <activity android:name=".ui.activity.tools.HistoryTodayActivity"/>
+        <activity android:name=".ui.activity.tools.RubbishActivity"/>
+        <activity android:name=".ui.activity.tools.TrainActivity"/>
+        <activity android:name=".ui.activity.tools.TrainListActivity"/>
+        <activity android:name=".ui.activity.tools.FlightActivity"/>
+        <activity android:name=".ui.activity.tools.FlightListActivity"/>
         <activity
             android:name=".ui.imagebrowser.MNImageBrowserActivity2"
             android:screenOrientation="portrait"
             android:theme="@style/ImageBrowserTheme"/>
-        <activity android:name=".ui.activity.mob.CarListActivity">
+        <activity android:name=".ui.activity.tools.CarListActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.CarItemsActivity">
+        <activity android:name=".ui.activity.tools.CarItemsActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.CarDetailActivity">
+        <activity android:name=".ui.activity.tools.CarDetailActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.CookMenuActivity">
+        <activity android:name=".ui.activity.tools.CookMenuActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.CookListActivity">
+        <activity android:name=".ui.activity.tools.CookListActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.CookDetailsActivity">
+        <activity android:name=".ui.activity.tools.CookDetailsActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.LotteryCategoryActivity">
+        <activity android:name=".ui.activity.tools.LotteryCategoryActivity">
         </activity>
-        <activity android:name=".ui.activity.mob.LotteryDetailActivity">
+        <activity android:name=".ui.activity.tools.LotteryDetailActivity">
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity">
         </activity>

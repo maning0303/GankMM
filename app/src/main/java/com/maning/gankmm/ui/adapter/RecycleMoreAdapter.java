@@ -12,23 +12,23 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.ui.activity.mob.BankCardActivity;
-import com.maning.gankmm.ui.activity.mob.CarListActivity;
-import com.maning.gankmm.ui.activity.mob.ChineseCalendarActivity;
-import com.maning.gankmm.ui.activity.mob.CookMenuActivity;
-import com.maning.gankmm.ui.activity.mob.DictionaryActivity;
-import com.maning.gankmm.ui.activity.mob.FlightActivity;
-import com.maning.gankmm.ui.activity.mob.HealthActivity;
-import com.maning.gankmm.ui.activity.mob.HistoryTodayActivity;
-import com.maning.gankmm.ui.activity.mob.IDCardQueryActivity;
-import com.maning.gankmm.ui.activity.mob.IPQueryActivity;
-import com.maning.gankmm.ui.activity.mob.IdiomActivity;
-import com.maning.gankmm.ui.activity.mob.LotteryCategoryActivity;
-import com.maning.gankmm.ui.activity.mob.OilPriceActivity;
-import com.maning.gankmm.ui.activity.mob.PhoneAddressActivity;
-import com.maning.gankmm.ui.activity.mob.PostCodeActivity;
-import com.maning.gankmm.ui.activity.mob.TrainActivity;
-import com.maning.gankmm.ui.activity.mob.WXArticleActivity;
+import com.maning.gankmm.ui.activity.tools.BankCardActivity;
+import com.maning.gankmm.ui.activity.tools.CarListActivity;
+import com.maning.gankmm.ui.activity.tools.ChineseCalendarActivity;
+import com.maning.gankmm.ui.activity.tools.CookMenuActivity;
+import com.maning.gankmm.ui.activity.tools.DictionaryActivity;
+import com.maning.gankmm.ui.activity.tools.FlightActivity;
+import com.maning.gankmm.ui.activity.tools.RubbishActivity;
+import com.maning.gankmm.ui.activity.tools.HistoryTodayActivity;
+import com.maning.gankmm.ui.activity.tools.IDCardQueryActivity;
+import com.maning.gankmm.ui.activity.tools.IPQueryActivity;
+import com.maning.gankmm.ui.activity.tools.IdiomActivity;
+import com.maning.gankmm.ui.activity.tools.LotteryCategoryActivity;
+import com.maning.gankmm.ui.activity.tools.OilPriceActivity;
+import com.maning.gankmm.ui.activity.tools.PhoneAddressActivity;
+import com.maning.gankmm.ui.activity.tools.PostCodeActivity;
+import com.maning.gankmm.ui.activity.tools.TrainActivity;
+import com.maning.gankmm.ui.activity.tools.WXArticleActivity;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
@@ -80,7 +80,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 mDatasItem.add("中国彩票开奖结果");
                 mDatasItem.add("微信精选");
             } else if (position == 1) {
-                mDatasItem.add("银行卡信息");
+//                mDatasItem.add("银行卡信息");
                 mDatasItem.add("货币汇率");
 //                mDatasItem.add("黄金数据");
 //                mDatasItem.add("白银数据");
@@ -91,18 +91,17 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 mDatasItem.add("婚姻匹配");
                 mDatasItem.add("八字算命");
                 mDatasItem.add("老黄历");
-                mDatasItem.add("电影票房");
-                mDatasItem.add("足球五大联赛");
-                mDatasItem.add("火车票查询");
-                mDatasItem.add("航班信息查询");
+//                mDatasItem.add("电影票房");
+//                mDatasItem.add("足球五大联赛");
+//                mDatasItem.add("火车票查询");
+//                mDatasItem.add("航班信息查询");
             } else if (position == 3) {
-                mDatasItem.add("健康知识");
+                mDatasItem.add("垃圾分类");
                 mDatasItem.add("历史上的今天");
-                mDatasItem.add("成语大全");
                 mDatasItem.add("新华字典");
-                mDatasItem.add("全国省市今日油价");
-                mDatasItem.add("汽车信息查询");
-                mDatasItem.add("驾考题库");
+//                mDatasItem.add("全国省市今日油价");
+//                mDatasItem.add("汽车信息查询");
+//                mDatasItem.add("驾考题库");
             }
 
             final ArrayList<String> mDatasTitle = mDatasItem;
@@ -160,8 +159,8 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
                     }
 
-                    if (title.equals("健康知识")) {
-                        context.startActivity(new Intent(context, HealthActivity.class));
+                    if (title.equals("垃圾分类")) {
+                        context.startActivity(new Intent(context, RubbishActivity.class));
                     } else if (title.equals("历史上的今天")) {
                         context.startActivity(new Intent(context, HistoryTodayActivity.class));
                     } else if (title.equals("成语大全")) {
