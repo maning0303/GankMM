@@ -14,7 +14,7 @@ import com.maning.gankmm.bean.mob.MobPostCodeEntity;
 import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
-import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
+import com.maning.gankmm.ui.adapter.RecycleCommonQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.view.MClearEditText;
 import com.maning.gankmm.utils.KeyboardUtils;
@@ -38,7 +38,7 @@ public class PostCodeActivity extends BaseActivity {
     MClearEditText editTextPhone;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    private RecycleMobQueryAdapter recycleMobQueryAdapter;
+    private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +125,11 @@ public class PostCodeActivity extends BaseActivity {
         mDatas.put("2", new CommonItemEntity("区县:", result.getDistrict()));
         mDatas.put("3", new CommonItemEntity("详细地址:", result.getAddress().toString()));
 
-        if (recycleMobQueryAdapter == null) {
-            recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);
-            recyclerView.setAdapter(recycleMobQueryAdapter);
+        if (recycleCommonQueryAdapter == null) {
+            recycleCommonQueryAdapter = new RecycleCommonQueryAdapter(this, mDatas);
+            recyclerView.setAdapter(recycleCommonQueryAdapter);
         } else {
-            recycleMobQueryAdapter.updateDatas(mDatas);
+            recycleCommonQueryAdapter.updateDatas(mDatas);
         }
 
     }

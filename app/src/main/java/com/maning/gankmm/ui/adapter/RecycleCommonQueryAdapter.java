@@ -18,15 +18,22 @@ import butterknife.ButterKnife;
 /**
  * 更多功能的Adapter
  */
-public class RecycleMobQueryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleCommonQueryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
+    //0布局，1左右布局
+    private int type = 0;
     private LayoutInflater layoutInflater;
     private HashMap<String, Object> mDatas;
 
-    public RecycleMobQueryAdapter(Context context, HashMap<String, Object> mDatas) {
+    public RecycleCommonQueryAdapter(Context context, HashMap<String, Object> mDatas) {
+        this(context, mDatas, 0);
+    }
+
+    public RecycleCommonQueryAdapter(Context context, HashMap<String, Object> mDatas, int type) {
         this.context = context;
         this.mDatas = mDatas;
+        this.type = type;
         layoutInflater = LayoutInflater.from(this.context);
     }
 
@@ -37,7 +44,7 @@ public class RecycleMobQueryAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = layoutInflater.inflate(R.layout.item_mob_query, parent, false);
+        View inflate = layoutInflater.inflate(type == 0 ? R.layout.item_common_query : R.layout.item_common_query2, parent, false);
         return new MyViewHolder(inflate);
     }
 

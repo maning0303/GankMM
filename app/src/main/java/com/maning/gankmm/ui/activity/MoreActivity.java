@@ -74,10 +74,10 @@ public class MoreActivity extends BaseActivity {
     
     private void initAdapter() {
         ArrayList<String> mDatas = new ArrayList<>();
-        mDatas.add("生活常用");
-        mDatas.add("金融基金");
-        mDatas.add("休闲旅游");
         mDatas.add("便民服务");
+        mDatas.add("生活阅读");
+        mDatas.add("休闲旅游");
+        mDatas.add("工具集合");
         recycleMoreAdapter = new RecycleMoreAdapter(this, mDatas);
         recyclerView.setAdapter(recycleMoreAdapter);
 

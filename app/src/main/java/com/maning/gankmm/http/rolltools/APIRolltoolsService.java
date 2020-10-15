@@ -7,6 +7,7 @@ import com.maning.gankmm.bean.rolltools.IpResultBean;
 import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
+import com.maning.gankmm.bean.rolltools.WorldPhoneCodeResultBean;
 import com.maning.gankmm.constant.Constants;
 
 import retrofit2.Call;
@@ -91,5 +92,12 @@ public interface APIRolltoolsService {
     Call<IpResultBean> getIpLocation(
             @Query("ip") String ip
     );
+
+    @Headers({
+            "app_id:" + Constants.ROLL_TOOLS_APP_ID,
+            "app_secret:" + Constants.ROLL_TOOLS_APP_SECRET
+    })
+    @GET("phone_code/list")
+    Call<WorldPhoneCodeResultBean> getWorldPhoneCode();
 
 }

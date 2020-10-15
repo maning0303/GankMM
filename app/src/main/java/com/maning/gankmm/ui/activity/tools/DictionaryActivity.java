@@ -14,7 +14,7 @@ import com.maning.gankmm.bean.rolltools.DictionaryResultBean;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
-import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
+import com.maning.gankmm.ui.adapter.RecycleCommonQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.view.MClearEditText;
 import com.maning.gankmm.utils.KeyboardUtils;
@@ -37,7 +37,7 @@ public class DictionaryActivity extends BaseActivity {
     MClearEditText editText;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    private RecycleMobQueryAdapter recycleMobQueryAdapter;
+    private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,11 +117,11 @@ public class DictionaryActivity extends BaseActivity {
         mDatas.put("4", new CommonItemEntity("汉字释义:", dataEntity.getExplanation()));
         mDatas.put("5", new CommonItemEntity("汉字笔画数:", String.valueOf(dataEntity.getStrokes())));
 
-        if (recycleMobQueryAdapter == null) {
-            recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);
-            recyclerView.setAdapter(recycleMobQueryAdapter);
+        if (recycleCommonQueryAdapter == null) {
+            recycleCommonQueryAdapter = new RecycleCommonQueryAdapter(this, mDatas);
+            recyclerView.setAdapter(recycleCommonQueryAdapter);
         } else {
-            recycleMobQueryAdapter.updateDatas(mDatas);
+            recycleCommonQueryAdapter.updateDatas(mDatas);
         }
 
     }

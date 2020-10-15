@@ -7,25 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.CommonItemEntity;
-import com.maning.gankmm.bean.mob.MobIpEntity;
 import com.maning.gankmm.bean.rolltools.IpResultBean;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
-import com.maning.gankmm.http.callback.MyCallBack;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.rolltools.RolltoolsApi;
 import com.maning.gankmm.skin.SkinManager;
-import com.maning.gankmm.ui.adapter.RecycleMobQueryAdapter;
+import com.maning.gankmm.ui.adapter.RecycleCommonQueryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.ui.view.MClearEditText;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,7 +37,7 @@ public class IPQueryActivity extends BaseActivity {
     MClearEditText editTextPhone;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    private RecycleMobQueryAdapter recycleMobQueryAdapter;
+    private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,11 +135,11 @@ public class IPQueryActivity extends BaseActivity {
         mDatas.put("2", new CommonItemEntity("IP描述:", data.getDesc()));
         mDatas.put("3", new CommonItemEntity("城市:", data.getProvince() + " " + data.getCity()));
 
-        if (recycleMobQueryAdapter == null) {
-            recycleMobQueryAdapter = new RecycleMobQueryAdapter(this, mDatas);
-            recyclerView.setAdapter(recycleMobQueryAdapter);
+        if (recycleCommonQueryAdapter == null) {
+            recycleCommonQueryAdapter = new RecycleCommonQueryAdapter(this, mDatas);
+            recyclerView.setAdapter(recycleCommonQueryAdapter);
         } else {
-            recycleMobQueryAdapter.updateDatas(mDatas);
+            recycleCommonQueryAdapter.updateDatas(mDatas);
         }
 
     }

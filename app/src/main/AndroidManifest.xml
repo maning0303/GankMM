@@ -252,7 +252,7 @@
         <activity android:name=".ui.activity.tools.ChineseCalendarActivity"/>
         <activity android:name=".ui.activity.tools.OilPriceActivity"/>
         <activity android:name=".ui.activity.tools.DictionaryActivity"/>
-        <activity android:name=".ui.activity.tools.IdiomActivity"/>
+        <activity android:name=".ui.activity.tools.WorldPhoneCodeActivity"/>
         <activity android:name=".ui.activity.tools.HistoryTodayActivity"/>
         <activity android:name=".ui.activity.tools.RubbishActivity"/>
         <activity android:name=".ui.activity.tools.TrainActivity"/>

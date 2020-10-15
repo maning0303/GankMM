@@ -7,6 +7,7 @@ import com.maning.gankmm.bean.rolltools.IpResultBean;
 import com.maning.gankmm.bean.rolltools.MobileLocationResultBean;
 import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
+import com.maning.gankmm.bean.rolltools.WorldPhoneCodeResultBean;
 import com.maning.gankmm.http.BuildApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
 
@@ -93,6 +94,14 @@ public class RolltoolsApi {
      */
     public static void getIpLocation(String ip, CommonHttpCallback<IpResultBean> httpCallback) {
         BuildApi.getRooltoolsAPIService().getIpLocation(ip).enqueue(httpCallback);
+    }
+
+    /**
+     * 获取世界电话区号列表。
+     * @param httpCallback
+     */
+    public static void getWorldPhoneCode(CommonHttpCallback<WorldPhoneCodeResultBean> httpCallback) {
+        BuildApi.getRooltoolsAPIService().getWorldPhoneCode().enqueue(httpCallback);
     }
 
 
