@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
+import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.utils.SharePreUtil;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,13 +26,13 @@ import butterknife.ButterKnife;
 public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
-    private WeatherBeseEntity.WeatherBean weatherEntity;
+    private List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts;
     private LayoutInflater layoutInflater;
 
 
-    public Weather2Adapter(Context context, WeatherBeseEntity.WeatherBean weatherEntity) {
+    public Weather2Adapter(Context context, List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts) {
         this.mContext = context;
-        this.weatherEntity = weatherEntity;
+        this.weatherForecasts = weatherForecasts;
         layoutInflater = LayoutInflater.from(this.mContext);
     }
 
@@ -53,50 +56,30 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             myViewHolder01.tv_06.setText("--");
             myViewHolder01.tv_07.setText("--");
             myViewHolder01.tv_08.setText("--");
+            myViewHolder01.tv_09.setText("--");
+            myViewHolder01.tv_10.setText("--");
 
-
-            WeatherBeseEntity.WeatherBean.FutureBean futureBean = weatherEntity.getFuture().get(position);
-            myViewHolder01.tv_01.setText(futureBean.getWeek());
+            WeatherFuturedaysResultBean.DataEntity.ForecastsEntity futureBean = weatherForecasts.get(position);
+            myViewHolder01.tv_01.setText(futureBean.getDayOfWeek());
             myViewHolder01.tv_02.setText(futureBean.getDate().substring(5));
 
-            myViewHolder01.tv_03.setText(futureBean.getDayTime());
-            //最高温度和最低温度
-            String temperature = futureBean.getTemperature();
-            if (!TextUtils.isEmpty(temperature)) {
-                if (temperature.length() > 1 && temperature.contains("/")) {
-                    String[] tempers = temperature.split("/");
-                    if (tempers.length > 0) {
-                        myViewHolder01.tv_04.setText(tempers[0].replace(" ", ""));
-                        myViewHolder01.tv_05.setText(tempers[1].replace(" ", ""));
-                    }
-                } else {
-                    myViewHolder01.tv_04.setText(temperature);
-                    myViewHolder01.tv_05.setText("");
-                }
-            }
 
-            myViewHolder01.tv_06.setText(futureBean.getNight());
+            //白天
+            myViewHolder01.tv_03.setText(futureBean.getDayWeather());
+            myViewHolder01.tv_04.setText(futureBean.getDayTemp());
+            myViewHolder01.tv_09.setText(futureBean.getDayWindPower());
+            myViewHolder01.tv_10.setText(futureBean.getDayWindDirection());
 
-            //风向和风速
-            String wind = futureBean.getWind();
-            if (!TextUtils.isEmpty(wind)) {
-                if (wind.length() > 1 && wind.contains(" ")) {
-                    String[] winds = wind.split(" ");
-                    if (winds.length > 0) {
-                        myViewHolder01.tv_07.setText(winds[0].replace(" ", ""));
-                        myViewHolder01.tv_08.setText(winds[1].replace(" ", ""));
-                    }
-                }
-            }
 
-            myViewHolder01.iv_01.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getDayTime(), R.drawable.icon_weather_none)));
-            myViewHolder01.iv_02.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getNight(), R.drawable.icon_weather_none)));
+            //夜间
+            myViewHolder01.tv_05.setText(futureBean.getNightTemp());
+            myViewHolder01.tv_06.setText(futureBean.getNightWeather());
+            myViewHolder01.tv_07.setText(futureBean.getNightWindPower());
+            myViewHolder01.tv_08.setText(futureBean.getNightWindDirection());
 
-            if (TextUtils.isEmpty(futureBean.getDayTime())) {
-                myViewHolder01.iv_01.setVisibility(View.GONE);
-            } else {
-                myViewHolder01.iv_01.setVisibility(View.VISIBLE);
-            }
+            myViewHolder01.iv_01.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getDayWeather(), R.drawable.icon_weather_none)));
+            myViewHolder01.iv_02.setImageDrawable(mContext.getResources().getDrawable(SharePreUtil.getIntData(mContext, futureBean.getNightWeather(), R.drawable.icon_weather_none)));
+
 
         }
 
@@ -104,7 +87,7 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return weatherEntity.getFuture().size();
+        return weatherForecasts.size();
     }
 
 
@@ -126,6 +109,10 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tv_07;
         @Bind(R.id.tv_08)
         TextView tv_08;
+        @Bind(R.id.tv_09)
+        TextView tv_09;
+        @Bind(R.id.tv_10)
+        TextView tv_10;
         @Bind(R.id.iv_01)
         ImageView iv_01;
         @Bind(R.id.iv_02)

@@ -1,10 +1,11 @@
 package com.maning.gankmm.ui.iView;
 
-import com.maning.gankmm.bean.mob.CalendarInfoEntity;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.rolltools.HolidayBean;
+import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
+
+import java.util.List;
 
 /**
  * Created by maning on 16/6/21.
@@ -16,6 +17,8 @@ public interface IWeatherView {
     void initWeatherInfo(WeatherInfoBean weatherInfoBean);
 
     void initLifeSuggestionInfo(ZhixinSuggestionEntity suggestion);
+
+    void initWeatherForecasts(List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts);
 
     void overRefresh();
 

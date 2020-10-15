@@ -13,10 +13,13 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.rolltools.HolidayBean;
+import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.view.ArcProgressView;
 import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +35,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private HolidayBean holidayBean;
     private LayoutInflater layoutInflater;
     private ZhixinSuggestionEntity lifeSuggestionBean;
+    //预测
+    private List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts;
 
 
     public WeatherAdapter(Context context, WeatherInfoBean weatherEntity, HolidayBean holidayBean, ZhixinSuggestionEntity lifeSuggestionBean) {
@@ -40,6 +45,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.holidayBean = holidayBean;
         this.lifeSuggestionBean = lifeSuggestionBean;
         layoutInflater = LayoutInflater.from(this.mContext);
+    }
+
+    public void updateWeatherForecasts(List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts) {
+        this.weatherForecasts = weatherForecasts;
+        notifyDataSetChanged();
     }
 
     public void updateDatas(WeatherInfoBean weatherEntity, HolidayBean holidayBean, ZhixinSuggestionEntity lifeSuggestionBean) {
@@ -86,10 +96,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             myViewHolder02.recycle_later.setLayoutManager(linearLayoutManager);
             myViewHolder02.recycle_later.setItemAnimator(new DefaultItemAnimator());
             myViewHolder02.recycle_later.addItemDecoration(new VerticalDividerItemDecoration.Builder(mContext).color(mContext.getResources().getColor(R.color.lineColor)).build());
+            if (weatherForecasts != null && weatherForecasts.size() > 0) {
+                Weather2Adapter weather2Adapter = new Weather2Adapter(mContext, weatherForecasts);
+                myViewHolder02.recycle_later.setAdapter(weather2Adapter);
 
-//            Weather2Adapter weather2Adapter = new Weather2Adapter(mContext, weatherEntity);
-//            myViewHolder02.recycle_later.setAdapter(weather2Adapter);
-
+            }
         } else if (holder instanceof MyViewHolderSuggestion) {
             final MyViewHolderSuggestion viewHolderSuggestion = (MyViewHolderSuggestion) holder;
             //生活指数

@@ -7,6 +7,8 @@ public interface IWeatherPresenter {
 
     void getCityWeather(String provinceName, String cityName, double longitude, double latitude);
 
+    void getCityWeatherFutureDays(String provinceName, String cityName, double longitude, double latitude);
+
     void getCalendarInfo();
 
     void getLifeSuggestion(double longitude, double latitude);

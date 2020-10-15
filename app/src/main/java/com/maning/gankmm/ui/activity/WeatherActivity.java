@@ -21,6 +21,7 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.CalendarInfoEntity;
 import com.maning.gankmm.bean.gank2.GankEntity;
 import com.maning.gankmm.bean.rolltools.HolidayBean;
+import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
 import com.maning.gankmm.ui.adapter.WeatherAdapter;
@@ -69,6 +70,7 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     private HolidayBean holidayBean;
     private WeatherInfoBean weatherInfoBean;
     private ZhixinSuggestionEntity lifeSuggestionBean;
+    private List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts;
     private WeatherAdapter weatherAdapter;
 
     private String bgPicUrl;
@@ -102,8 +104,9 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
 
     public void initPresenter() {
         weatherPresenter = new WeatherPresenterImpl(this, this);
-        weatherPresenter.getLifeSuggestion(longitude,latitude);
+        weatherPresenter.getLifeSuggestion(longitude, latitude);
         weatherPresenter.getCalendarInfo();
+        weatherPresenter.getCityWeatherFutureDays(provinceName, cityName, longitude, latitude);
     }
 
     private void initBackgroundPic() {
@@ -214,7 +217,9 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     public void onRefresh() {
         if (weatherPresenter != null) {
             weatherPresenter.getCityWeather(provinceName, cityName, longitude, latitude);
+            weatherPresenter.getCityWeatherFutureDays(provinceName, cityName, longitude, latitude);
             weatherPresenter.getLifeSuggestion(longitude, latitude);
+            weatherPresenter.getCalendarInfo();
         }
     }
 
@@ -234,6 +239,14 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     public void initLifeSuggestionInfo(ZhixinSuggestionEntity lifeSuggestionBean) {
         this.lifeSuggestionBean = lifeSuggestionBean;
         initAdapter();
+    }
+
+    @Override
+    public void initWeatherForecasts(List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> weatherForecasts) {
+        this.weatherForecasts = weatherForecasts;
+        if (weatherAdapter != null) {
+            weatherAdapter.updateWeatherForecasts(this.weatherForecasts);
+        }
     }
 
     @Override

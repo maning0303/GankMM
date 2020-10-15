@@ -14,8 +14,9 @@
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:text="10天预报"
-        android:textColor="@color/white" />
+        android:text="天气预报"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"

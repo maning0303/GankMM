@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.maning.gankmm.bean.rolltools.HolidayBean;
 import com.maning.gankmm.bean.rolltools.HolidaySingleResultBean;
+import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinLifeSuggestionResultBean;
 import com.maning.gankmm.bean.weather.zhixin.ZhixinSuggestionEntity;
@@ -15,6 +16,7 @@ import com.maning.gankmm.ui.presenter.IWeatherPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by maning on 2017/4/10.
@@ -45,6 +47,24 @@ public class WeatherPresenterImpl extends BasePresenterImpl<IWeatherView> implem
             }
         });
 
+    }
+
+    @Override
+    public void getCityWeatherFutureDays(String provinceName, String cityName, double longitude, double latitude) {
+        RolltoolsApi.getCityWeatherFutureDays(cityName, new CommonHttpCallback<WeatherFuturedaysResultBean>() {
+            @Override
+            public void onSuccess(WeatherFuturedaysResultBean result) {
+                List<WeatherFuturedaysResultBean.DataEntity.ForecastsEntity> forecasts = result.getData().getForecasts();
+                if(forecasts != null){
+                    mView.initWeatherForecasts(forecasts);
+                }
+            }
+
+            @Override
+            public void onFail(int code, String message) {
+                mView.showToast(message);
+            }
+        });
     }
 
     @Override
