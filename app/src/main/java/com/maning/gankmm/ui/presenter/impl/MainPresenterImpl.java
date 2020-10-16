@@ -17,6 +17,7 @@ import com.maning.gankmm.utils.LocationUtils;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.SharePreUtil;
+import com.maning.gankmm.utils.ThreadPoolUtils;
 
 /**
  * Created by maning on 16/6/21.
@@ -100,22 +101,27 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
     @Override
     public void initDatas() {
-        SharePreUtil.saveIntData(context, "未知", R.drawable.icon_weather_none);
-        SharePreUtil.saveIntData(context, "晴", R.drawable.icon_weather_sunny);
-        SharePreUtil.saveIntData(context, "阴", R.drawable.icon_weather_cloudy);
-        SharePreUtil.saveIntData(context, "多云", R.drawable.icon_weather_cloudy);
-        SharePreUtil.saveIntData(context, "少云", R.drawable.icon_weather_cloudy);
-        SharePreUtil.saveIntData(context, "晴间多云", R.drawable.icon_weather_cloudytosunny);
-        SharePreUtil.saveIntData(context, "局部多云", R.drawable.icon_weather_cloudy);
-        SharePreUtil.saveIntData(context, "雨", R.drawable.icon_weather_rain);
-        SharePreUtil.saveIntData(context, "小雨", R.drawable.icon_weather_rain);
-        SharePreUtil.saveIntData(context, "中雨", R.drawable.icon_weather_rain);
-        SharePreUtil.saveIntData(context, "大雨", R.drawable.icon_weather_rain);
-        SharePreUtil.saveIntData(context, "阵雨", R.drawable.icon_weather_rain);
-        SharePreUtil.saveIntData(context, "雷阵雨", R.drawable.icon_weather_thunderstorm);
-        SharePreUtil.saveIntData(context, "霾", R.drawable.icon_weather_haze);
-        SharePreUtil.saveIntData(context, "雾", R.drawable.icon_weather_fog);
-        SharePreUtil.saveIntData(context, "雨夹雪", R.drawable.icon_weather_snowrain);
+        ThreadPoolUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                SharePreUtil.saveIntData(context, "未知", R.drawable.icon_weather_none);
+                SharePreUtil.saveIntData(context, "晴", R.drawable.icon_weather_sunny);
+                SharePreUtil.saveIntData(context, "阴", R.drawable.icon_weather_cloudy);
+                SharePreUtil.saveIntData(context, "多云", R.drawable.icon_weather_cloudy);
+                SharePreUtil.saveIntData(context, "少云", R.drawable.icon_weather_cloudy);
+                SharePreUtil.saveIntData(context, "晴间多云", R.drawable.icon_weather_cloudytosunny);
+                SharePreUtil.saveIntData(context, "局部多云", R.drawable.icon_weather_cloudy);
+                SharePreUtil.saveIntData(context, "雨", R.drawable.icon_weather_rain);
+                SharePreUtil.saveIntData(context, "小雨", R.drawable.icon_weather_rain);
+                SharePreUtil.saveIntData(context, "中雨", R.drawable.icon_weather_rain);
+                SharePreUtil.saveIntData(context, "大雨", R.drawable.icon_weather_rain);
+                SharePreUtil.saveIntData(context, "阵雨", R.drawable.icon_weather_rain);
+                SharePreUtil.saveIntData(context, "雷阵雨", R.drawable.icon_weather_thunderstorm);
+                SharePreUtil.saveIntData(context, "霾", R.drawable.icon_weather_haze);
+                SharePreUtil.saveIntData(context, "雾", R.drawable.icon_weather_fog);
+                SharePreUtil.saveIntData(context, "雨夹雪", R.drawable.icon_weather_snowrain);
+            }
+        });
     }
 
 
@@ -128,13 +134,13 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
                 double latitude = aMapLocation.getLatitude();
                 //获取城市
                 cityName = aMapLocation.getCity();
-                if (cityName.endsWith("市")) {
-                    cityName = cityName.substring(0, cityName.length() - 1);
-                }
                 provinceName = aMapLocation.getProvince();
-                if (provinceName.endsWith("省") || provinceName.endsWith("市")) {
-                    provinceName = provinceName.substring(0, provinceName.length() - 1);
-                }
+//                if (cityName.endsWith("市")) {
+//                    cityName = cityName.substring(0, cityName.length() - 1);
+//                }
+//                if (provinceName.endsWith("省") || provinceName.endsWith("市")) {
+//                    provinceName = provinceName.substring(0, provinceName.length() - 1);
+//                }
                 getCityWeather(provinceName, cityName, longitude, latitude);
             }
 

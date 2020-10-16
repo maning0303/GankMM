@@ -1,13 +1,15 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.rolltools.HolidayBean;
@@ -61,16 +63,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == 0) {
             View inflate = layoutInflater.inflate(R.layout.item_weather_header, parent, false);
-            return new WeatherAdapter.MyViewHolder01(inflate);
+            return new WeatherAdapter.ViewHolderWeatherInfo(inflate);
         } else if (viewType == 1) {
             View inflate = layoutInflater.inflate(R.layout.item_weather_later, parent, false);
-            return new WeatherAdapter.MyViewHolder02(inflate);
+            return new WeatherAdapter.ViewHolderWeatherForecast(inflate);
         } else if (viewType == 2) {
             View inflate = layoutInflater.inflate(R.layout.item_weather_suggestion, parent, false);
-            return new WeatherAdapter.MyViewHolderSuggestion(inflate);
+            return new WeatherAdapter.ViewHolderSuggestion(inflate);
         } else if (viewType == 3) {
             View inflate = layoutInflater.inflate(R.layout.item_weather_calendar, parent, false);
-            return new WeatherAdapter.MyViewHolder04(inflate);
+            return new WeatherAdapter.ViewHolderHoliday(inflate);
         } else {
             return null;
         }
@@ -78,29 +80,29 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof MyViewHolder01) {
-            final MyViewHolder01 myViewHolder01 = (MyViewHolder01) holder;
-            myViewHolder01.tv_01.setText(weatherEntity.getTemperature() + "°");
-            myViewHolder01.tv_02.setText(weatherEntity.getWeather_desc());
-            myViewHolder01.tv_03.setText("湿度：" + weatherEntity.getHumidity() + "%");
-            myViewHolder01.tv_04.setText("体感：" + weatherEntity.getFeels_like() + "°");
-            myViewHolder01.tv_05.setText(weatherEntity.getWind_direction() + " " + weatherEntity.getWind_scale() + "级");
+        if (holder instanceof ViewHolderWeatherInfo) {
+            final ViewHolderWeatherInfo viewHolderWeatherInfo = (ViewHolderWeatherInfo) holder;
+            viewHolderWeatherInfo.tv_01.setText(weatherEntity.getTemperature() + "°");
+            viewHolderWeatherInfo.tv_02.setText(weatherEntity.getWeather_desc());
+            viewHolderWeatherInfo.tv_03.setText("湿度：" + weatherEntity.getHumidity() + "%");
+            viewHolderWeatherInfo.tv_04.setText("体感：" + weatherEntity.getFeels_like() + "°");
+            viewHolderWeatherInfo.tv_05.setText(weatherEntity.getWind_direction() + " " + weatherEntity.getWind_scale() + "级");
 
-        } else if (holder instanceof MyViewHolder02) {
-            final MyViewHolder02 myViewHolder02 = (MyViewHolder02) holder;
+        } else if (holder instanceof ViewHolderWeatherForecast) {
+            final ViewHolderWeatherForecast viewHolderWeatherForecast = (ViewHolderWeatherForecast) holder;
 
             //初始化RecycleView
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-            myViewHolder02.recycle_later.setLayoutManager(linearLayoutManager);
-            myViewHolder02.recycle_later.setItemAnimator(new DefaultItemAnimator());
-            myViewHolder02.recycle_later.addItemDecoration(new VerticalDividerItemDecoration.Builder(mContext).color(mContext.getResources().getColor(R.color.lineColor)).build());
+            viewHolderWeatherForecast.recycle_later.setLayoutManager(linearLayoutManager);
+            viewHolderWeatherForecast.recycle_later.setItemAnimator(new DefaultItemAnimator());
+            viewHolderWeatherForecast.recycle_later.addItemDecoration(new VerticalDividerItemDecoration.Builder(mContext).color(mContext.getResources().getColor(R.color.lineColor)).build());
             if (weatherForecasts != null && weatherForecasts.size() > 0) {
                 Weather2Adapter weather2Adapter = new Weather2Adapter(mContext, weatherForecasts);
-                myViewHolder02.recycle_later.setAdapter(weather2Adapter);
+                viewHolderWeatherForecast.recycle_later.setAdapter(weather2Adapter);
 
             }
-        } else if (holder instanceof MyViewHolderSuggestion) {
-            final MyViewHolderSuggestion viewHolderSuggestion = (MyViewHolderSuggestion) holder;
+        } else if (holder instanceof ViewHolderSuggestion) {
+            final ViewHolderSuggestion viewHolderSuggestion = (ViewHolderSuggestion) holder;
             //生活指数
             if (lifeSuggestionBean != null) {
                 viewHolderSuggestion.tv_suggestion_01.setText(lifeSuggestionBean.getCar_washing().getBrief());
@@ -117,15 +119,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 viewHolderSuggestion.tv_suggestion_05.setText("旅游");
                 viewHolderSuggestion.tv_suggestion_06.setText("紫外线");
             }
-        } else if (holder instanceof MyViewHolder04) {
-            final MyViewHolder04 myViewHolder04 = (MyViewHolder04) holder;
+        } else if (holder instanceof ViewHolderHoliday) {
+            final ViewHolderHoliday viewHolderHoliday = (ViewHolderHoliday) holder;
 
-            myViewHolder04.tv_01.setText(holidayBean.getDate());
-            myViewHolder04.tv_06.setText(holidayBean.getTypeDes());
-            myViewHolder04.tv_02.setText(holidayBean.getLunarCalendar());
-            myViewHolder04.tv_03.setText(holidayBean.getYearTips() + " (" + holidayBean.getChineseZodiac() + ")  - " + holidayBean.getSolarTerms());
-            myViewHolder04.tv_04.setText(holidayBean.getSuit());
-            myViewHolder04.tv_05.setText(holidayBean.getAvoid());
+            viewHolderHoliday.tv_01.setText(holidayBean.getDate());
+            viewHolderHoliday.tv_06.setText(holidayBean.getTypeDes());
+            viewHolderHoliday.tv_02.setText(holidayBean.getLunarCalendar());
+            viewHolderHoliday.tv_03.setText(holidayBean.getYearTips() + " (" + holidayBean.getChineseZodiac() + ")  - " + holidayBean.getSolarTerms());
+            viewHolderHoliday.tv_04.setText(holidayBean.getSuit());
+            viewHolderHoliday.tv_05.setText(holidayBean.getAvoid());
 
         }
 
@@ -145,7 +147,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return position;
     }
 
-    public static class MyViewHolder01 extends RecyclerView.ViewHolder {
+    public static class ViewHolderWeatherInfo extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_01)
         TextView tv_01;
@@ -158,24 +160,26 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Bind(R.id.tv_05)
         TextView tv_05;
 
-        public MyViewHolder01(View itemView) {
+        public ViewHolderWeatherInfo(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
-    public static class MyViewHolder02 extends RecyclerView.ViewHolder {
+    public static class ViewHolderWeatherForecast extends RecyclerView.ViewHolder {
 
         @Bind(R.id.recycle_later)
         RecyclerView recycle_later;
+        @Bind(R.id.ll_root_weather_forecast)
+        LinearLayout ll_root_weather_forecast;
 
-        public MyViewHolder02(View itemView) {
+        public ViewHolderWeatherForecast(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
-    public static class MyViewHolderSuggestion extends RecyclerView.ViewHolder {
+    public static class ViewHolderSuggestion extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_suggestion_01)
         TextView tv_suggestion_01;
@@ -190,7 +194,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Bind(R.id.tv_suggestion_06)
         TextView tv_suggestion_06;
 
-        public MyViewHolderSuggestion(View itemView) {
+        public ViewHolderSuggestion(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -208,7 +212,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    public static class MyViewHolder04 extends RecyclerView.ViewHolder {
+    public static class ViewHolderHoliday extends RecyclerView.ViewHolder {
 
         @Bind(R.id.tv_01)
         TextView tv_01;
@@ -223,7 +227,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Bind(R.id.tv_06)
         TextView tv_06;
 
-        public MyViewHolder04(View itemView) {
+        public ViewHolderHoliday(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
