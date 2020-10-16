@@ -1,11 +1,8 @@
 package com.maning.gankmm.utils;
 
-import android.graphics.Color;
-import android.support.design.widget.Snackbar;
-import android.view.Gravity;
+import com.google.android.material.snackbar.Snackbar;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;

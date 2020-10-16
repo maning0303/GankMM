@@ -2,7 +2,7 @@ package com.maning.gankmm.ui.activity.tools;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 

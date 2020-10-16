@@ -1,17 +1,15 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.CalendarInfoEntity;
-import com.maning.gankmm.bean.mob.WeatherBeseEntity;
 import com.maning.gankmm.bean.rolltools.HolidayBean;
 import com.maning.gankmm.bean.rolltools.WeatherFuturedaysResultBean;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;

@@ -1,10 +1,9 @@
 package com.maning.gankmm.ui.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.listeners.OnItemClickListener;
-import com.socks.library.KLog;
-import com.socks.library.KLogUtil;
 
 import java.util.HashMap;
 import java.util.List;

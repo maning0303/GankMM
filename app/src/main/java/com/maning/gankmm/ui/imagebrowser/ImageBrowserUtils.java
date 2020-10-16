@@ -3,7 +3,7 @@ package com.maning.gankmm.ui.imagebrowser;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 

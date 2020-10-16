@@ -4,33 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleScanHistoryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.CacheManager;
 import com.maning.gankmm.utils.ClipUtils;
 import com.maning.gankmm.utils.DialogUtils;
-import com.maning.gankmm.utils.MMKVUtils;
 import com.maning.gankmm.utils.MySnackbar;
-import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.ThreadPoolUtils;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

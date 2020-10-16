@@ -110,14 +110,13 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation librarys.constraint
+    implementation librarys.constraintlayout
     implementation librarys.supportV4
     implementation librarys.supportV7
     implementation librarys.design
     implementation librarys.recyclerview
     implementation librarys.cardview
     implementation librarys.multidex
-    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
 
     /*-----------------------------------------*/
 
@@ -191,7 +190,7 @@ dependencies {
     /*-----------------------------------------*/
 
     /*图片浏览*/
-    implementation 'com.github.maning0303:MNImageBrowser:V1.3.5-support'
+    implementation 'com.github.maning0303:MNImageBrowser:V1.3.5'
     /*二维码扫描*/
     implementation 'com.github.maning0303:MNZXingCode:V2.1.4'
     /*翻滚广告条TextView*/
@@ -201,7 +200,7 @@ dependencies {
     /* 日历 */
     implementation 'com.github.maning0303:MNCalendar:V1.0.1'
     /* 日志监听 */
-    implementation 'com.github.maning0303:MNCrashMonitor:V1.0.5'
+    implementation 'com.github.maning0303:MNCrashMonitor:V1.2.0'
     /* 版本升级 */
     implementation 'com.github.maning0303:MNUpdateAPK:V2.0.3'
 

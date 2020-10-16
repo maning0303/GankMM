@@ -1,9 +1,8 @@
 package com.maning.gankmm.utils;
 
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
-import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.skin.SkinManager;
 
