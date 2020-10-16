@@ -42,6 +42,7 @@ public class RecycleMoreItemAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             put("扫一扫", R.drawable.gank_icon_tools_scan);
             put("扫码记录", R.drawable.gank_icon_tools_scan_history);
             put("二维码生成", R.drawable.gank_icon_tools_scancode);
+            put("笑话段子", R.drawable.gank_icon_tools_smile);
         }
     };
 

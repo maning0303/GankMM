@@ -13,23 +13,17 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.ui.activity.tools.CarListActivity;
 import com.maning.gankmm.ui.activity.tools.ChineseCalendarActivity;
-import com.maning.gankmm.ui.activity.tools.CookMenuActivity;
 import com.maning.gankmm.ui.activity.tools.DictionaryActivity;
 import com.maning.gankmm.ui.activity.tools.FlightActivity;
-import com.maning.gankmm.ui.activity.tools.RubbishActivity;
 import com.maning.gankmm.ui.activity.tools.HistoryTodayActivity;
-import com.maning.gankmm.ui.activity.tools.IDCardQueryActivity;
 import com.maning.gankmm.ui.activity.tools.IPQueryActivity;
-import com.maning.gankmm.ui.activity.tools.ScanResultActivity;
-import com.maning.gankmm.ui.activity.tools.WorldPhoneCodeActivity;
 import com.maning.gankmm.ui.activity.tools.LotteryCategoryActivity;
-import com.maning.gankmm.ui.activity.tools.OilPriceActivity;
 import com.maning.gankmm.ui.activity.tools.PhoneAddressActivity;
-import com.maning.gankmm.ui.activity.tools.PostCodeActivity;
+import com.maning.gankmm.ui.activity.tools.RubbishActivity;
+import com.maning.gankmm.ui.activity.tools.ScanResultActivity;
 import com.maning.gankmm.ui.activity.tools.TrainActivity;
-import com.maning.gankmm.ui.activity.tools.WXArticleActivity;
+import com.maning.gankmm.ui.activity.tools.WorldPhoneCodeActivity;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 import com.maning.gankmm.utils.ZxingScanUtils;
@@ -88,6 +82,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             } else if (position == 1) {
                 //生活阅读
                 mDatasItem.add("历史上的今天");
+                mDatasItem.add("笑话段子");
             } else if (position == 2) {
                 //休闲旅游
                 mDatasItem.add("周公解梦");
@@ -121,18 +116,10 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         ZxingScanUtils.open((Activity) context);
                     } else if (title.equals("扫码记录")) {
                         context.startActivity(new Intent(context, ScanResultActivity.class));
-                    } else if (title.equals("邮编查询")) {
-                        context.startActivity(new Intent(context, PostCodeActivity.class));
-                    } else if (title.equals("菜谱查询")) {
-                        context.startActivity(new Intent(context, CookMenuActivity.class));
-                    } else if (title.equals("身份证查询")) {
-                        context.startActivity(new Intent(context, IDCardQueryActivity.class));
                     } else if (title.equals("IP地址")) {
                         context.startActivity(new Intent(context, IPQueryActivity.class));
                     } else if (title.equals("中国彩票开奖结果")) {
                         context.startActivity(new Intent(context, LotteryCategoryActivity.class));
-                    } else if (title.equals("微信精选")) {
-                        context.startActivity(new Intent(context, WXArticleActivity.class));
                     } else if (title.equals("周公解梦")) {
                         IntentUtils.startToWebActivity(context, "工具", "周公解梦", "http://tools.2345.com/zhgjm.htm");
                     } else if (title.equals("婚姻匹配")) {
@@ -141,14 +128,10 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         IntentUtils.startToWebActivity(context, "工具", "八字算命", "http://www.jjdzc.com/sm/bz.html");
                     } else if (title.equals("老黄历")) {
                         context.startActivity(new Intent(context, ChineseCalendarActivity.class));
-                    } else if (title.equals("电影票房")) {
-                        MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
                     } else if (title.equals("火车票查询")) {
                         context.startActivity(new Intent(context, TrainActivity.class));
                     } else if (title.equals("航班信息查询")) {
                         context.startActivity(new Intent(context, FlightActivity.class));
-                    } else if (title.equals("足球五大联赛")) {
-                        MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
                     } else if (title.equals("垃圾分类")) {
                         context.startActivity(new Intent(context, RubbishActivity.class));
                     } else if (title.equals("历史上的今天")) {
@@ -157,11 +140,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         context.startActivity(new Intent(context, WorldPhoneCodeActivity.class));
                     } else if (title.equals("新华字典")) {
                         context.startActivity(new Intent(context, DictionaryActivity.class));
-                    } else if (title.equals("全国省市今日油价")) {
-                        context.startActivity(new Intent(context, OilPriceActivity.class));
-                    } else if (title.equals("汽车信息查询")) {
-                        context.startActivity(new Intent(context, CarListActivity.class));
-                    } else if (title.equals("驾考题库")) {
+                    } else if (title.equals("笑话段子")) {
                         MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
                     }
                 }
