@@ -118,8 +118,6 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         context.startActivity(new Intent(context, ScanResultActivity.class));
                     } else if (title.equals("IP地址")) {
                         context.startActivity(new Intent(context, IPQueryActivity.class));
-                    } else if (title.equals("中国彩票开奖结果")) {
-                        context.startActivity(new Intent(context, LotteryCategoryActivity.class));
                     } else if (title.equals("周公解梦")) {
                         IntentUtils.startToWebActivity(context, "工具", "周公解梦", "http://tools.2345.com/zhgjm.htm");
                     } else if (title.equals("婚姻匹配")) {
@@ -128,10 +126,6 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         IntentUtils.startToWebActivity(context, "工具", "八字算命", "http://www.jjdzc.com/sm/bz.html");
                     } else if (title.equals("老黄历")) {
                         context.startActivity(new Intent(context, ChineseCalendarActivity.class));
-                    } else if (title.equals("火车票查询")) {
-                        context.startActivity(new Intent(context, TrainActivity.class));
-                    } else if (title.equals("航班信息查询")) {
-                        context.startActivity(new Intent(context, FlightActivity.class));
                     } else if (title.equals("垃圾分类")) {
                         context.startActivity(new Intent(context, RubbishActivity.class));
                     } else if (title.equals("历史上的今天")) {
