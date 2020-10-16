@@ -32,6 +32,11 @@ public class RecycleScanHistoryAdapter extends RecyclerView.Adapter<RecyclerView
         layoutInflater = LayoutInflater.from(this.context);
     }
 
+    public void updateDatas(ArrayList<String> mDatas) {
+        this.mDatas = mDatas;
+        notifyDataSetChanged();
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = layoutInflater.inflate(R.layout.item_scan_history, parent, false);

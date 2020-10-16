@@ -11,7 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
@@ -20,8 +22,10 @@ import com.maning.gankmm.ui.adapter.RecycleScanHistoryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.CacheManager;
 import com.maning.gankmm.utils.ClipUtils;
+import com.maning.gankmm.utils.DialogUtils;
 import com.maning.gankmm.utils.MMKVUtils;
 import com.maning.gankmm.utils.MySnackbar;
+import com.maning.gankmm.utils.PermissionUtils;
 import com.maning.gankmm.utils.ThreadPoolUtils;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -43,8 +47,11 @@ public class ScanResultActivity extends BaseActivity {
     RecyclerView recyclerView;
     @Bind(R.id.tv_show)
     TextView tvShow;
+    @Bind(R.id.ll_result_show)
+    LinearLayout ll_result_show;
+
     private String content;
-    private List<String> scanResult = new ArrayList<>();
+    private ArrayList<String> scanResult = new ArrayList<>();
     private RecycleScanHistoryAdapter recycleScanHistoryAdapter;
 
     public static void open(Context context, String content) {
@@ -59,9 +66,18 @@ public class ScanResultActivity extends BaseActivity {
         setContentView(R.layout.activity_scan_result);
         ButterKnife.bind(this);
         initIntent();
-        initBackToolBar(toolbar, "扫码结果");
+        initMyToolbar();
         initRecyclerView();
         initDatas();
+    }
+
+    private void initMyToolbar() {
+        if (TextUtils.isEmpty(content)) {
+            initBackToolBar(toolbar, "扫码记录");
+            ll_result_show.setVisibility(View.GONE);
+        } else {
+            initBackToolBar(toolbar, "扫码内容");
+        }
     }
 
     private void initDatas() {
@@ -71,11 +87,11 @@ public class ScanResultActivity extends BaseActivity {
         ThreadPoolUtils.execute(new Runnable() {
             @Override
             public void run() {
-                scanResult = CacheManager.getScanResult();
+                scanResult = (ArrayList<String>) CacheManager.getScanResult();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        recycleScanHistoryAdapter = new RecycleScanHistoryAdapter(mActivity, (ArrayList<String>) scanResult);
+                        recycleScanHistoryAdapter = new RecycleScanHistoryAdapter(mActivity, scanResult);
                         recyclerView.setAdapter(recycleScanHistoryAdapter);
                     }
                 });
@@ -90,9 +106,28 @@ public class ScanResultActivity extends BaseActivity {
                 this.finish();
                 return true;
             case R.id.item_delete:
-                //TODO:删除提示
+                DialogUtils.showMyDialog(this,
+                        "提示",
+                        "确定要清除所有记录吗？",
+                        "确定",
+                        "取消",
+                        new DialogUtils.OnDialogClickListener() {
+                            @Override
+                            public void onConfirm() {
+                                CacheManager.cleanScanResult();
+                                //刷新页面
+                                scanResult = new ArrayList<>();
+                                if (recycleScanHistoryAdapter != null) {
+                                    recycleScanHistoryAdapter.updateDatas(scanResult);
+                                }
+                                MySnackbar.makeSnackBarGreen(toolbar, "删除成功");
+                            }
 
+                            @Override
+                            public void onCancel() {
 
+                            }
+                        });
                 return true;
         }
         return super.onOptionsItemSelected(item);

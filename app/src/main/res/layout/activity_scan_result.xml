@@ -8,47 +8,55 @@
 
     <include layout="@layout/toolbar" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:background="#E6E6E6"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="扫描结果"
-        android:textColor="#555555"
-        android:textSize="13sp" />
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_result_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/btn_copy"
-            android:textColor="@color/black_text2_color"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="大家好才是真的好，广州好迪广州好迪广州好迪广州好迪广州好迪广州好迪广州好迪" />
-
-        <Button
-            android:id="@+id/btn_copy"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/btn_background"
-            android:text="复制"
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="#E6E6E6"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="扫描结果"
+            android:textColor="#555555"
             android:textSize="13sp" />
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/btn_copy"
+                android:textColor="@color/black_text2_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="大家好才是真的好，广州好迪广州好迪广州好迪广州好迪广州好迪广州好迪广州好迪" />
+
+            <Button
+                android:id="@+id/btn_copy"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_background"
+                android:text="复制"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"

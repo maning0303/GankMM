@@ -40,7 +40,7 @@ public class ZxingScanUtils {
                 .setFullScreenScan(true)
                 //二维码标记点
                 .isShowResultPoint(true)
-                .setResultPointConfigs(40, 30, 10, "#70FFFFFF", "#7000A81F")
+                .setResultPointConfigs(60, 30, 10, "#FFFFFFFF", "#7000A81F")
                 .builder();
         MNScanManager.startScan(activity, scanConfig, new MNScanCallback() {
             @Override

@@ -117,6 +117,20 @@ dependencies {
     implementation librarys.recyclerview
     implementation librarys.cardview
     implementation librarys.multidex
+    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
+
+    /*-----------------------------------------*/
+
+    /*Umeng统计*/
+    implementation 'com.umeng.sdk:common:1.5.3'
+    implementation 'com.umeng.sdk:analytics:7.5.3'
+    /*极光推送*/
+    implementation files('libs/jcore-android_v1.1.2.jar')
+    implementation files('libs/jpush-android_v3.0.5.jar')
+
+
+    /*-----------------------------------------*/
+
     /*RecycleView的间隔线*/
     implementation 'com.yqritc:recyclerview-flexibledivider:1.2.9'
     /*解析Json*/
@@ -139,19 +153,13 @@ dependencies {
     /*点赞收藏按钮*/
     implementation 'com.ldoublem.thumbUplib:ThumbUplib:0.5'
     /*material风格的dialogs*/
-    implementation 'com.afollestad.material-dialogs:core:0.9.3.0'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     /*解析HTML页面*/
     implementation 'org.jsoup:jsoup:1.9.2'
     /*权限库*/
     implementation 'com.yanzhenjie:permission:2.0.0-rc4'
     /*ViewPager指示器*/
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
-    /*Umeng统计*/
-    implementation 'com.umeng.sdk:common:1.5.3'
-    implementation 'com.umeng.sdk:analytics:7.5.3'
-    /*极光推送*/
-    implementation files('libs/jcore-android_v1.1.2.jar')
-    implementation files('libs/jpush-android_v3.0.5.jar')
     /*菜单*/
     implementation 'io.github.yavski:fab-speed-dial:1.0.4'
     /*高德地图*/
@@ -159,7 +167,6 @@ dependencies {
     /* 模糊 */
     implementation 'jp.wasabeef:blurry:2.1.1'
     /*网络监测*/
-    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
     /* 表格 */
@@ -183,7 +190,8 @@ dependencies {
     /* 图片浏览器所需 */
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
-    /* ----------自己------------ */
+    /*-----------------------------------------*/
+
     /*二维码扫描*/
     implementation 'com.github.maning0303:MNZXingCode:V2.1.4'
     /*翻滚广告条TextView*/

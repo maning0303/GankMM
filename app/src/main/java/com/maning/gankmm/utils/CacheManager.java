@@ -18,7 +18,14 @@ public class CacheManager {
     private static final String KEY_SCAN_RESULT = "KEY_SCAN_RESULT";
     private static Gson gson = new Gson();
 
+    public static void cleanScanResult() {
+        MMKVUtils.getInstance().putString(KEY_SCAN_RESULT, "");
+    }
+
     public static void saveScanResult(String content) {
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
         List<String> caches = new ArrayList<>();
         String cache = MMKVUtils.getInstance().getString(KEY_SCAN_RESULT, "");
         if (TextUtils.isEmpty(cache)) {
@@ -26,7 +33,7 @@ public class CacheManager {
         } else {
             caches = gson.fromJson(cache, new TypeToken<List<String>>() {
             }.getType());
-            caches.add(0,content);
+            caches.add(0, content);
         }
         MMKVUtils.getInstance().putString(KEY_SCAN_RESULT, gson.toJson(caches));
     }
