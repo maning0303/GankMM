@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.maning.gankmm.bean.gank2.GankEntity;
@@ -14,7 +15,7 @@ import com.maning.gankmm.ui.activity.QRCodeActivity;
 import com.maning.gankmm.ui.activity.SettingActivity;
 import com.maning.gankmm.ui.activity.SupportPayActivity;
 import com.maning.gankmm.ui.activity.WebActivity;
-import com.maning.gankmm.ui.imagebrowser.MNImageBrowser;
+import com.maning.gankmm.ui.imagebrowser.ImageBrowserUtils;
 
 import java.util.ArrayList;
 
@@ -35,11 +36,12 @@ public class IntentUtils {
     public static final String PushMessage = "PushMessage";
 
     public static void startToImageShow(Context context, ArrayList<String> mDatas, int position, View view) {
-        MNImageBrowser.showImageBrowser(context, view, position, mDatas, null);
+        startToImageShow(context, mDatas, null, position, view);
     }
 
     public static void startToImageShow(final Context context, ArrayList<String> mDatas, final ArrayList<GankEntity> gankEntityList, int position, View view) {
-        MNImageBrowser.showImageBrowser(context, view, position, mDatas, gankEntityList);
+//        MNImageBrowser.showImageBrowser(context, view, position, mDatas, gankEntityList);
+        ImageBrowserUtils.open((FragmentActivity) context, view, position, mDatas, gankEntityList);
     }
 
     public static void startToWebActivity(Context context, String titleFlag, String title, String url) {

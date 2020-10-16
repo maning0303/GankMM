@@ -11,6 +11,7 @@ import com.maning.gankmm.http.callback.CommonHttpCallback;
 import com.maning.gankmm.http.gank.GankApi;
 import com.maning.gankmm.ui.iView.IGankView;
 import com.maning.gankmm.ui.presenter.IGankPresenter;
+import com.maning.gankmm.utils.ThreadPoolUtils;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
@@ -39,27 +40,28 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
             GankApi.getOneDayData(dayArray[0], dayArray[1], dayArray[2], new CommonHttpCallback<GankDayBean>() {
                 @Override
                 public void onSuccess(final GankDayBean result) {
+                    if (mView == null) {
+                        return;
+                    }
                     if (result != null) {
                         GankDayBean.ResultsEntity results = result.getResults();
                         if (results != null) {
-
-                            List<GankEntity> 福利 = result.getResults().get福利();
-                            if (福利 != null && 福利.size() > 0) {
-                                String url = result.getResults().get福利().get(0).getUrl();
+                            String topImage = getTopImage(results);
+                            if (!TextUtils.isEmpty(topImage)) {
                                 mView.setProgressBarVisility(View.GONE);
-                                mView.showImageView(url);
+                                mView.showImageView(topImage);
                             } else {
                                 mView.setProgressBarVisility(View.GONE);
                                 mView.showToast("糟糕，图片没找到");
                             }
                             try {
                                 //初始化数据
-                                new Thread(new Runnable() {
+                                ThreadPoolUtils.execute(new Runnable() {
                                     @Override
                                     public void run() {
                                         initDatas(result);
                                     }
-                                }).start();
+                                });
                             } catch (Exception e) {
                                 mView.showToast("抱歉，出错了...");
                             }
@@ -83,6 +85,36 @@ public class GankPresenterImpl extends BasePresenterImpl<IGankView> implements I
                 }
             });
         }
+    }
+
+    private String getTopImage(GankDayBean.ResultsEntity resultsEntity) {
+        String imageUrl = "";
+        List<GankEntity> 福利 = resultsEntity.get福利();
+        if (福利 != null && 福利.size() > 0) {
+            List<String> images = 福利.get(0).getImages();
+            if (images != null && images.size() > 0) {
+                imageUrl = images.get(0);
+            }
+        }
+        if (TextUtils.isEmpty(imageUrl)) {
+            List<GankEntity> android = resultsEntity.getAndroid();
+            if (android != null && android.size() > 0) {
+                List<String> images = android.get(0).getImages();
+                if (images != null && images.size() > 0) {
+                    imageUrl = images.get(0);
+                }
+            }
+        }
+        if (TextUtils.isEmpty(imageUrl)) {
+            List<GankEntity> ios = resultsEntity.getIOS();
+            if (ios != null && ios.size() > 0) {
+                List<String> images = ios.get(0).getImages();
+                if (images != null && images.size() > 0) {
+                    imageUrl = images.get(0);
+                }
+            }
+        }
+        return imageUrl;
     }
 
 

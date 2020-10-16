@@ -162,8 +162,7 @@ public class GankActivity extends BaseActivity implements IGankView {
     public void showImageView(String url) {
         RequestOptions options = new RequestOptions();
         options.fitCenter();
-        Glide
-                .with(this)
+        Glide.with(this)
                 .load(url)
                 .apply(options)
                 .into(ivTop);
