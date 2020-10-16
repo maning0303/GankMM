@@ -102,6 +102,8 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
 
     private TextView header_tv_weather;
     private WeatherInfoBean weatherInfoBean;
+    //0，1，2，3
+    private int currentPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,6 +203,9 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
      * 设置默认的Fragment显示：如果savedInstanceState不是空，证明activity被后台销毁重建了，之前有fragment，就不再创建了
      */
     private void setDefaultFragment() {
+        navigationCheckedItemId = R.id.nav_girl;
+        navigationCheckedTitle = "妹纸";
+        navigationView.setCheckedItem(navigationCheckedItemId);
         setMenuSelection(navigationCheckedItemId);
     }
 
@@ -213,6 +218,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
         hideFragments(fragmentTransaction);
         switch (flag) {
             case R.id.nav_girl:
+                currentPosition = 0;
                 if (girlsFragment == null) {
                     girlsFragment = GirlsFragment.newInstance();
                     fragmentTransaction.add(R.id.frame_content, girlsFragment);
@@ -221,6 +227,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 }
                 break;
             case R.id.nav_history:
+                currentPosition = 1;
                 if (timeFragment == null) {
                     timeFragment = HistoryFragment.newInstance();
                     fragmentTransaction.add(R.id.frame_content, timeFragment);
@@ -229,6 +236,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 }
                 break;
             case R.id.nav_category_ganhuo:
+                currentPosition = 2;
                 if (categoryFragmentGanhuo == null) {
                     categoryFragmentGanhuo = CategoryFragment.newInstance(Constants.Catrgory_GankHuo);
                     fragmentTransaction.add(R.id.frame_content, categoryFragmentGanhuo);
@@ -237,6 +245,7 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
                 }
                 break;
             case R.id.nav_category_article:
+                currentPosition = 3;
                 if (categoryFragmentArticle == null) {
                     categoryFragmentArticle = CategoryFragment.newInstance(Constants.Catrgory_Article);
                     fragmentTransaction.add(R.id.frame_content, categoryFragmentArticle);
@@ -376,6 +385,11 @@ public class MainActivity extends BaseActivity implements IMainView, View.OnClic
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(navigationView)) {
             drawerLayout.closeDrawers();
+            return;
+        }
+        //判断当前是不是在妹子页面
+        if (currentPosition != 0) {
+            setDefaultFragment();
             return;
         }
         long currtTime = System.currentTimeMillis();
