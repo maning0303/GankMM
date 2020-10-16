@@ -13,6 +13,12 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!-- 设置Toolbar菜单文字的大小  -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="ToolBarPopupThemeDay" parent="@style/ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/main_color</item>
         <item name="android:background">@color/gank_text1_color</item>
@@ -51,6 +57,7 @@
 
     <!--白天-->
     <style name="DayTheme" parent="@style/BaseAppTheme">
+        <item name="actionMenuTextColor">@color/gank_text1_color</item>
         <item name="colorControlNormal">@color/gank_text1_color</item>
         <item name="android:windowBackground">@color/main_color</item>
         <item name="app_background">@color/backgroundColor</item>
@@ -95,6 +102,7 @@
 
     <!--黑夜-->
     <style name="NightTheme" parent="@style/BaseAppTheme">
+        <item name="actionMenuTextColor">@color/gank_text1_color_night</item>
         <item name="colorControlNormal">@color/gank_text1_color_night</item>
         <item name="android:windowBackground">@color/main_color_night</item>
         <item name="app_background">@color/backgroundColor_night</item>

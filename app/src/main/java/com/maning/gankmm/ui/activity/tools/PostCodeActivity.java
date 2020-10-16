@@ -30,6 +30,7 @@ import butterknife.OnClick;
 /**
  * 邮编查询
  */
+@Deprecated
 public class PostCodeActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

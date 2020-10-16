@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'channel'
 
-channel{
+channel {
     //指定渠道文件
     channelFile = file("channel.txt")
     //多渠道包的输出目录，默认为new File(project.buildDir,"channel")
-    baseOutputDir = new File(project.buildDir,"channel")
+    baseOutputDir = new File(project.buildDir, "channel")
     //多渠道包的命名规则，默认为：${appName}-${versionName}-${versionCode}-${flavorName}-${buildType}
-    apkNameFormat ='${appName}-${versionName}-${flavorName}-${buildType}'
+    apkNameFormat = '${appName}-${versionName}-${flavorName}-${buildType}'
     //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
     isFastMode = true
 }
@@ -48,6 +48,25 @@ android {
             v1SigningEnabled true
             v2SigningEnabled false
         }
+    }
+
+    packagingOptions {
+        exclude 'lib/mips64/*.so'
+        exclude 'lib/mips/*.so'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+        exclude 'META-INF/androidx.customview_customview.version'
+        exclude 'META-INF/androidx.legacy_legacy-support-core-ui.version'
+        exclude 'META-INF/androidx.*'
+
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.xml'
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
     }
 
     File customerproguardFile = file('src/proguard.cfg')
@@ -101,14 +120,16 @@ dependencies {
     /*RecycleView的间隔线*/
     implementation 'com.yqritc:recyclerview-flexibledivider:1.2.9'
     /*解析Json*/
-    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.google.code.gson:gson:2.8.5'
     /*网络相关*/
-    implementation 'com.squareup.okhttp3:okhttp:3.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     /*图片加载Glide*/
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'jp.wasabeef:glide-transformations:2.0.2'
+    /*数据存储*/
+    implementation 'com.tencent:mmkv-static:1.2.2'
     /*日志*/
     implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
     /*注解*/
@@ -138,6 +159,7 @@ dependencies {
     /* 模糊 */
     implementation 'jp.wasabeef:blurry:2.1.1'
     /*网络监测*/
+    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
     /* 表格 */
@@ -162,6 +184,8 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
     /* ----------自己------------ */
+    /*二维码扫描*/
+    implementation 'com.github.maning0303:MNZXingCode:V2.1.4'
     /*翻滚广告条TextView*/
     implementation 'com.github.maning0303:SwitcherView:v1.0.4'
     /* 提示框 */

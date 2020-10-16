@@ -19,14 +19,13 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobUserInfo;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
+import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.AppDateMgr;
 import com.maning.gankmm.utils.DialogUtils;
 import com.maning.gankmm.utils.MySnackbar;
-import com.maning.gankmm.utils.UserUtils;
 import com.socks.library.KLog;
 
 import java.text.ParseException;
@@ -43,6 +42,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * 编辑用户信息页面
  */
+@Deprecated
 public class EditUserInfoActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -78,7 +78,7 @@ public class EditUserInfoActivity extends BaseActivity {
 
     private void initDatas() {
         //获取信息
-        mUserCache = UserUtils.getUserCache();
+//        mUserCache = UserUtils.getUserCache();
         //设置头像
         RequestOptions options = new RequestOptions();
         options.placeholder(R.drawable.icon_default_avatar);
@@ -267,8 +267,6 @@ public class EditUserInfoActivity extends BaseActivity {
         public void onSuccess(int what, Object result) {
             dissmissProgressDialog();
             if (what == 0x001) {
-                //保存用户信息
-                UserUtils.saveUserCache(mUserCache);
                 //保存成功
                 MySnackbar.makeSnackBarGreen(mToolbar, "数据更新成功");
 
@@ -285,12 +283,12 @@ public class EditUserInfoActivity extends BaseActivity {
                     String signature = values[2];
 
                     //本地数据更新
-                    MobUserInfo userCache = UserUtils.getUserCache();
-                    userCache.setSex(sex);
-                    userCache.setBirth(birth);
-                    userCache.setSignature(signature);
-                    //保存用户信息
-                    UserUtils.saveUserCache(userCache);
+//                    MobUserInfo userCache = UserUtils.getUserCache();
+//                    userCache.setSex(sex);
+//                    userCache.setBirth(birth);
+//                    userCache.setSignature(signature);
+//                    //保存用户信息
+//                    UserUtils.saveUserCache(userCache);
                     //刷新界面
                     initDatas();
                 }
@@ -331,39 +329,39 @@ public class EditUserInfoActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         //对比数据
-        MobUserInfo userCacheBefore = UserUtils.getUserCache();
+//        MobUserInfo userCacheBefore = UserUtils.getUserCache();
 
-        String avatarLocal = userCacheBefore.getAvatarLocal();
-        String sex = userCacheBefore.getSex();
-        String birth = userCacheBefore.getBirth();
-        String signature = userCacheBefore.getSignature();
-
-        String avatarLocal_new = mUserCache.getAvatarLocal();
-        String sex_new = mUserCache.getSex();
-        String birth_new = mUserCache.getBirth();
-        String signature_new = mUserCache.getSignature();
-
-        if (
-                (TextUtils.isEmpty(avatarLocal) ? "" : avatarLocal).equals((TextUtils.isEmpty(avatarLocal_new) ? "" : avatarLocal_new)) &&
-                        (TextUtils.isEmpty(sex) ? "" : sex).equals((TextUtils.isEmpty(sex_new) ? "" : sex_new)) &&
-                        (TextUtils.isEmpty(birth) ? "" : birth).equals((TextUtils.isEmpty(birth_new) ? "" : birth_new)) &&
-                        (TextUtils.isEmpty(signature) ? "" : signature).equals((TextUtils.isEmpty(signature_new) ? "" : signature_new))
-                ) {
-            //关闭页面
-            EditUserInfoActivity.this.finish();
-        } else {
-            DialogUtils.showMyDialog(mContext, "提示", "您有数据发生了修改,需要保存吗?", "不修改了,关闭页面", "去保存", new DialogUtils.OnDialogClickListener() {
-                @Override
-                public void onConfirm() {
-                    //关闭页面
-                    EditUserInfoActivity.this.finish();
-                }
-
-                @Override
-                public void onCancel() {
-
-                }
-            });
-        }
+//        String avatarLocal = userCacheBefore.getAvatarLocal();
+//        String sex = userCacheBefore.getSex();
+//        String birth = userCacheBefore.getBirth();
+//        String signature = userCacheBefore.getSignature();
+//
+//        String avatarLocal_new = mUserCache.getAvatarLocal();
+//        String sex_new = mUserCache.getSex();
+//        String birth_new = mUserCache.getBirth();
+//        String signature_new = mUserCache.getSignature();
+//
+//        if (
+//                (TextUtils.isEmpty(avatarLocal) ? "" : avatarLocal).equals((TextUtils.isEmpty(avatarLocal_new) ? "" : avatarLocal_new)) &&
+//                        (TextUtils.isEmpty(sex) ? "" : sex).equals((TextUtils.isEmpty(sex_new) ? "" : sex_new)) &&
+//                        (TextUtils.isEmpty(birth) ? "" : birth).equals((TextUtils.isEmpty(birth_new) ? "" : birth_new)) &&
+//                        (TextUtils.isEmpty(signature) ? "" : signature).equals((TextUtils.isEmpty(signature_new) ? "" : signature_new))
+//                ) {
+//            //关闭页面
+//            EditUserInfoActivity.this.finish();
+//        } else {
+//            DialogUtils.showMyDialog(mContext, "提示", "您有数据发生了修改,需要保存吗?", "不修改了,关闭页面", "去保存", new DialogUtils.OnDialogClickListener() {
+//                @Override
+//                public void onConfirm() {
+//                    //关闭页面
+//                    EditUserInfoActivity.this.finish();
+//                }
+//
+//                @Override
+//                public void onCancel() {
+//
+//                }
+//            });
+//        }
     }
 }

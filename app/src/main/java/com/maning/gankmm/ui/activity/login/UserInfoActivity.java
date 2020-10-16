@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+@Deprecated
 public class UserInfoActivity extends BaseActivity {
 
     @Bind(R.id.avatar)
@@ -108,14 +109,14 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     private void refreshUserInfo() {
-        //刷新数据
-        mUserCache = UserUtils.getUserCache();
-        //设置头像
-        RequestOptions options = new RequestOptions();
-        options.placeholder(R.drawable.icon_default_avatar);
-        options.error(R.drawable.icon_default_avatar);
-        Glide.with(mContext).load(mUserCache.getAvatarLocal()).apply(options).into(mAvatar);
-        //设置用户名
-        mTvUserName.setText(mUserCache.getUserName());
+//        //刷新数据
+//        mUserCache = UserUtils.getUserCache();
+//        //设置头像
+//        RequestOptions options = new RequestOptions();
+//        options.placeholder(R.drawable.icon_default_avatar);
+//        options.error(R.drawable.icon_default_avatar);
+//        Glide.with(mContext).load(mUserCache.getAvatarLocal()).apply(options).into(mAvatar);
+//        //设置用户名
+//        mTvUserName.setText(mUserCache.getUserName());
     }
 }

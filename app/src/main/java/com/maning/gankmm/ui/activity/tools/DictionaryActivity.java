@@ -58,12 +58,7 @@ public class DictionaryActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(toolbar, "新华字典查询", R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(toolbar, "新华字典查询", R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(toolbar, "新华字典查询");
     }
 
     @Override

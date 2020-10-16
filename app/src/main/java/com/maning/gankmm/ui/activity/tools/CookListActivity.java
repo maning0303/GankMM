@@ -36,6 +36,7 @@ import static com.maning.gankmm.R.id.swipeToLoadLayout;
 /**
  * 菜谱列表页面
  */
+@Deprecated
 public class CookListActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.toolbar)
@@ -101,12 +102,7 @@ public class CookListActivity extends BaseActivity implements OnRefreshListener,
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, mMobCookCategoryEntity.getCategoryInfo().getName(), R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(mToolbar, mMobCookCategoryEntity.getCategoryInfo().getName(), R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(mToolbar, mMobCookCategoryEntity.getCategoryInfo().getName());
     }
 
     @Override

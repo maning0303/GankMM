@@ -14,7 +14,6 @@ import com.maning.gankmm.bean.mob.CitysEntity;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCitysAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +23,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+@Deprecated
 public class CitysActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -58,7 +58,7 @@ public class CitysActivity extends BaseActivity {
 
     private void initAdapter() {
         //获取数据
-        CitysEntity citysCache = UserUtils.getCitysCache();
+        CitysEntity citysCache = null;
         if (citysCache != null) {
             List<CitysEntity.ResultBean> cityList = citysCache.getResult();
             for (int i = 0; i < cityList.size(); i++) {
@@ -124,12 +124,7 @@ public class CitysActivity extends BaseActivity {
 
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(toolbar, "城市选择", R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(toolbar, "城市选择", R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(toolbar, "城市选择");
     }
 
     @Override

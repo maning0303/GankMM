@@ -69,9 +69,20 @@ public class BaseActivity extends AppCompatActivity {
         MProgressDialog.dismissProgress();
     }
 
+    public void initBackToolBar(Toolbar toolbar, String title) {
+        int currentSkinType = SkinManager.getCurrentSkinType(this);
+        if (SkinManager.THEME_DAY == currentSkinType) {
+            initToolBar(toolbar, title, R.drawable.gank_ic_back_white);
+        } else {
+            initToolBar(toolbar, title, R.drawable.gank_ic_back_night);
+        }
+    }
+
     public void initToolBar(Toolbar toolbar, String title, int icon) {
         toolbar.setTitle(title);// 标题的文字需在setSupportActionBar之前，不然会无效
-        toolbar.setNavigationIcon(icon);
+        if(icon > 0){
+            toolbar.setNavigationIcon(icon);
+        }
         setSupportActionBar(toolbar);
         int currentSkinType = SkinManager.getCurrentSkinType(this);
         if (SkinManager.THEME_DAY == currentSkinType) {

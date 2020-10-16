@@ -28,6 +28,7 @@ import butterknife.OnClick;
 /**
  * 航班列表查询
  */
+@Deprecated
 public class FlightListActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

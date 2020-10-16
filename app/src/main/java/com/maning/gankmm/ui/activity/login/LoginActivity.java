@@ -15,7 +15,6 @@ import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
-import com.maning.gankmm.utils.UserUtils;
 
 import java.util.List;
 
@@ -27,6 +26,7 @@ import butterknife.OnClick;
 /**
  * 登录页面
  */
+@Deprecated
 public class LoginActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -97,7 +97,7 @@ public class LoginActivity extends BaseActivity {
                 userInfo.setUserPsd(userPsd);
 
                 //保存用户信息
-                UserUtils.saveUserCache(userInfo);
+//                UserUtils.saveUserCache(userInfo);
 
                 //关闭当前页面。
                 closeAcitivity();

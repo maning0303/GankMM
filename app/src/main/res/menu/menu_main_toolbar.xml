@@ -11,6 +11,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:visible="false"
         android:id="@+id/item_login"
         android:icon="@drawable/gank_icon_default_avatar"
         android:orderInCategory="90"

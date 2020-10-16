@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * 全国油价信息
  */
+@Deprecated
 public class OilPriceActivity extends BaseActivity {
 
     private static final String TAG = "OilPriceActivity";

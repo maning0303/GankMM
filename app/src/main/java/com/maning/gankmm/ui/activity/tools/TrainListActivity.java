@@ -33,6 +33,7 @@ import butterknife.OnClick;
 /**
  * 火车列表查询
  */
+@Deprecated
 public class TrainListActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

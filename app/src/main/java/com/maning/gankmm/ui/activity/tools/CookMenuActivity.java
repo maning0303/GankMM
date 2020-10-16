@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 /**
  * 菜谱首页
  */
+@Deprecated
 public class CookMenuActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -55,12 +56,7 @@ public class CookMenuActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, "我的厨房", R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(mToolbar, "我的厨房", R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(mToolbar, "我的厨房");
     }
 
     @Override

@@ -30,6 +30,7 @@ import butterknife.OnClick;
 /**
  * 身份证查询
  */
+@Deprecated
 public class IDCardQueryActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

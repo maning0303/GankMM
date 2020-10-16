@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * 车型详细配置
  */
+@Deprecated
 public class CarDetailActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -202,12 +203,7 @@ public class CarDetailActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, mMobCarItemEntity.getSeriesName(), R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(mToolbar, mMobCarItemEntity.getSeriesName(), R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(mToolbar, mMobCarItemEntity.getSeriesName());
     }
 
     @Override

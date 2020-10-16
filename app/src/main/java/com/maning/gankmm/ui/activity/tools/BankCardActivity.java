@@ -30,6 +30,7 @@ import butterknife.OnClick;
 /**
  * 银行卡查询
  */
+@Deprecated
 public class BankCardActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -59,12 +60,7 @@ public class BankCardActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(toolbar, "银行卡查询", R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(toolbar, "银行卡查询", R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(toolbar, "银行卡查询");
     }
 
     @Override

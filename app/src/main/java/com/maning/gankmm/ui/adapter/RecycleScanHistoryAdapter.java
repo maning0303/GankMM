@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
+import com.maning.gankmm.utils.ClipUtils;
+import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.ArrayList;
 
@@ -16,40 +18,41 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * 垃圾分类
+ * 扫码历史
  */
-public class RecycleRubbishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleScanHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas;
+    private ArrayList<String> mDatas;
     private LayoutInflater layoutInflater;
 
-    public RecycleRubbishAdapter(Context context, ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas) {
+    public RecycleScanHistoryAdapter(Context context, ArrayList<String> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
         layoutInflater = LayoutInflater.from(this.context);
     }
 
-    public void upddateDatas(ArrayList<RubbishTypeResultBean.DataEntity.AimEntity> mDatas) {
-        this.mDatas = mDatas;
-        notifyDataSetChanged();
-    }
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = layoutInflater.inflate(R.layout.item_rubbish, parent, false);
+        View inflate = layoutInflater.inflate(R.layout.item_scan_history, parent, false);
         return new MyViewHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         if (viewHolder instanceof MyViewHolder) {
-            MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
+            final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
 
-            RubbishTypeResultBean.DataEntity.AimEntity aimEntity = mDatas.get(position);
-
-            myViewHolder.tv_name.setText(aimEntity.getGoodsName());
-            myViewHolder.tv_type.setText(aimEntity.getGoodsType());
+            final String result = mDatas.get(position);
+            myViewHolder.tv_title.setText(result);
+            myViewHolder.root_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //复制到剪切板
+                    ClipUtils.copy(context, result);
+                    MySnackbar.makeSnackBarGreen(myViewHolder.root_view, "结果已经复制到剪切板");
+                }
+            });
         }
     }
 
@@ -60,10 +63,10 @@ public class RecycleRubbishAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_name)
-        TextView tv_name;
-        @Bind(R.id.tv_type)
-        TextView tv_type;
+        @Bind(R.id.tv_title)
+        TextView tv_title;
+        @Bind(R.id.root_view)
+        RelativeLayout root_view;
 
         public MyViewHolder(View itemView) {
             super(itemView);

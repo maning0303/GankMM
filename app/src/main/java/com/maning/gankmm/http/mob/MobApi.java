@@ -70,8 +70,6 @@ public class MobApi {
                 if (response.isSuccessful()) {
                     CitysEntity citysEntity = response.body();
                     if (citysEntity != null) {
-                        //保存
-                        UserUtils.saveCitysCache(citysEntity);
                         if (citysEntity.getMsg().equals("success")) {
                             KLog.i("getCitys---success：" + citysEntity.toString());
                             myCallBack.onSuccessList(what, citysEntity.getResult());

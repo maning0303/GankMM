@@ -34,6 +34,7 @@ import butterknife.OnClick;
 /**
  * 航班
  */
+@Deprecated
 public class FlightActivity extends BaseActivity {
 
     @Bind(R.id.ll_query)

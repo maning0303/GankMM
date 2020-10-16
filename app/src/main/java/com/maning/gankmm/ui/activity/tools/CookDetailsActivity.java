@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 /**
  * 做菜详情
  */
+@Deprecated
 public class CookDetailsActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -62,12 +63,7 @@ public class CookDetailsActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, mData.getRecipe().getTitle(), R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(mToolbar, mData.getRecipe().getTitle(), R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(mToolbar, mData.getRecipe().getTitle());
     }
 
     @Override

@@ -39,6 +39,9 @@ public class RecycleMoreItemAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             put("手机号码归属地", R.drawable.gank_icon_tools_phone_address);
             put("IP地址", R.drawable.gank_icon_tools_ip);
             put("世界电话区号", R.drawable.gank_icon_tools_phone_code);
+            put("扫一扫", R.drawable.gank_icon_tools_scan);
+            put("扫码记录", R.drawable.gank_icon_tools_scan);
+            put("二维码生成", R.drawable.gank_icon_tools_scancode);
         }
     };
 

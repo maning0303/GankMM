@@ -27,6 +27,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+@Deprecated
 public class CarItemsActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -102,12 +103,7 @@ public class CarItemsActivity extends BaseActivity {
     }
 
     private void initMyToolBar() {
-        int currentSkinType = SkinManager.getCurrentSkinType(this);
-        if (SkinManager.THEME_DAY == currentSkinType) {
-            initToolBar(mToolbar, mSonBean.getType(), R.drawable.gank_ic_back_white);
-        } else {
-            initToolBar(mToolbar, mSonBean.getType(), R.drawable.gank_ic_back_night);
-        }
+        initBackToolBar(mToolbar, mSonBean.getType());
     }
 
     @Override

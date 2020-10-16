@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * 彩票详情
  */
+@Deprecated
 public class LotteryDetailActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

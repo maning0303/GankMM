@@ -34,6 +34,7 @@ import butterknife.OnClick;
 /**
  * 火车
  */
+@Deprecated
 public class TrainActivity extends BaseActivity {
 
     @Bind(R.id.ll_query)

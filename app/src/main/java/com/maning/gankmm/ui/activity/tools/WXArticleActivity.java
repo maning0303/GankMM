@@ -38,6 +38,7 @@ import butterknife.OnClick;
 /**
  * 微信精选
  */
+@Deprecated
 public class WXArticleActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.toolbar)

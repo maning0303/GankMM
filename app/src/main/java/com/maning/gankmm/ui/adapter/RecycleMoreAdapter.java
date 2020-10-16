@@ -1,5 +1,6 @@
 package com.maning.gankmm.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -21,6 +22,7 @@ import com.maning.gankmm.ui.activity.tools.RubbishActivity;
 import com.maning.gankmm.ui.activity.tools.HistoryTodayActivity;
 import com.maning.gankmm.ui.activity.tools.IDCardQueryActivity;
 import com.maning.gankmm.ui.activity.tools.IPQueryActivity;
+import com.maning.gankmm.ui.activity.tools.ScanResultActivity;
 import com.maning.gankmm.ui.activity.tools.WorldPhoneCodeActivity;
 import com.maning.gankmm.ui.activity.tools.LotteryCategoryActivity;
 import com.maning.gankmm.ui.activity.tools.OilPriceActivity;
@@ -30,6 +32,7 @@ import com.maning.gankmm.ui.activity.tools.TrainActivity;
 import com.maning.gankmm.ui.activity.tools.WXArticleActivity;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
+import com.maning.gankmm.utils.ZxingScanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +77,9 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 //便民服务
                 mDatasItem.add("垃圾分类");
                 mDatasItem.add("新华字典");
+                mDatasItem.add("二维码生成");
+                mDatasItem.add("扫一扫");
+                mDatasItem.add("扫码记录");
 //                mDatasItem.add("邮编查询");
 //                mDatasItem.add("菜谱查询");
 //                mDatasItem.add("身份证查询");
@@ -111,6 +117,10 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     String title = mDatasTitle.get(position);
                     if (title.equals("手机号码归属地")) {
                         context.startActivity(new Intent(context, PhoneAddressActivity.class));
+                    } else if (title.equals("扫一扫")) {
+                        ZxingScanUtils.open((Activity) context);
+                    } else if (title.equals("扫码记录")) {
+                        context.startActivity(new Intent(context, ScanResultActivity.class));
                     } else if (title.equals("邮编查询")) {
                         context.startActivity(new Intent(context, PostCodeActivity.class));
                     } else if (title.equals("菜谱查询")) {
@@ -123,7 +133,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         context.startActivity(new Intent(context, LotteryCategoryActivity.class));
                     } else if (title.equals("微信精选")) {
                         context.startActivity(new Intent(context, WXArticleActivity.class));
-                    }else if (title.equals("周公解梦")) {
+                    } else if (title.equals("周公解梦")) {
                         IntentUtils.startToWebActivity(context, "工具", "周公解梦", "http://tools.2345.com/zhgjm.htm");
                     } else if (title.equals("婚姻匹配")) {
                         IntentUtils.startToWebActivity(context, "工具", "婚姻匹配", "http://www.jjdzc.com/peidui/hehun.html");
@@ -139,7 +149,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         context.startActivity(new Intent(context, FlightActivity.class));
                     } else if (title.equals("足球五大联赛")) {
                         MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
-                    }else if (title.equals("垃圾分类")) {
+                    } else if (title.equals("垃圾分类")) {
                         context.startActivity(new Intent(context, RubbishActivity.class));
                     } else if (title.equals("历史上的今天")) {
                         context.startActivity(new Intent(context, HistoryTodayActivity.class));

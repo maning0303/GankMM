@@ -12,12 +12,12 @@ import android.text.TextUtils;
 
 import com.leon.channel.helper.ChannelReaderUtil;
 import com.maning.gankmm.BuildConfig;
-import com.maning.gankmm.utils.ACache;
-import com.maning.gankmm.utils.MyToast;
+import com.maning.gankmm.utils.CacheDiskUtils;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.librarycrashmonitor.MCrashMonitor;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.socks.library.KLog;
+import com.tencent.mmkv.MMKV;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
@@ -42,7 +42,6 @@ public class MyApplication extends Application {
 
     private static MyApplication application;
     private static Handler mHandler;
-    private static ACache aCache;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -118,14 +117,9 @@ public class MyApplication extends Application {
     private void initBase() {
         application = this;
         mHandler = new Handler();
-        //初始化ACache类
-        aCache = ACache.get(this);
+        CacheDiskUtils.init(this);
+        MMKV.initialize(this);
     }
-
-    public static ACache getACache() {
-        return aCache;
-    }
-
 
     private void initCrash() {
         /**

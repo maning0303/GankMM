@@ -46,7 +46,6 @@ import butterknife.OnClick;
  * 泡在网上的日子的数据的抓取
  * 网站异常，废弃
  */
-@Deprecated
 public class CodesActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener, ICodesView {
 
     @Bind(R.id.toolbar)
