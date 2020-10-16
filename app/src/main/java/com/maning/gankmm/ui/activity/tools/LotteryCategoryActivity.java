@@ -10,16 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleLotteryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,26 +47,7 @@ public class LotteryCategoryActivity extends BaseActivity {
     }
 
     private void loadData() {
-        showProgressDialog();
-        MobApi.querylotteryList(0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
 
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-                dissmissProgressDialog();
-                mDatas = (ArrayList<String>) results;
-                initAdapter();
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(mToolbar, result);
-            }
-        });
     }
 
     private void initAdapter() {

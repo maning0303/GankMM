@@ -74,11 +74,6 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 mDatasItem.add("二维码生成");
                 mDatasItem.add("扫一扫");
                 mDatasItem.add("扫码记录");
-//                mDatasItem.add("邮编查询");
-//                mDatasItem.add("菜谱查询");
-//                mDatasItem.add("身份证查询");
-//                mDatasItem.add("中国彩票开奖结果");
-//                mDatasItem.add("微信精选");
             } else if (position == 1) {
                 //生活阅读
                 mDatasItem.add("历史上的今天");
@@ -89,18 +84,11 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 mDatasItem.add("婚姻匹配");
                 mDatasItem.add("八字算命");
                 mDatasItem.add("老黄历");
-//                mDatasItem.add("电影票房");
-//                mDatasItem.add("足球五大联赛");
-//                mDatasItem.add("火车票查询");
-//                mDatasItem.add("航班信息查询");
             } else if (position == 3) {
                 //工具集合
                 mDatasItem.add("手机号码归属地");
                 mDatasItem.add("IP地址");
                 mDatasItem.add("世界电话区号");
-//                mDatasItem.add("全国省市今日油价");
-//                mDatasItem.add("汽车信息查询");
-//                mDatasItem.add("驾考题库");
             }
 
             final ArrayList<String> mDatasTitle = mDatasItem;
@@ -135,6 +123,8 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     } else if (title.equals("新华字典")) {
                         context.startActivity(new Intent(context, DictionaryActivity.class));
                     } else if (title.equals("笑话段子")) {
+                        MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
+                    } else if (title.equals("二维码生成")) {
                         MySnackbar.makeSnackBarGreen(myViewHolder.recyclerViewItem, "功能暂未开通,敬请期待");
                     }
                 }

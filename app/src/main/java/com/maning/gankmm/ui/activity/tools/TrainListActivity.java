@@ -11,12 +11,9 @@ import android.view.MenuItem;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobTrainEntity;
 import com.maning.gankmm.bean.mob.MobTrainNoEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleTrainAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.text.ParseException;
@@ -24,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -113,26 +109,7 @@ public class TrainListActivity extends BaseActivity {
 
         ArrayList<MobTrainNoEntity> trainDetails = mobTrainEntity.getTrainDetails();
         if (trainDetails == null) {
-            MobApi.queryByTrainNo(mobTrainEntity.getStationTrainCode(), position, new MyCallBack() {
 
-                @Override
-                public void onSuccess(int what, Object result) {
-
-                }
-
-                @Override
-                public void onSuccessList(int what, List results) {
-                    ArrayList<MobTrainNoEntity> trainNums = (ArrayList<MobTrainNoEntity>) results;
-                    mDatas.get(what).setTrainDetails(trainNums);
-                    //刷新Adapter
-                    initAdapter();
-                }
-
-                @Override
-                public void onFail(int what, String result) {
-                    MySnackbar.makeSnackBarRed(toolbar, result);
-                }
-            });
         }
 
     }

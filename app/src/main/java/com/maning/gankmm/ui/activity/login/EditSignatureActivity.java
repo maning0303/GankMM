@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 /**
  * 编辑个新签名页面
  */
+@Deprecated
 public class EditSignatureActivity extends BaseActivity {
 
     public static final String IntentKey_Signature = "IntentKey_Signature";

@@ -16,10 +16,8 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.mob.MobCookCategoryEntity;
 import com.maning.gankmm.bean.mob.MobCookDetailEntity;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCookDetailItemAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.MySnackbar;
@@ -78,11 +76,9 @@ public class CookListActivity extends BaseActivity implements OnRefreshListener,
 
     private void loadNewDatas() {
         pageIndex = 1;
-        MobApi.queryCookDetailsList(mMobCookCategoryEntity.getCategoryInfo().getCtgId(), pageIndex, pageSize, 0x001, httpCallBack);
     }
 
     private void loadMoreDatas() {
-        MobApi.queryCookDetailsList(mMobCookCategoryEntity.getCategoryInfo().getCtgId(), pageIndex, pageSize, 0x002, httpCallBack);
     }
 
     private void initIntent() {

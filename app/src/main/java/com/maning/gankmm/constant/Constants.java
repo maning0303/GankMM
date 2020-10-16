@@ -31,10 +31,6 @@ public class Constants {
     //获取APKinfo的地址：fir.im
     public static final String URL_AppUpdateInfo = "http://api.fir.im/apps/latest/56dd4bb7e75e2d27f2000046?api_token=78a2cea8e63eb7a96ba6ca2a3e500af2&type=android";
 
-    //Mob官网API
-    public static final String URL_Mob = "http://apicloud.mob.com/";
-    //Mob ApiKey
-    public static final String URL_APP_Key = "1c9dccb9a2434";
 
     //保存图片的地址
     public static final String BasePath = Environment.getExternalStorageDirectory() + "/GankMM";

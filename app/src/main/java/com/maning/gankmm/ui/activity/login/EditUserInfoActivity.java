@@ -20,7 +20,6 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobUserInfo;
 import com.maning.gankmm.http.callback.MyCallBack;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.AppDateMgr;
@@ -318,12 +317,10 @@ public class EditUserInfoActivity extends BaseActivity {
         String signature = TextUtils.isEmpty(mUserCache.getSignature()) ? "未填写" : mUserCache.getSignature();
         String userBaseInfo = sex + "&" + birth + "&" + signature;
         KLog.i("userBaseInfo:" + userBaseInfo);
-        MobApi.userDataUpdate("UserBaseInfo", userBaseInfo, 0x001, httpCallBack);
     }
 
     private void queryUserInfo() {
         showProgressDialog("加载中...");
-        MobApi.userDataQuery("UserBaseInfo", 0x002, httpCallBack);
     }
 
     @Override

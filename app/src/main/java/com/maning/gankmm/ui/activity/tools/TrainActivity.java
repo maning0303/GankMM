@@ -1,6 +1,5 @@
 package com.maning.gankmm.ui.activity.tools;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,17 +14,12 @@ import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobTrainEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -172,36 +166,6 @@ public class TrainActivity extends BaseActivity {
             MySnackbar.makeSnackBarBlack(tvEndName, "到达城市不能为空");
             return;
         }
-
-        showProgressDialog("正在查询...");
-
-        MobApi.queryByStationToStation(startName, endName, 0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
-
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-                dissmissProgressDialog();
-                ArrayList<MobTrainEntity> mDatas = (ArrayList<MobTrainEntity>) results;
-                if (mDatas != null && mDatas.size() > 0) {
-                    //跳转页面
-                    Intent intent = new Intent(mContext, TrainListActivity.class);
-                    intent.putExtra("IntentTitle", startName + "-" + endName);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("IntentDatas", mDatas);
-                    intent.putExtras(bundle);
-                    mContext.startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(tvEndName, result);
-            }
-        });
 
     }
 

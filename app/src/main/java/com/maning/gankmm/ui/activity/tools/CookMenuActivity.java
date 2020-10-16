@@ -11,13 +11,9 @@ import android.view.View;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobCookCategoryEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
-import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleCookCategoryAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
@@ -70,33 +66,6 @@ public class CookMenuActivity extends BaseActivity {
     }
 
     public void initDatas() {
-
-        showProgressDialog();
-
-        MobApi.queryCookCategory(0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
-                dissmissProgressDialog();
-                mMobCookCategoryEntity = (MobCookCategoryEntity) result;
-                if (mMobCookCategoryEntity != null) {
-                    //刷新页面
-                    mLeftDatas = mMobCookCategoryEntity.getChilds();
-                    initAdapterLeft();
-                    updateRightList(0);
-                }
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(mToolbar, result);
-            }
-        });
 
     }
 

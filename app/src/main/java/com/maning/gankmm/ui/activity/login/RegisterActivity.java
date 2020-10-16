@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -22,6 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Deprecated
 public class RegisterActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
@@ -101,8 +101,6 @@ public class RegisterActivity extends BaseActivity {
             MySnackbar.makeSnackBarRed(mToolbar, "邮箱格式不正确");
             return;
         }
-        showProgressDialog("注册中...");
-        MobApi.userRegister(userName, userPsd, userEmail, 0x001, mMyCallBack);
     }
 
 

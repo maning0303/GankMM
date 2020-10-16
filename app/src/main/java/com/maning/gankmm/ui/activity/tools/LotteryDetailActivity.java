@@ -10,13 +10,10 @@ import android.widget.TextView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobLotteryEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.RecycleLotteryDetailsAdapter;
 import com.maning.gankmm.ui.adapter.RecycleLotteryNumberAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
@@ -68,37 +65,7 @@ public class LotteryDetailActivity extends BaseActivity {
     }
 
     private void loadData() {
-        showProgressDialog();
-        MobApi.querylotteryDetail(lotteryName, 0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
-                dissmissProgressDialog();
-                mMobLotteryEntity = (MobLotteryEntity) result;
 
-                //处理数据
-                mTvPeriod.setText("第" + mMobLotteryEntity.getPeriod() + "期");
-                mTvAwardDateTime.setText("开奖时间: " + mMobLotteryEntity.getAwardDateTime());
-                mTvPool.setText(String.valueOf(mMobLotteryEntity.getPool()));
-                mTvSales.setText(String.valueOf(mMobLotteryEntity.getSales()));
-
-                //开奖号码
-                initNumberAdpater();
-
-                //中奖信息
-                initDetailsAdpater();
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(mToolbar, result);
-            }
-        });
     }
 
     private void initNumberAdpater() {

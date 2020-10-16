@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.http.mob.MobApi;
 import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -28,6 +27,7 @@ import butterknife.OnClick;
 /**
  * 忘记密码,和修改密码 同一个页面
  */
+@Deprecated
 public class ForgetPsdActivity extends BaseActivity {
 
     public static final String IntentKey_Mode = "IntentKey_Mode";
@@ -117,7 +117,6 @@ public class ForgetPsdActivity extends BaseActivity {
         mBtnGetCode.setText("60s 后再次发送");
 
         //发送
-        MobApi.userGetVerificationCode(userName, 0x001, httpCallBack);
     }
 
 
@@ -154,10 +153,6 @@ public class ForgetPsdActivity extends BaseActivity {
             MySnackbar.makeSnackBarRed(mToolbar, "新密码不能少于6位");
             return;
         }
-
-        //修改密码
-        MobApi.userModifyPsd(userName, oldPsd, newPsd, String.valueOf(mMode), 0x002, httpCallBack);
-
     }
 
 

@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import com.kelin.scrollablepanel.library.ScrollablePanel;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobOilPriceEntity;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.adapter.OilPriceAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
@@ -18,7 +16,6 @@ import com.maning.gankmm.ui.base.BaseActivity;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,27 +51,6 @@ public class OilPriceActivity extends BaseActivity {
 
     @SuppressLint("LongLogTag")
     private void queryData() {
-        showProgressDialog("查询中...");
-        MobApi.queryOilPrice(0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
-                dissmissProgressDialog();
-                mobOilPriceEntity = (MobOilPriceEntity) result;
-                Log.i(TAG, mobOilPriceEntity.toString());
-                modelAttributeAndValueMap = getModelAttributeAndValue(mobOilPriceEntity);
-                initAdapter();
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-            }
-        });
 
     }
 

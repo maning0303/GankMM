@@ -8,15 +8,10 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.maning.gankmm.R;
-import com.maning.gankmm.bean.mob.MobUserInfo;
-import com.maning.gankmm.http.mob.MobApi;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -83,41 +78,6 @@ public class LoginActivity extends BaseActivity {
             MySnackbar.makeSnackBarRed(mToolbar, "密码不能为空");
             return;
         }
-
-        showProgressDialog("正在登录...");
-        MobApi.userLogin(userName, userPsd, 0x001, new MyCallBack() {
-            @Override
-            public void onSuccess(int what, Object result) {
-                dissmissProgressDialog();
-                showProgressSuccess("登录成功!");
-                MobUserInfo userInfo = (MobUserInfo) result;
-                String userName = mEtUserName.getText().toString();
-                String userPsd = mEtPassword.getText().toString();
-                userInfo.setUserName(userName);
-                userInfo.setUserPsd(userPsd);
-
-                //保存用户信息
-//                UserUtils.saveUserCache(userInfo);
-
-                //关闭当前页面。
-                closeAcitivity();
-
-
-            }
-
-            @Override
-            public void onSuccessList(int what, List results) {
-
-            }
-
-            @Override
-            public void onFail(int what, String result) {
-                dissmissProgressDialog();
-                MySnackbar.makeSnackBarRed(mToolbar, result);
-            }
-        });
-
-
     }
 
     private void closeAcitivity() {
