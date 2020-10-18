@@ -69,7 +69,6 @@ android {
         exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
     }
 
-    File customerproguardFile = file('src/proguard.cfg')
     buildTypes {
         release {
             //混淆
@@ -79,15 +78,15 @@ android {
             signingConfig signingConfigs.release
             //移除无用的资源文件
             shrinkResources true
-            proguardFiles customerproguardFile.path
             buildConfigField "boolean", "LOG_DEBUG", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             //混淆
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.release
-            proguardFiles customerproguardFile.path
             buildConfigField "boolean", "LOG_DEBUG", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
