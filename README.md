@@ -24,15 +24,13 @@
 
 ## 所有的数据来自：
 #### [干货集中营(http://gank.io/)](http://gank.io/)<br>
-
-
-## 注意：
-#### 若是出现保存图片失败，或者更新应用失败请查看是不是存储权限关闭了。
+#### [RollToolsApi(https://github.com/MZCretin/RollToolsApi)<br>
 
 
 ## APK下载地址：
+###  firim下载地址
+#### [点击下载(http://d.firim.pro/gankmm)](http://d.firim.pro/gankmm)<br>
 ###  应用宝 市场已经通过审核，请到市场下载--->搜索：干货营
-#### [点击下载(http://fir.im/gankmm)](http://fir.im/gankmm)<br>
 #### 扫描下载:
 ![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_ewm.png)
 
@@ -42,9 +40,6 @@
 
 ### GankMM图片浏览器库：
 #### [MNImageBrowser](https://github.com/maning0303/MNImageBrowser)
-
-### GankMM日期选择库：
-#### [MNCalendar](https://github.com/maning0303/MNCalendar)
 
 ### GankMM崩溃日志监听库：
 #### [MNCrashMonitor](https://github.com/maning0303/MNCrashMonitor)
@@ -92,7 +87,7 @@
     1.升级Api,去掉不可用Api
     2.代码优化，封装Retrofit回调，替换图片浏览框架
     3.天气接口替换
-    4.TODO:升级AndroidX
+    4.升级AndroidX
 
 ### V1.8.0 :
     1.优化代码

@@ -83,7 +83,7 @@ android {
         }
         debug {
             //混淆
-            minifyEnabled true
+            minifyEnabled false
             signingConfig signingConfigs.release
             buildConfigField "boolean", "LOG_DEBUG", "true"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
