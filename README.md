@@ -30,9 +30,6 @@
 ## APK下载地址：
 ###  firim下载地址
 #### [点击下载(http://d.firim.pro/gankmm)](http://d.firim.pro/gankmm)<br>
-###  应用宝 市场已经通过审核，请到市场下载--->搜索：干货营
-#### 扫描下载:
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_ewm.png)
 
 
 ### GankMM夜间模式实现：
