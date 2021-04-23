@@ -20,7 +20,7 @@ import com.maning.gankmm.utils.PermissionUtils;
 
 import java.io.File;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,13 +29,13 @@ import butterknife.OnClick;
  */
 public class SupportPayActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.iv_pay_ewm)
+    @BindView(R.id.iv_pay_ewm)
     ImageView ivPayEwm;
-    @Bind(R.id.btn_save)
+    @BindView(R.id.btn_save)
     TextView btnSave;
-    @Bind(R.id.btn_changge_type)
+    @BindView(R.id.btn_changge_type)
     TextView btnChanggeType;
 
     //type = 0 : 微信  / type = 1 : 支付宝

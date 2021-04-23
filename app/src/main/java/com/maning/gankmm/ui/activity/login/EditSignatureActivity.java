@@ -14,7 +14,7 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,11 +25,11 @@ public class EditSignatureActivity extends BaseActivity {
 
     public static final String IntentKey_Signature = "IntentKey_Signature";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.et_input)
+    @BindView(R.id.et_input)
     EditText mEtInput;
-    @Bind(R.id.tv_num_input)
+    @BindView(R.id.tv_num_input)
     TextView mTvNumInput;
 
     private String mSignature;

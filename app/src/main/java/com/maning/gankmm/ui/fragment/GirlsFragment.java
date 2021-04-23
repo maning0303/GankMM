@@ -22,7 +22,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -31,9 +31,9 @@ import butterknife.ButterKnife;
  */
 public class GirlsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, IWelFareView {
 
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
     private RecyclePicAdapter recyclePicAdapter;
@@ -153,7 +153,7 @@ public class GirlsFragment extends BaseFragment implements OnRefreshListener, On
         }
         welFarePresenter.detachView();
         super.onDestroyView();
-        ButterKnife.unbind(this);
+
     }
 
     @Override

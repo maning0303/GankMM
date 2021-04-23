@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -44,17 +44,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 @Deprecated
 public class EditUserInfoActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.avatar)
+    @BindView(R.id.avatar)
     CircleImageView mAvatar;
-    @Bind(R.id.tv_sex)
+    @BindView(R.id.tv_sex)
     TextView mTvSex;
-    @Bind(R.id.tv_birth)
+    @BindView(R.id.tv_birth)
     TextView mTvBirth;
-    @Bind(R.id.tv_signature)
+    @BindView(R.id.tv_signature)
     TextView mTvSignature;
-    @Bind(R.id.tv_user_name)
+    @BindView(R.id.tv_user_name)
     TextView mTvUserName;
 
     private TimePickerView mTimePickerView;

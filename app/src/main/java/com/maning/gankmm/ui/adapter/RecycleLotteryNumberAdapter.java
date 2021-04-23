@@ -11,7 +11,7 @@ import com.maning.gankmm.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -52,7 +52,7 @@ public class RecycleLotteryNumberAdapter extends RecyclerView.Adapter<RecycleLot
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_number)
+        @BindView(R.id.tv_number)
         TextView tv_number;
 
         public MyViewHolder(View itemView) {

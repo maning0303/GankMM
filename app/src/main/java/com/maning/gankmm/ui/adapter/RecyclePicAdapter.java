@@ -34,7 +34,7 @@ import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -265,13 +265,13 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.image)
+        @BindView(R.id.image)
         ImageView image;
-        @Bind(R.id.tvShowTime)
+        @BindView(R.id.tvShowTime)
         TextView tvShowTime;
-        @Bind(R.id.rl_root)
+        @BindView(R.id.rl_root)
         RelativeLayout rlRoot;
-        @Bind(R.id.btn_collect2)
+        @BindView(R.id.btn_collect2)
         ThumbUpView btnCollect2;
 
         public MyViewHolder(View itemView) {
@@ -281,10 +281,10 @@ public class RecyclePicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public static class MyViewHolderHeader extends RecyclerView.ViewHolder {
-        @Bind(R.id.switcherView)
+        @BindView(R.id.switcherView)
         SwitcherView switcherView;
 
-        @Bind(R.id.tv_loading_headline)
+        @BindView(R.id.tv_loading_headline)
         TextView tvLoadingHeadLine;
 
         public MyViewHolderHeader(View itemView) {

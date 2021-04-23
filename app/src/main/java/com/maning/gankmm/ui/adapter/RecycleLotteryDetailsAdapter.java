@@ -14,7 +14,7 @@ import com.maning.gankmm.bean.mob.MobLotteryEntity;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -68,15 +68,15 @@ public class RecycleLotteryDetailsAdapter extends RecyclerView.Adapter<RecycleLo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_awards)
+        @BindView(R.id.tv_awards)
         TextView tv_awards;
-        @Bind(R.id.tv_awardType)
+        @BindView(R.id.tv_awardType)
         TextView tv_awardType;
-        @Bind(R.id.tv_awardNumber)
+        @BindView(R.id.tv_awardNumber)
         TextView tv_awardNumber;
-        @Bind(R.id.tv_awardPrice)
+        @BindView(R.id.tv_awardPrice)
         TextView tv_awardPrice;
-        @Bind(R.id.ll_header)
+        @BindView(R.id.ll_header)
         LinearLayout ll_header;
 
         public MyViewHolder(View itemView) {

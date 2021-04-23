@@ -17,7 +17,7 @@ import com.maning.gankmm.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,9 +26,9 @@ import butterknife.ButterKnife;
 @Deprecated
 public class LotteryCategoryActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private ArrayList<String> mDatas = new ArrayList<>();
     private RecycleLotteryAdapter mRecycleLotteryAdapter;

@@ -12,7 +12,7 @@ import com.maning.gankmm.bean.mob.MobTrainNoEntity;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -82,15 +82,15 @@ public class RecycleTrainDetailsAdapter extends RecyclerView.Adapter<RecyclerVie
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_01)
+        @BindView(R.id.tv_01)
         TextView tv_01;
-        @Bind(R.id.tv_02)
+        @BindView(R.id.tv_02)
         TextView tv_02;
-        @Bind(R.id.tv_03)
+        @BindView(R.id.tv_03)
         TextView tv_03;
-        @Bind(R.id.tv_04)
+        @BindView(R.id.tv_04)
         TextView tv_04;
-        @Bind(R.id.tv_05)
+        @BindView(R.id.tv_05)
         TextView tv_05;
 
         public MyViewHolder(View itemView) {

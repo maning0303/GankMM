@@ -20,7 +20,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -32,19 +32,19 @@ public class ForgetPsdActivity extends BaseActivity {
 
     public static final String IntentKey_Mode = "IntentKey_Mode";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.et_user_name)
+    @BindView(R.id.et_user_name)
     EditText mEtUserName;
-    @Bind(R.id.btn_get_code)
+    @BindView(R.id.btn_get_code)
     Button mBtnGetCode;
-    @Bind(R.id.et_old_password)
+    @BindView(R.id.et_old_password)
     EditText mEtOldPassword;
-    @Bind(R.id.et_new_password)
+    @BindView(R.id.et_new_password)
     EditText mEtNewPassword;
-    @Bind(R.id.btn_ok)
+    @BindView(R.id.btn_ok)
     Button mBtnOk;
-    @Bind(R.id.iv_yzm)
+    @BindView(R.id.iv_yzm)
     ImageView mIvYzm;
     private MyCountDownTimer mMyCountDownTimer;
     private int mMode;

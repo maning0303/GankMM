@@ -52,16 +52,16 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements IMainView, View.OnClickListener {
 
-    @Bind(R.id.navigationView)
+    @BindView(R.id.navigationView)
     NavigationView navigationView;
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     //头部布局
     private ImageView header_iv_weather;

@@ -69,6 +69,11 @@ android {
         exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             //混淆
@@ -128,6 +133,9 @@ dependencies {
 
 
     /*-----------------------------------------*/
+    /*注解*/
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     /*RecycleView的间隔线*/
     implementation 'com.yqritc:recyclerview-flexibledivider:1.2.9'
@@ -144,8 +152,6 @@ dependencies {
     implementation 'com.tencent:mmkv-static:1.2.2'
     /*日志*/
     implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
-    /*注解*/
-    implementation 'com.jakewharton:butterknife:7.0.1'
     /*下拉刷新框架*/
     implementation 'com.github.Aspsine:SwipeToLoadLayout:v1.0.4'
     /*点赞收藏按钮*/

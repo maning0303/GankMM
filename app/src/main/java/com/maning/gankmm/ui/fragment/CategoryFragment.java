@@ -24,7 +24,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -33,9 +33,9 @@ import butterknife.ButterKnife;
  */
 public class CategoryFragment extends BaseFragment {
 
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     ViewPager viewPager;
-    @Bind(R.id.viewpagertab)
+    @BindView(R.id.viewpagertab)
     SmartTabLayout viewpagertab;
 
     private List<Gank2CategoryDataBean> mDatas = new ArrayList<>();
@@ -139,7 +139,7 @@ public class CategoryFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+
     }
 
 

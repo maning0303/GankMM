@@ -12,7 +12,7 @@ import com.maning.gankmm.bean.gank2.Gank2SearchListBean;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -92,11 +92,11 @@ public class RecycleSearchAdapter extends RecyclerView.Adapter<RecycleSearchAdap
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_time)
+        @BindView(R.id.tv_time)
         TextView tvTime;
-        @Bind(R.id.tv_desc)
+        @BindView(R.id.tv_desc)
         TextView tvDesc;
-        @Bind(R.id.tv_type)
+        @BindView(R.id.tv_type)
         TextView tvType;
 
 

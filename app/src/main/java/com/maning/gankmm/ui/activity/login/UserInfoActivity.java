@@ -17,7 +17,7 @@ import com.maning.gankmm.utils.DialogUtils;
 import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.UserUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,11 +25,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 @Deprecated
 public class UserInfoActivity extends BaseActivity {
 
-    @Bind(R.id.avatar)
+    @BindView(R.id.avatar)
     CircleImageView mAvatar;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout mLlContent;
-    @Bind(R.id.tv_user_name)
+    @BindView(R.id.tv_user_name)
     TextView mTvUserName;
 
     private MobUserInfo mUserCache;

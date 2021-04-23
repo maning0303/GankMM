@@ -12,7 +12,7 @@ import com.maning.gankmm.bean.rolltools.RubbishTypeResultBean;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -60,9 +60,9 @@ public class RecycleRubbishAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_name)
+        @BindView(R.id.tv_name)
         TextView tv_name;
-        @Bind(R.id.tv_type)
+        @BindView(R.id.tv_type)
         TextView tv_type;
 
         public MyViewHolder(View itemView) {

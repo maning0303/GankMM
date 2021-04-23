@@ -17,7 +17,7 @@ import com.maning.gankmm.utils.IntentUtils;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,9 +25,9 @@ import butterknife.ButterKnife;
  */
 public class OpenFrameActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.recyclerViewOpenFrame)
+    @BindView(R.id.recyclerViewOpenFrame)
     RecyclerView mRecyclerViewOpenFrame;
     private RecycleOpenFrameAdapter mRecycleOpenFrameAdapter;
 

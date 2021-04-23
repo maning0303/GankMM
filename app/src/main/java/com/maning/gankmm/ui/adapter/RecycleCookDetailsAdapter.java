@@ -21,7 +21,7 @@ import com.maning.gankmm.utils.IntentUtils;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -137,13 +137,13 @@ public class RecycleCookDetailsAdapter extends RecyclerView.Adapter<RecyclerView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_show)
+        @BindView(R.id.iv_show)
         ImageView iv_show;
-        @Bind(R.id.tv_name)
+        @BindView(R.id.tv_name)
         TextView tv_name;
-        @Bind(R.id.tv_sumary)
+        @BindView(R.id.tv_sumary)
         TextView tv_sumary;
-        @Bind(R.id.tv_ingredients)
+        @BindView(R.id.tv_ingredients)
         TextView tv_ingredients;
 
         public MyViewHolder(View itemView) {
@@ -154,9 +154,9 @@ public class RecycleCookDetailsAdapter extends RecyclerView.Adapter<RecyclerView
 
     class MyViewHolder2 extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_step)
+        @BindView(R.id.iv_step)
         ImageView iv_step;
-        @Bind(R.id.tv_step)
+        @BindView(R.id.tv_step)
         TextView tv_step;
 
         public MyViewHolder2(View itemView) {

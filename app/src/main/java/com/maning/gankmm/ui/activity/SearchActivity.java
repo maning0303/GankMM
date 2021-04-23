@@ -28,7 +28,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -38,15 +38,15 @@ import butterknife.OnClick;
 public class SearchActivity extends BaseActivity implements ISearchView, OnLoadMoreListener {
 
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     Button btnBack;
-    @Bind(R.id.editTextSearch)
+    @BindView(R.id.editTextSearch)
     MClearEditText editTextSearch;
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
-    @Bind(R.id.progressWheel)
+    @BindView(R.id.progressWheel)
     ProgressWheel progressWheel;
 
     private SearchPresenterImpl searchPresenter;

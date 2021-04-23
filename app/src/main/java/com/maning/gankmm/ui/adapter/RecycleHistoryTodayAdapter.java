@@ -17,7 +17,7 @@ import com.maning.gankmm.bean.rolltools.HistoryTodayBean;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -82,13 +82,13 @@ public class RecycleHistoryTodayAdapter extends RecyclerView.Adapter<RecyclerVie
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tv_title;
-        @Bind(R.id.tv_time)
+        @BindView(R.id.tv_time)
         TextView tv_time;
-        @Bind(R.id.iv_show)
+        @BindView(R.id.iv_show)
         ImageView iv_show;
-        @Bind(R.id.expand_text_view)
+        @BindView(R.id.expand_text_view)
         ExpandableTextView expand_text_view;
 
         public MyViewHolder(View itemView) {

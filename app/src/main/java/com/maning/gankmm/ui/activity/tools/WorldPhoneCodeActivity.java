@@ -20,7 +20,7 @@ import com.maning.gankmm.utils.MySnackbar;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,9 +28,9 @@ import butterknife.ButterKnife;
  */
 public class WorldPhoneCodeActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 

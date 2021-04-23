@@ -13,7 +13,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -82,25 +82,25 @@ public class RecycleFlightAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_start_station)
+        @BindView(R.id.tv_start_station)
         TextView tv_start_station;
 
-        @Bind(R.id.tv_start_time)
+        @BindView(R.id.tv_start_time)
         TextView tv_start_time;
 
-        @Bind(R.id.tv_flightNo)
+        @BindView(R.id.tv_flightNo)
         TextView tv_flightNo;
 
-        @Bind(R.id.tv_lishi)
+        @BindView(R.id.tv_lishi)
         TextView tv_lishi;
 
-        @Bind(R.id.tv_end_station)
+        @BindView(R.id.tv_end_station)
         TextView tv_end_station;
 
-        @Bind(R.id.tv_end_time)
+        @BindView(R.id.tv_end_time)
         TextView tv_end_time;
 
-        @Bind(R.id.tv_air_lines)
+        @BindView(R.id.tv_air_lines)
         TextView tv_air_lines;
 
 

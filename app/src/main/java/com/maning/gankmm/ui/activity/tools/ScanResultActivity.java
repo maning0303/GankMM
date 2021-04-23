@@ -27,7 +27,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -36,13 +36,13 @@ import butterknife.OnClick;
  */
 public class ScanResultActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @Bind(R.id.tv_show)
+    @BindView(R.id.tv_show)
     TextView tvShow;
-    @Bind(R.id.ll_result_show)
+    @BindView(R.id.ll_result_show)
     LinearLayout ll_result_show;
 
     private String content;

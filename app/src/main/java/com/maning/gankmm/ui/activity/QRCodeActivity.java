@@ -8,12 +8,12 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class QRCodeActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Override

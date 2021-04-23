@@ -17,7 +17,7 @@ import com.maning.gankmm.ui.base.BaseActivity;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,11 +26,11 @@ import butterknife.ButterKnife;
 @Deprecated
 public class CookMenuActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.recyclerViewLeft)
+    @BindView(R.id.recyclerViewLeft)
     RecyclerView mRecyclerViewLeft;
-    @Bind(R.id.recyclerViewRight)
+    @BindView(R.id.recyclerViewRight)
     RecyclerView mRecyclerViewRight;
     private RecycleCookCategoryAdapter mRecycleCookCategoryAdapterLeft;
     private RecycleCookCategoryAdapter mRecycleCookCategoryAdapterRIght;

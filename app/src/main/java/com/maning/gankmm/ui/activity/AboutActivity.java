@@ -15,17 +15,17 @@ import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.IntentUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.collapsingToolbar)
+    @BindView(R.id.collapsingToolbar)
     CollapsingToolbarLayout collapsingToolbar;
-    @Bind(R.id.tv_app_version)
+    @BindView(R.id.tv_app_version)
     TextView tvAppVersion;
 
     @Override

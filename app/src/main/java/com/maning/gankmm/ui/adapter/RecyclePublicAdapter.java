@@ -19,7 +19,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -138,17 +138,17 @@ public class RecyclePublicAdapter extends RecyclerView.Adapter<RecyclePublicAdap
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tvShowWho)
+        @BindView(R.id.tvShowWho)
         TextView tvShowWho;
-        @Bind(R.id.tvShowTitle)
+        @BindView(R.id.tvShowTitle)
         TextView tvShowTitle;
-        @Bind(R.id.tvShowSubTitle)
+        @BindView(R.id.tvShowSubTitle)
         TextView tvShowSubTitle;
-        @Bind(R.id.tvShowTime)
+        @BindView(R.id.tvShowTime)
         TextView tvShowTime;
-        @Bind(R.id.btn_collect)
+        @BindView(R.id.btn_collect)
         ThumbUpView btnCollect;
-        @Bind(R.id.iv_show)
+        @BindView(R.id.iv_show)
         ImageView ivShow;
 
         public MyViewHolder(View itemView) {

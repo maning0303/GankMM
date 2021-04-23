@@ -21,7 +21,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,11 +30,11 @@ import butterknife.OnClick;
  */
 public class DictionaryActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.editText)
+    @BindView(R.id.editText)
     MClearEditText editText;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 

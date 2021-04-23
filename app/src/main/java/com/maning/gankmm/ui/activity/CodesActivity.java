@@ -38,7 +38,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -48,17 +48,17 @@ import butterknife.OnClick;
  */
 public class CodesActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener, ICodesView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView recycleContent;
-    @Bind(R.id.recycle_menu)
+    @BindView(R.id.recycle_menu)
     RecyclerView recycleMenu;
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
-    @Bind(R.id.iv_top_quick)
+    @BindView(R.id.iv_top_quick)
     ImageView ivTopQuick;
 
     public static final String IntentType = "Type";

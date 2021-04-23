@@ -16,7 +16,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -87,13 +87,13 @@ public class RecycleCookDetailItemAdapter extends RecyclerView.Adapter<RecycleCo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_cook_show)
+        @BindView(R.id.iv_cook_show)
         ImageView iv_cook_show;
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tv_title;
-        @Bind(R.id.tv_ingredients)
+        @BindView(R.id.tv_ingredients)
         TextView tv_ingredients;
-        @Bind(R.id.tv_tag)
+        @BindView(R.id.tv_tag)
         TextView tv_tag;
 
         public MyViewHolder(View itemView) {

@@ -20,7 +20,7 @@ import com.maning.gankmm.ui.activity.tools.TrainListActivity;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -185,37 +185,37 @@ public class RecycleTrainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_start_station)
+        @BindView(R.id.tv_start_station)
         TextView tv_start_station;
 
-        @Bind(R.id.tv_start_time)
+        @BindView(R.id.tv_start_time)
         TextView tv_start_time;
 
-        @Bind(R.id.tv_stationTrainCode)
+        @BindView(R.id.tv_stationTrainCode)
         TextView tv_stationTrainCode;
 
-        @Bind(R.id.tv_lishi)
+        @BindView(R.id.tv_lishi)
         TextView tv_lishi;
 
-        @Bind(R.id.tv_end_station)
+        @BindView(R.id.tv_end_station)
         TextView tv_end_station;
 
-        @Bind(R.id.tv_end_time)
+        @BindView(R.id.tv_end_time)
         TextView tv_end_time;
 
-        @Bind(R.id.iv_arrow)
+        @BindView(R.id.iv_arrow)
         ImageView iv_arrow;
 
-        @Bind(R.id.btn_more)
+        @BindView(R.id.btn_more)
         RelativeLayout btn_more;
 
-        @Bind(R.id.tv_price)
+        @BindView(R.id.tv_price)
         TextView tv_price;
 
-        @Bind(R.id.rl_details)
+        @BindView(R.id.rl_details)
         RelativeLayout rl_details;
 
-        @Bind(R.id.recyclerViewDetails)
+        @BindView(R.id.recyclerViewDetails)
         RecyclerView recyclerViewDetails;
 
         public MyViewHolder(View itemView) {

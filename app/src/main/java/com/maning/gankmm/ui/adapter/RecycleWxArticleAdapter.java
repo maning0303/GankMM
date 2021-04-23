@@ -17,7 +17,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -96,11 +96,11 @@ public class RecycleWxArticleAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title_wx)
+        @BindView(R.id.tv_title_wx)
         TextView tv_title_wx;
-        @Bind(R.id.tv_time_wx)
+        @BindView(R.id.tv_time_wx)
         TextView tv_time_wx;
-        @Bind(R.id.iv_show_wx)
+        @BindView(R.id.iv_show_wx)
         ImageView iv_show_wx;
 
         public MyViewHolder(View itemView) {

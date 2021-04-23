@@ -33,7 +33,7 @@ import com.maning.gankmm.utils.MySnackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -44,15 +44,15 @@ public class GankActivity extends BaseActivity implements IGankView {
 
 
     private static final String TAG = GankActivity.class.getSimpleName();
-    @Bind(R.id.iv_top)
+    @BindView(R.id.iv_top)
     ImageView ivTop;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recycleView)
+    @BindView(R.id.recycleView)
     RecyclerView myRecycleView;
-    @Bind(R.id.progressbar)
+    @BindView(R.id.progressbar)
     ProgressWheel progressbar;
-    @Bind(R.id.collapsingToolbar)
+    @BindView(R.id.collapsingToolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
     private String dayDate;

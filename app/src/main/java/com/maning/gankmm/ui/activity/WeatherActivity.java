@@ -33,7 +33,7 @@ import com.socks.library.KLog;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.blurry.Blurry;
@@ -51,19 +51,19 @@ public class WeatherActivity extends BaseActivity implements OnRefreshListener, 
     private static final float defaultAlpha = 0.0f;
     private static final float maxAlpha = 1.0f;
 
-    @Bind(R.id.tv_title)
+    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @Bind(R.id.iv_bg)
+    @BindView(R.id.iv_bg)
     ImageView ivBg;
-    @Bind(R.id.iv_bg2)
+    @BindView(R.id.iv_bg2)
     ImageView ivBg2;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout llContent;
-    @Bind(R.id.ll_bg_blur)
+    @BindView(R.id.ll_bg_blur)
     LinearLayout llBgBlur;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
     private HolidayBean holidayBean;

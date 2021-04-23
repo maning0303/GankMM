@@ -17,20 +17,20 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Deprecated
 public class RegisterActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.et_user_name)
+    @BindView(R.id.et_user_name)
     EditText mEtUserName;
-    @Bind(R.id.et_password)
+    @BindView(R.id.et_password)
     EditText mEtPassword;
-    @Bind(R.id.et_email)
+    @BindView(R.id.et_email)
     EditText mEtEmail;
 
     @Override

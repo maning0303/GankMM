@@ -11,7 +11,7 @@ import com.maning.gankmm.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -68,7 +68,7 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_time)
+        @BindView(R.id.tv_time)
         TextView tvTime;
 
 

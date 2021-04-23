@@ -25,7 +25,7 @@ import com.maning.gankmm.utils.MySnackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.maning.gankmm.R.id.swipeToLoadLayout;
@@ -37,11 +37,11 @@ import static com.maning.gankmm.R.id.swipeToLoadLayout;
 @Deprecated
 public class CookListActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView mRecyclerView;
-    @Bind(swipeToLoadLayout)
+    @BindView(swipeToLoadLayout)
     SwipeToLoadLayout mSwipeToLoadLayout;
 
     public static final String IntentKey_Cook = "IntentKey_Cook";

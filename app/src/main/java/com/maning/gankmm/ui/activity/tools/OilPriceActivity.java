@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -27,9 +27,9 @@ import butterknife.ButterKnife;
 public class OilPriceActivity extends BaseActivity {
 
     private static final String TAG = "OilPriceActivity";
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.scrollable_panel)
+    @BindView(R.id.scrollable_panel)
     ScrollablePanel scrollablePanel;
 
     private MobOilPriceEntity mobOilPriceEntity;

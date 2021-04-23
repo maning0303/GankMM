@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -27,17 +27,17 @@ import butterknife.OnClick;
  */
 public class ChineseCalendarActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tv_01)
+    @BindView(R.id.tv_01)
     TextView tv01;
-    @Bind(R.id.tv_02)
+    @BindView(R.id.tv_02)
     TextView tv02;
-    @Bind(R.id.tv_03)
+    @BindView(R.id.tv_03)
     TextView tv03;
-    @Bind(R.id.tv_04)
+    @BindView(R.id.tv_04)
     TextView tv04;
-    @Bind(R.id.tv_05)
+    @BindView(R.id.tv_05)
     TextView tv05;
 
     private Calendar calendar = Calendar.getInstance();

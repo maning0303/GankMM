@@ -23,7 +23,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -32,9 +32,9 @@ import butterknife.ButterKnife;
  */
 public class HistoryFragment extends BaseFragment implements OnRefreshListener, IHistoryView {
 
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
 
@@ -141,7 +141,7 @@ public class HistoryFragment extends BaseFragment implements OnRefreshListener, 
         overRefresh();
         historyPresenter.detachView();
         super.onDestroyView();
-        ButterKnife.unbind(this);
+
     }
 
 }

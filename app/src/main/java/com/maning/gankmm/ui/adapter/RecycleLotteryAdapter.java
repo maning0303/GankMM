@@ -13,7 +13,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -101,9 +101,9 @@ public class RecycleLotteryAdapter extends RecyclerView.Adapter<RecycleLotteryAd
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_pic)
+        @BindView(R.id.iv_pic)
         ImageView iv_pic;
-        @Bind(R.id.tv_name)
+        @BindView(R.id.tv_name)
         TextView tv_name;
 
         public MyViewHolder(View itemView) {

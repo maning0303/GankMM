@@ -10,14 +10,14 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.skin.SkinManager;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends Activity {
 
-    @Bind(R.id.tv_app_version)
+    @BindView(R.id.tv_app_version)
     TextView tv_app_version;
-    @Bind(R.id.shade_bg)
+    @BindView(R.id.shade_bg)
     TextView shadeBg;
 
 

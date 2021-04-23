@@ -13,7 +13,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -65,7 +65,7 @@ public class RecycleWxCategoryItemAdapter extends RecyclerView.Adapter<RecyclerV
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title_category)
+        @BindView(R.id.tv_title_category)
         TextView tv_title_category;
 
         public MyViewHolder(View itemView) {

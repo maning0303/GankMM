@@ -14,7 +14,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -68,9 +68,9 @@ public class RecycleScanHistoryAdapter extends RecyclerView.Adapter<RecyclerView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tv_title;
-        @Bind(R.id.root_view)
+        @BindView(R.id.root_view)
         RelativeLayout root_view;
 
         public MyViewHolder(View itemView) {

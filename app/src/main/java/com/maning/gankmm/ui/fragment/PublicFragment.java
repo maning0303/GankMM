@@ -22,7 +22,7 @@ import com.maning.gankmm.utils.MySnackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -31,9 +31,9 @@ import butterknife.ButterKnife;
  */
 public class PublicFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, IPublicView {
 
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
     private RecyclePublicAdapter recyclePublicAdapter;
@@ -117,7 +117,7 @@ public class PublicFragment extends BaseFragment implements OnRefreshListener, O
         publicPresenter.detachView();
         super.onDestroyView();
         overRefresh();
-        ButterKnife.unbind(this);
+
     }
 
     @Override

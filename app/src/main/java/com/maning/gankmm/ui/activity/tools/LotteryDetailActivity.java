@@ -17,7 +17,7 @@ import com.maning.gankmm.ui.base.BaseActivity;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,19 +26,19 @@ import butterknife.ButterKnife;
 @Deprecated
 public class LotteryDetailActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @Bind(R.id.tv_awardDateTime)
+    @BindView(R.id.tv_awardDateTime)
     TextView mTvAwardDateTime;
-    @Bind(R.id.tv_sales)
+    @BindView(R.id.tv_sales)
     TextView mTvSales;
-    @Bind(R.id.tv_pool)
+    @BindView(R.id.tv_pool)
     TextView mTvPool;
-    @Bind(R.id.tv_period)
+    @BindView(R.id.tv_period)
     TextView mTvPeriod;
-    @Bind(R.id.recyclerViewLotteryDetails)
+    @BindView(R.id.recyclerViewLotteryDetails)
     RecyclerView mRecyclerViewLotteryDetails;
 
 

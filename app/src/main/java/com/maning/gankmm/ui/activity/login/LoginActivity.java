@@ -13,7 +13,7 @@ import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,11 +24,11 @@ import butterknife.OnClick;
 @Deprecated
 public class LoginActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.et_user_name)
+    @BindView(R.id.et_user_name)
     EditText mEtUserName;
-    @Bind(R.id.et_password)
+    @BindView(R.id.et_password)
     EditText mEtPassword;
 
     @Override

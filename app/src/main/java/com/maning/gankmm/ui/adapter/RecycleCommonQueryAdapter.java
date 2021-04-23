@@ -12,7 +12,7 @@ import com.maning.gankmm.bean.CommonItemEntity;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -67,9 +67,9 @@ public class RecycleCommonQueryAdapter extends RecyclerView.Adapter<RecyclerView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tvTitle;
-        @Bind(R.id.tv_desc)
+        @BindView(R.id.tv_desc)
         TextView tvDesc;
 
 

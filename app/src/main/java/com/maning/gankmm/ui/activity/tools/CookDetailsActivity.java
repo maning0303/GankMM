@@ -12,7 +12,7 @@ import com.maning.gankmm.bean.mob.MobCookDetailEntity;
 import com.maning.gankmm.ui.adapter.RecycleCookDetailsAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,9 +21,9 @@ import butterknife.ButterKnife;
 @Deprecated
 public class CookDetailsActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
     public static final String IntentKey_Cook = "IntentKey_Cook";

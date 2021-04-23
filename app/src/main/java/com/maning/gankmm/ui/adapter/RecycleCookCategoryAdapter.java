@@ -14,7 +14,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -93,11 +93,11 @@ public class RecycleCookCategoryAdapter extends RecyclerView.Adapter<RecycleCook
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tv_title;
-        @Bind(R.id.line)
+        @BindView(R.id.line)
         TextView line;
-        @Bind(R.id.item_bg)
+        @BindView(R.id.item_bg)
         RelativeLayout item_bg;
 
 

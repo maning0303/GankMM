@@ -31,7 +31,7 @@ import com.socks.library.KLog;
 
 import java.text.DecimalFormat;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -40,22 +40,22 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     private static final String TAG = "SettingActivity";
     private Context context;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.iv_push)
+    @BindView(R.id.iv_push)
     ImageView ivPush;
-    @Bind(R.id.iv_night_mode)
+    @BindView(R.id.iv_night_mode)
     ImageView ivNightMode;
 
-    @Bind(R.id.item_gank_headline)
+    @BindView(R.id.item_gank_headline)
     MySettingItemView itemGankHeadline;
-    @Bind(R.id.item_clean_cache)
+    @BindView(R.id.item_clean_cache)
     MySettingItemView itemCleanCache;
-    @Bind(R.id.item_feedback)
+    @BindView(R.id.item_feedback)
     MySettingItemView itemFeedback;
-    @Bind(R.id.item_app_update)
+    @BindView(R.id.item_app_update)
     MySettingItemView itemAppUpdate;
-    @Bind(R.id.item_app_support)
+    @BindView(R.id.item_app_support)
     MySettingItemView itemAppSupport;
 
     private SettingPresenterImpl settingPresenter;

@@ -13,7 +13,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -65,7 +65,7 @@ public class RecycleOpenFrameAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_open_frame_name)
+        @BindView(R.id.tv_open_frame_name)
         TextView tv_open_frame_name;
 
         public MyViewHolder(View itemView) {

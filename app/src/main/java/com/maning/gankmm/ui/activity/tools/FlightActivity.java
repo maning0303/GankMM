@@ -21,7 +21,7 @@ import com.maning.gankmm.utils.MySnackbar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,19 +31,19 @@ import butterknife.OnClick;
 @Deprecated
 public class FlightActivity extends BaseActivity {
 
-    @Bind(R.id.ll_query)
+    @BindView(R.id.ll_query)
     LinearLayout llQuery;
-    @Bind(R.id.tv_start_name)
+    @BindView(R.id.tv_start_name)
     TextView tvStartName;
-    @Bind(R.id.tv_end_name)
+    @BindView(R.id.tv_end_name)
     TextView tvEndName;
-    @Bind(R.id.tv_time_query)
+    @BindView(R.id.tv_time_query)
     TextView tvTimeQuery;
-    @Bind(R.id.et_start_name)
+    @BindView(R.id.et_start_name)
     EditText etStartName;
-    @Bind(R.id.iv_swap)
+    @BindView(R.id.iv_swap)
     ImageView ivSwap;
-    @Bind(R.id.et_end_name)
+    @BindView(R.id.et_end_name)
     EditText etEndName;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");

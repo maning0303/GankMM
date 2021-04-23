@@ -16,7 +16,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -138,9 +138,9 @@ public class RecycleMoreItemAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_more_item)
+        @BindView(R.id.iv_more_item)
         ImageView iv_more_item;
-        @Bind(R.id.tv_title_more_item)
+        @BindView(R.id.tv_title_more_item)
         TextView tv_title_more_item;
 
         public MyViewHolder(View itemView) {

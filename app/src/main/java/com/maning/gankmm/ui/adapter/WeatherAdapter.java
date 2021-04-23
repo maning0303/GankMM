@@ -21,7 +21,7 @@ import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -149,15 +149,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class ViewHolderWeatherInfo extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_01)
+        @BindView(R.id.tv_01)
         TextView tv_01;
-        @Bind(R.id.tv_02)
+        @BindView(R.id.tv_02)
         TextView tv_02;
-        @Bind(R.id.tv_03)
+        @BindView(R.id.tv_03)
         TextView tv_03;
-        @Bind(R.id.tv_04)
+        @BindView(R.id.tv_04)
         TextView tv_04;
-        @Bind(R.id.tv_05)
+        @BindView(R.id.tv_05)
         TextView tv_05;
 
         public ViewHolderWeatherInfo(View itemView) {
@@ -168,9 +168,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class ViewHolderWeatherForecast extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.recycle_later)
+        @BindView(R.id.recycle_later)
         RecyclerView recycle_later;
-        @Bind(R.id.ll_root_weather_forecast)
+        @BindView(R.id.ll_root_weather_forecast)
         LinearLayout ll_root_weather_forecast;
 
         public ViewHolderWeatherForecast(View itemView) {
@@ -181,17 +181,17 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class ViewHolderSuggestion extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_suggestion_01)
+        @BindView(R.id.tv_suggestion_01)
         TextView tv_suggestion_01;
-        @Bind(R.id.tv_suggestion_02)
+        @BindView(R.id.tv_suggestion_02)
         TextView tv_suggestion_02;
-        @Bind(R.id.tv_suggestion_03)
+        @BindView(R.id.tv_suggestion_03)
         TextView tv_suggestion_03;
-        @Bind(R.id.tv_suggestion_04)
+        @BindView(R.id.tv_suggestion_04)
         TextView tv_suggestion_04;
-        @Bind(R.id.tv_suggestion_05)
+        @BindView(R.id.tv_suggestion_05)
         TextView tv_suggestion_05;
-        @Bind(R.id.tv_suggestion_06)
+        @BindView(R.id.tv_suggestion_06)
         TextView tv_suggestion_06;
 
         public ViewHolderSuggestion(View itemView) {
@@ -202,7 +202,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class MyViewHolderAir extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.arc_progress)
+        @BindView(R.id.arc_progress)
         ArcProgressView arc_progress;
 
         public MyViewHolderAir(View itemView) {
@@ -214,17 +214,17 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class ViewHolderHoliday extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_01)
+        @BindView(R.id.tv_01)
         TextView tv_01;
-        @Bind(R.id.tv_02)
+        @BindView(R.id.tv_02)
         TextView tv_02;
-        @Bind(R.id.tv_03)
+        @BindView(R.id.tv_03)
         TextView tv_03;
-        @Bind(R.id.tv_04)
+        @BindView(R.id.tv_04)
         TextView tv_04;
-        @Bind(R.id.tv_05)
+        @BindView(R.id.tv_05)
         TextView tv_05;
-        @Bind(R.id.tv_06)
+        @BindView(R.id.tv_06)
         TextView tv_06;
 
         public ViewHolderHoliday(View itemView) {

@@ -22,7 +22,7 @@ import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,11 +31,11 @@ import butterknife.OnClick;
  */
 public class IPQueryActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.editTextPhone)
+    @BindView(R.id.editTextPhone)
     MClearEditText editTextPhone;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleCommonQueryAdapter recycleCommonQueryAdapter;
 

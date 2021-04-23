@@ -15,7 +15,7 @@ import com.maning.gankmm.utils.SharePreUtil;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -92,29 +92,29 @@ public class Weather2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public static class MyViewHolder01 extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_01)
+        @BindView(R.id.tv_01)
         TextView tv_01;
-        @Bind(R.id.tv_02)
+        @BindView(R.id.tv_02)
         TextView tv_02;
-        @Bind(R.id.tv_03)
+        @BindView(R.id.tv_03)
         TextView tv_03;
-        @Bind(R.id.tv_04)
+        @BindView(R.id.tv_04)
         TextView tv_04;
-        @Bind(R.id.tv_05)
+        @BindView(R.id.tv_05)
         TextView tv_05;
-        @Bind(R.id.tv_06)
+        @BindView(R.id.tv_06)
         TextView tv_06;
-        @Bind(R.id.tv_07)
+        @BindView(R.id.tv_07)
         TextView tv_07;
-        @Bind(R.id.tv_08)
+        @BindView(R.id.tv_08)
         TextView tv_08;
-        @Bind(R.id.tv_09)
+        @BindView(R.id.tv_09)
         TextView tv_09;
-        @Bind(R.id.tv_10)
+        @BindView(R.id.tv_10)
         TextView tv_10;
-        @Bind(R.id.iv_01)
+        @BindView(R.id.iv_01)
         ImageView iv_01;
-        @Bind(R.id.iv_02)
+        @BindView(R.id.iv_02)
         ImageView iv_02;
 
         public MyViewHolder01(View itemView) {

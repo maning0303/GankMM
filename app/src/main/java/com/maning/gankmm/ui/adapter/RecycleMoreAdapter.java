@@ -28,7 +28,7 @@ import com.maning.gankmm.utils.ZxingScanUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -137,9 +137,9 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_title_more)
+        @BindView(R.id.tv_title_more)
         TextView tvTitleMore;
-        @Bind(R.id.recyclerViewItem)
+        @BindView(R.id.recyclerViewItem)
         RecyclerView recyclerViewItem;
 
         public MyViewHolder(View itemView) {

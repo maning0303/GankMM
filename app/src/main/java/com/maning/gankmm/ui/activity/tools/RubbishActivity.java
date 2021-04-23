@@ -24,7 +24,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -33,11 +33,11 @@ import butterknife.OnClick;
  */
 public class RubbishActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.editText)
+    @BindView(R.id.editText)
     MClearEditText editText;
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     RecyclerView recyclerView;
 
 

@@ -29,7 +29,7 @@ import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 import com.maning.gankmm.utils.NetUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -39,13 +39,13 @@ public class WebActivity extends BaseActivity implements IWebView {
 
     private static final String TAG = WebActivity.class.getSimpleName();
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.webView)
+    @BindView(R.id.webView)
     WebView webView;
-    @Bind(R.id.progressbar)
+    @BindView(R.id.progressbar)
     ProgressBar progressbar;
-    @Bind(R.id.rootView)
+    @BindView(R.id.rootView)
     LinearLayout rootView;
 
     //标题
