@@ -9,7 +9,7 @@
     1.Retrofit2和OKHttp的使用；
     2.MVP模式的基本使用；
     3.RecycleView控件的使用；
-    4.状态的的颜色的设置（Android 4.4 +）；
+    4.状态的的颜色的设置；
     5.Android Material Design 风格控件的基本使用；
     6.SQLite的基本使用；
     7.WebView的使用,夜间模式；
@@ -30,7 +30,6 @@
 ## APK下载：
 ###  GankMM/apk/**.apk
 #### [点击下载(gank.apk)](https://github.com/maning0303/GankMM/raw/master/apk/gank.apk)<br>
-#### [点击下载(gank.apk)](https://github.com/maning0303/GankMM/apk/gank.apk)<br>
 
 
 ### GankMM夜间模式实现：
@@ -81,21 +80,9 @@
 
 
 ## 更新日志：
-### V2.0.0 （进行中）:
-    1.升级Api,去掉不可用Api
-    2.代码优化，封装Retrofit回调，替换图片浏览框架
-    3.天气接口替换
-    4.升级AndroidX
-
-### V1.8.0 :
-    1.优化代码
-    2.修复部分问题
-
-### V1.6.8 :
-    1.VectorDrawableCompat使用不规范而造成的崩溃问题
-    2.图片浏览新增收藏和取消收藏功能
-    3.更换提示ProgressDialog库
-    4.修复部分界面图片显示不出来问题
+### V2.0.1 :
+    1.三方库版本升级
+    2.优化代码，删除无用库和代码
     
 ## 关于
 ##### 亲，喜欢就start一下吧
