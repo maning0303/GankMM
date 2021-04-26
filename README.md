@@ -27,9 +27,10 @@
 #### [RollToolsApi(https://github.com/MZCretin/RollToolsApi)<br>
 
 
-## APK下载地址：
-###  firim下载地址
-#### [点击下载(http://d.firim.pro/gankmm)](http://d.firim.pro/gankmm)<br>
+## APK下载：
+###  GankMM/apk/**.apk
+#### [点击下载(gank.apk)](https://github.com/maning0303/GankMM/raw/master/apk/gank.apk)<br>
+#### [点击下载(gank.apk)](https://github.com/maning0303/GankMM/apk/gank.apk)<br>
 
 
 ### GankMM夜间模式实现：
