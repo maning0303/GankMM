@@ -1,16 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'channel'
 
-channel {
-    //指定渠道文件
-    channelFile = file("channel.txt")
-    //多渠道包的输出目录，默认为new File(project.buildDir,"channel")
-    baseOutputDir = new File(project.buildDir, "channel")
-    //多渠道包的命名规则，默认为：${appName}-${versionName}-${versionCode}-${flavorName}-${buildType}
-    apkNameFormat = '${appName}-${versionName}-${flavorName}-${buildType}'
-    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
-    isFastMode = true
-}
 
 def config = rootProject.ext.android // 配置
 def librarys = rootProject.ext.dependencies // 依赖
@@ -34,7 +23,7 @@ android {
 
         // 设置MultiDex可用
         multiDexEnabled true
-        flavorDimensions "versionCode"
+        flavorDimensions "gank"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
 
@@ -180,8 +169,6 @@ dependencies {
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.0'
     /* 状态栏 */
     implementation 'com.jaeger.statusbarutil:library:1.5.0'
-    /* VasDolly渠道包渠道获取帮助类 */
-    api 'com.leon.channel:helper:2.0.3'
 
     /*-----------------------------------------*/
 

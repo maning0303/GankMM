@@ -13,8 +13,6 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        /*快速生成渠道包*/
-        classpath 'com.leon.channel:plugin:1.1.7'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
     }
 }

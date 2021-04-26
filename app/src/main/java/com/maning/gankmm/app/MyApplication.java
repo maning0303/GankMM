@@ -4,13 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Handler;
-import android.os.StrictMode;
-import androidx.multidex.MultiDex;
-import android.text.TextUtils;
 
-import com.leon.channel.helper.ChannelReaderUtil;
+import androidx.multidex.MultiDex;
+
 import com.maning.gankmm.BuildConfig;
 import com.maning.gankmm.utils.CacheDiskUtils;
 import com.maning.gankmm.utils.NetUtils;
@@ -29,6 +26,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 
 /**
  * Created by maning on 16/3/2.
