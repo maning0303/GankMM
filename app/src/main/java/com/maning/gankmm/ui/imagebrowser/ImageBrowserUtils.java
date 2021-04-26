@@ -1,5 +1,6 @@
 package com.maning.gankmm.ui.imagebrowser;
 
+import android.Manifest;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,7 +17,7 @@ import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.ui.dialog.ListFragmentDialog;
 import com.maning.gankmm.utils.BitmapUtils;
 import com.maning.gankmm.utils.IntentUtils;
-import com.maning.gankmm.utils.PermissionUtils;
+import com.maning.gankmm.utils.PermissionManager;
 import com.maning.gankmm.utils.ThreadPoolUtils;
 import com.maning.imagebrowserlibrary.listeners.OnLongClickListener;
 import com.maning.imagebrowserlibrary.model.ImageBrowserConfig;
@@ -87,17 +88,18 @@ public class ImageBrowserUtils {
             public void onItemClick(View view, int position) {
                 if (position == 0) {
                     //保存图片
-                    PermissionUtils.checkWritePermission(context, new PermissionUtils.PermissionCallBack() {
-                        @Override
-                        public void onGranted() {
-                            saveImage(context, imageView, url);
-                        }
+                    PermissionManager.with(context)
+                            .callback(new PermissionManager.OnPermissionCallback() {
+                                @Override
+                                public void onGranted() {
+                                    saveImage(context, imageView, url);
+                                }
 
-                        @Override
-                        public void onDenied() {
-                            showProgressError(context, "获取存储权限失败，请前往设置页面打开存储权限");
-                        }
-                    });
+                                @Override
+                                public void onDenied(boolean never) {
+                                    showProgressError(context, "获取存储权限失败，请前往设置页面打开存储权限");
+                                }
+                            }).request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
                 } else if (position == 1) {
                     IntentUtils.startAppShareText(context, "GankMM图片分享", "分享图片：" + url);
                 } else if (position == 2) {

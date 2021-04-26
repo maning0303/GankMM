@@ -1,6 +1,9 @@
 package com.maning.gankmm.ui.presenter.impl;
 
+import android.Manifest;
 import android.content.Context;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.amap.api.location.AMapLocation;
 import com.maning.gankmm.R;
@@ -8,14 +11,14 @@ import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.fir.AppUpdateInfo;
 import com.maning.gankmm.bean.weather.WeatherInfoBean;
 import com.maning.gankmm.constant.Constants;
-import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.callback.CommonHttpCallback;
+import com.maning.gankmm.http.update.UpdateApi;
 import com.maning.gankmm.http.weather.WeatherApi;
 import com.maning.gankmm.ui.iView.IMainView;
 import com.maning.gankmm.ui.presenter.IMainPresenter;
 import com.maning.gankmm.utils.LocationUtils;
 import com.maning.gankmm.utils.NetUtils;
-import com.maning.gankmm.utils.PermissionUtils;
+import com.maning.gankmm.utils.PermissionManager;
 import com.maning.gankmm.utils.SharePreUtil;
 import com.maning.gankmm.utils.ThreadPoolUtils;
 
@@ -74,19 +77,19 @@ public class MainPresenterImpl extends BasePresenterImpl<IMainView> implements I
 
     @Override
     public void getLocationInfo() {
-        PermissionUtils.checkLocationPermission(context, new PermissionUtils.PermissionCallBack() {
-            @Override
-            public void onGranted() {
-                //高德获取位置信息
-                requestLocationInfo();
-            }
+        PermissionManager.with((FragmentActivity) context)
+                .callback(new PermissionManager.OnPermissionCallback() {
+                    @Override
+                    public void onGranted() {
+                        //高德获取位置信息
+                        requestLocationInfo();
+                    }
 
-            @Override
-            public void onDenied() {
-                mView.showToast("获取定位权限失败，请前往设置页面打开定位权限");
-            }
-        });
-
+                    @Override
+                    public void onDenied(boolean never) {
+                        mView.showToast("获取定位权限失败，请前往设置页面打开定位权限");
+                    }
+                }).request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     @Override

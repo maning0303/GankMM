@@ -123,16 +123,6 @@ dependencies {
     implementation librarys.multidex
 
     /*-----------------------------------------*/
-
-    /*Umeng统计*/
-    implementation 'com.umeng.sdk:common:1.5.3'
-    implementation 'com.umeng.sdk:analytics:7.5.3'
-    /*极光推送*/
-    implementation files('libs/jcore-android_v1.1.2.jar')
-    implementation files('libs/jpush-android_v3.0.5.jar')
-
-
-    /*-----------------------------------------*/
     /*注解*/
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
@@ -142,14 +132,15 @@ dependencies {
     /*解析Json*/
     implementation 'com.google.code.gson:gson:2.8.5'
     /*网络相关*/
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     /*图片加载Glide*/
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'jp.wasabeef:glide-transformations:2.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
     /*数据存储*/
-    implementation 'com.tencent:mmkv-static:1.2.2'
+    implementation 'com.tencent:mmkv-static:1.2.6'
     /*日志*/
     implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
     /*下拉刷新框架*/
@@ -161,7 +152,7 @@ dependencies {
     /*解析HTML页面*/
     implementation 'org.jsoup:jsoup:1.9.2'
     /*权限库*/
-    implementation 'com.yanzhenjie:permission:2.0.0-rc4'
+    implementation 'com.github.getActivity:XXPermissions:10.8'
     /*ViewPager指示器*/
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     /*菜单*/
@@ -182,7 +173,7 @@ dependencies {
     /* 背景可以移动的View */
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     /* 圆形图片 */
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     /* 滚轮选择器 */
     implementation 'com.contrarywind:Android-PickerView:3.2.5'
     /* 图片选择 */
@@ -195,9 +186,10 @@ dependencies {
     /*-----------------------------------------*/
 
     /*图片浏览*/
-    implementation 'com.github.maning0303:MNImageBrowser:V1.3.5'
+    implementation 'com.github.maning0303:MNImageBrowser:V1.3.7'
     /*二维码扫描*/
-    implementation 'com.github.maning0303:MNZXingCode:V2.1.4'
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.github.maning0303:MNZXingCode:V2.1.8'
     /*翻滚广告条TextView*/
     implementation 'com.github.maning0303:SwitcherView:v1.0.4'
     /* 提示框 */

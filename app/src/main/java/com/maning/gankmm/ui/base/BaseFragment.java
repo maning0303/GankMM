@@ -2,12 +2,12 @@ package com.maning.gankmm.ui.base;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 import com.maning.gankmm.R;
 import com.maning.mndialoglibrary.MProgressDialog;
 import com.maning.mndialoglibrary.MStatusDialog;
-import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragment extends Fragment {
 
@@ -50,20 +50,11 @@ public class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //CategoryFragment 内嵌套Fragment,统计子页面
-        if (!"CategoryFragment".equals(className)) {
-            MobclickAgent.onPageStart(className);
-        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //CategoryFragment 内嵌套Fragment,统计子页面
-        if (!"CategoryFragment".equals(className)) {
-            MobclickAgent.onPageEnd(className);
-        }
-
     }
 
 }

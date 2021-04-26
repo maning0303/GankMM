@@ -7,9 +7,6 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 8.0安装需要的权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- Jpush -->
-    <permission
-        android:name="com.maning.gankmm.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
 
     <uses-permission android:name="com.maning.gankmm.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -45,7 +42,8 @@
         android:theme="@style/DayTheme"
         android:usesCleartextTraffic="true"
         tools:replace="icon,label,theme,allowBackup">
-        <activity android:name=".ui.activity.tools.ScanResultActivity"></activity>
+
+        <activity android:name=".ui.activity.tools.ScanResultActivity"/>
 
         <provider
             android:name=".utils.MyFileProvider"
@@ -55,103 +53,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- 极光推送  start -->
-        <!-- Required SDK 核心功能 -->
-        <!-- 可配置android:process参数将PushService放在其他进程中 -->
-        <service
-            android:name="cn.jpush.android.service.PushService"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-            </intent-filter>
-        </service> <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
-        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
-        <service
-            android:name="cn.jpush.android.service.DaemonService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.DaemonService" />
-
-                <category android:name="com.maning.gankmm" />
-            </intent-filter>
-        </service> <!-- Required SDK核心功能 -->
-        <receiver
-            android:name="cn.jpush.android.service.PushReceiver"
-            android:enabled="true">
-            <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-
-                <category android:name="com.maning.gankmm" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <!-- Optional -->
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver> <!-- Required SDK核心功能 -->
-        <activity
-            android:name="cn.jpush.android.ui.PushActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar">
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.maning.gankmm" />
-            </intent-filter>
-        </activity> <!-- SDK核心功能 -->
-        <activity
-            android:name="cn.jpush.android.ui.PopWinActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/MyDialogStyle">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.maning.gankmm" />
-            </intent-filter>
-        </activity> <!-- Required SDK核心功能 -->
-        <service
-            android:name="cn.jpush.android.service.DownloadService"
-            android:enabled="true"
-            android:exported="false" /> <!-- Required SDK核心功能 -->
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" /> <!-- User defined. 用户自定义的广播接收器 -->
-        <receiver
-            android:name=".ui.receiver.MyReceiver"
-            android:enabled="true">
-            <intent-filter>
-
-                <!-- Required 用户注册SDK的intent -->
-                <action android:name="cn.jpush.android.intent.REGISTRATION" />
-                <!-- Required 用户接收SDK消息的intent -->
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
-                <!-- Required 用户接收SDK通知栏信息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
-                <!-- Required 用户打开自定义通知栏的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
-                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <action android:name="cn.jpush.android.intent.CONNECTION" />
-
-                <category android:name="com.maning.gankmm" />
-            </intent-filter>
-        </receiver> <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="9154ee1b9e0fac4b4d967222" /> <!-- 极光推送  END -->
+        </provider>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
@@ -164,9 +66,6 @@
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.ImagesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.WebActivity"
@@ -193,10 +92,6 @@
             android:value="48cc89a5931e80321bced46714a03563" />
 
         <service android:name="com.amap.api.location.APSService" />
-
-        <activity
-            android:name=".ui.activity.CitysActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.WeatherActivity"
             android:screenOrientation="portrait" />
@@ -208,11 +103,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.MoreActivity" />
         <activity android:name=".ui.activity.tools.PhoneAddressActivity" />
-        <activity android:name=".ui.activity.tools.PostCodeActivity" />
-        <activity android:name=".ui.activity.tools.IDCardQueryActivity" />
         <activity android:name=".ui.activity.tools.IPQueryActivity" />
-        <activity android:name=".ui.activity.tools.WXArticleActivity" />
-        <activity android:name=".ui.activity.tools.BankCardActivity" />
         <activity android:name=".ui.activity.tools.ChineseCalendarActivity" />
         <activity android:name=".ui.activity.tools.OilPriceActivity" />
         <activity android:name=".ui.activity.tools.DictionaryActivity" />
@@ -223,13 +114,6 @@
         <activity android:name=".ui.activity.tools.TrainListActivity" />
         <activity android:name=".ui.activity.tools.FlightActivity" />
         <activity android:name=".ui.activity.tools.FlightListActivity" />
-        <activity
-            android:name=".ui.imagebrowser.MNImageBrowserActivity2"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImageBrowserTheme" />
-        <activity android:name=".ui.activity.tools.CarListActivity"></activity>
-        <activity android:name=".ui.activity.tools.CarItemsActivity"></activity>
-        <activity android:name=".ui.activity.tools.CarDetailActivity"></activity>
         <activity android:name=".ui.activity.tools.CookMenuActivity"></activity>
         <activity android:name=".ui.activity.tools.CookListActivity"></activity>
         <activity android:name=".ui.activity.tools.CookDetailsActivity"></activity>
@@ -241,7 +125,6 @@
         <activity android:name=".ui.activity.login.EditUserInfoActivity"></activity>
         <activity android:name=".ui.activity.login.EditSignatureActivity"></activity>
         <activity android:name=".ui.activity.login.ForgetPsdActivity"></activity>
-        <activity android:name=".ui.activity.CollectActivity"></activity>
         <activity android:name=".ui.activity.OpenFrameActivity"></activity>
     </application>
 

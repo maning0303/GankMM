@@ -13,7 +13,6 @@ import com.maning.gankmm.R;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.mndialoglibrary.MProgressDialog;
 import com.maning.mndialoglibrary.MStatusDialog;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by maning on 16/3/2.
@@ -116,23 +115,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // MainActivity 内嵌套Fragment，应在Fragment中统计页面
-        String className = this.getClass().getSimpleName();
-        if (!"MainActivity".equals(className)) {
-            MobclickAgent.onPageStart(className);   // 统计页面
-        }
-        MobclickAgent.onResume(this);       //统计时长
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // MainActivity 内嵌套Fragment，应在Fragment中统计页面
-        String className = this.getClass().getSimpleName();
-        if (!"MainActivity".equals(className)) {
-            MobclickAgent.onPageEnd(className);   // 统计页面
-        }
-        MobclickAgent.onPause(this);
     }
 
 

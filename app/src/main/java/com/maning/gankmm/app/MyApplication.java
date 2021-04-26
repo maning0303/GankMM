@@ -18,14 +18,11 @@ import com.maning.librarycrashmonitor.MCrashMonitor;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.socks.library.KLog;
 import com.tencent.mmkv.MMKV;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.commonsdk.UMConfigure;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import cn.jpush.android.api.JPushInterface;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -58,61 +55,15 @@ public class MyApplication extends Application {
         //初始化Log
         initLog();
 
-        //Jpush
-        initJpush();
-
         //初始化异常捕获
         initCrash();
 
-        //Umeng统计相关
-        initUmeng();
-
-        //开启违例检测:StrictMode
-        if (BuildConfig.LOG_DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
-        }
-
-    }
-
-    private void initUmeng() {
-        //禁止默认的页面统计方式
-        MobclickAgent.openActivityDurationTrack(false);
-        //获取渠道
-        String channel = ChannelReaderUtil.getChannel(getApplicationContext());
-        if(TextUtils.isEmpty(channel)){
-            channel = "gankmm_bd";
-        }
-        /**
-         * 初始化common库
-         * 参数1:上下文，不能为空
-         * 参数2:友盟 app key
-         * 参数3:友盟 channel
-         * 参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
-         * 参数5:Push推送业务的secret
-         */
-        UMConfigure.init(this, "56dce179e0f55ac5d700046c", channel, UMConfigure.DEVICE_TYPE_PHONE, "");
-        /**
-         * 设置组件化的Log开关
-         * 参数: boolean 默认为false，如需查看LOG设置为true
-         */
-        UMConfigure.setLogEnabled(BuildConfig.LOG_DEBUG);
     }
 
     private void initLog() {
         KLog.init(BuildConfig.LOG_DEBUG, "---GankMM---");
     }
 
-
-    private void initJpush() {
-        try {
-            JPushInterface.setDebugMode(BuildConfig.LOG_DEBUG);
-            JPushInterface.init(this);
-        } catch (Exception e) {
-            KLog.e();
-        }
-
-    }
 
     private void initBase() {
         application = this;

@@ -28,7 +28,6 @@ import com.socks.library.KLog;
 import java.io.File;
 import java.util.Arrays;
 
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by maning on 16/6/21.
@@ -45,20 +44,7 @@ public class SettingPresenterImpl extends BasePresenterImpl<ISettingView> implem
 
     @Override
     public void initPushState() {
-        boolean jpush = SharePreUtil.getBooleanData(context, Constants.SPJpush, true);
-        if (jpush) {
-            JPushInterface.resumePush(context.getApplicationContext());
-            if (mView == null) {
-                return;
-            }
-            mView.openPush();
-        } else {
-            JPushInterface.stopPush(context.getApplicationContext());
-            if (mView == null) {
-                return;
-            }
-            mView.closePush();
-        }
+
     }
 
     @Override
@@ -122,23 +108,6 @@ public class SettingPresenterImpl extends BasePresenterImpl<ISettingView> implem
 
     @Override
     public void changePushState() {
-        if (mView == null) {
-            return;
-        }
-        try {
-            boolean jpush = SharePreUtil.getBooleanData(context, Constants.SPJpush, true);
-            if (!jpush) {
-                SharePreUtil.saveBooleanData(context, Constants.SPJpush, true);
-                JPushInterface.resumePush(context.getApplicationContext());
-                mView.openPush();
-            } else {
-                SharePreUtil.saveBooleanData(context, Constants.SPJpush, false);
-                mView.closePush();
-                JPushInterface.stopPush(context.getApplicationContext());
-            }
-        } catch (Exception e) {
-            KLog.e("changePushState Exception:" + e.toString());
-        }
 
     }
 

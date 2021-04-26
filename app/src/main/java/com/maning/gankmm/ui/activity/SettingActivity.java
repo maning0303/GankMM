@@ -1,11 +1,14 @@
 package com.maning.gankmm.ui.activity;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,7 +27,7 @@ import com.maning.gankmm.utils.IntentUtils;
 import com.maning.gankmm.utils.MySnackbar;
 import com.maning.gankmm.utils.NetUtils;
 import com.maning.gankmm.utils.NotifyUtil;
-import com.maning.gankmm.utils.PermissionUtils;
+import com.maning.gankmm.utils.PermissionManager;
 import com.maning.gankmm.utils.SharePreUtil;
 import com.maning.updatelibrary.InstallUtils;
 import com.socks.library.KLog;
@@ -161,18 +164,18 @@ public class SettingActivity extends BaseActivity implements ISettingView {
 
             @Override
             public void onConfirm() {
-                PermissionUtils.checkWritePermission(mContext, new PermissionUtils.PermissionCallBack() {
-                    @Override
-                    public void onGranted() {
-                        settingPresenter.cleanCache();
-                    }
+                PermissionManager.with(mActivity)
+                        .callback(new PermissionManager.OnPermissionCallback() {
+                            @Override
+                            public void onGranted() {
+                                settingPresenter.cleanCache();
+                            }
 
-                    @Override
-                    public void onDenied() {
-                        showProgressError("获取存储权限失败，请前往设置页面打开存储权限");
-                    }
-                });
-
+                            @Override
+                            public void onDenied(boolean never) {
+                                showProgressError("获取存储权限失败，请前往设置页面打开存储权限");
+                            }
+                        }).request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
             }
 
             @Override
@@ -275,30 +278,19 @@ public class SettingActivity extends BaseActivity implements ISettingView {
                 new DialogUtils.OnDialogClickListener() {
                     @Override
                     public void onConfirm() {
-                        PermissionUtils.checkWritePermission(mContext, new PermissionUtils.PermissionCallBack() {
-                            @Override
-                            public void onGranted() {
-                                //更新版本
-                                showDownloadDialog(SettingActivity.this.appUpdateInfo);
-                            }
+                        PermissionManager.with(mActivity)
+                                .callback(new PermissionManager.OnPermissionCallback() {
+                                    @Override
+                                    public void onGranted() {
+                                        //更新版本
+                                        showDownloadDialog(SettingActivity.this.appUpdateInfo);
+                                    }
 
-                            @Override
-                            public void onDenied() {
-                                showProgressError("获取存储权限失败，请前往设置页面打开存储权限");
-                            }
-                        });
-//                        // 先判断是否有权限。
-//                        if (AndPermission.hasPermission(SettingActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-//                            // 有权限，直接do anything.
-//                            //更新版本
-//                            showDownloadDialog(SettingActivity.this.appUpdateInfo);
-//                        } else {
-//                            // 申请权限。
-//                            AndPermission.with(SettingActivity.this)
-//                                    .requestCode(100)
-//                                    .permission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                                    .send();
-//                        }
+                                    @Override
+                                    public void onDenied(boolean never) {
+                                        showProgressError("获取存储权限失败，请前往设置页面打开存储权限");
+                                    }
+                                }).request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
                     }
 
                     @Override

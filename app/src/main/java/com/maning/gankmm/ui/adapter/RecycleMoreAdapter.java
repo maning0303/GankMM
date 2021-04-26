@@ -1,15 +1,16 @@
 package com.maning.gankmm.ui.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.maning.gankmm.R;
 import com.maning.gankmm.listeners.OnItemClickListener;
@@ -98,7 +99,7 @@ public class RecycleMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     if (title.equals("手机号码归属地")) {
                         context.startActivity(new Intent(context, PhoneAddressActivity.class));
                     } else if (title.equals("扫一扫")) {
-                        ZxingScanUtils.open((Activity) context);
+                        ZxingScanUtils.open((FragmentActivity) context);
                     } else if (title.equals("扫码记录")) {
                         context.startActivity(new Intent(context, ScanResultActivity.class));
                     } else if (title.equals("IP地址")) {
