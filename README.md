@@ -54,29 +54,33 @@
 
 ##  项目截图：
 ### Gif(加载比较慢,耐心等候...):
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_gif.gif)
 
+<div align="center">
+<img src = "screenshots/gank_gif.gif" width=200 >
+</div>
 
 ### 截图:
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_day_01.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_night_01.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_day_02.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_night_02.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_day_03.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_night_03.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_01.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_02.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_03.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_04.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_05.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_06.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_07.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_08.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_09.jpg)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_10.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_11.png)
-![](https://github.com/maning0303/GankMM/raw/master/screenshots/gank_12.png)
 
+<div align="center">
+<img src = "screenshots/gank_day_01.png" width=200 >
+<img src = "screenshots/gank_night_01.png" width=200 >
+<img src = "screenshots/gank_day_02.jpg" width=200 >
+<img src = "screenshots/gank_night_02.jpg" width=200 >
+<img src = "screenshots/gank_day_03.jpg" width=200 >
+<img src = "screenshots/gank_night_03.jpg" width=200 >
+<img src = "screenshots/gank_01.png" width=200 >
+<img src = "screenshots/gank_02.jpg" width=200 >
+<img src = "screenshots/gank_03.jpg" width=200 >
+<img src = "screenshots/gank_04.png" width=200 >
+<img src = "screenshots/gank_05.png" width=200 >
+<img src = "screenshots/gank_06.png" width=200 >
+<img src = "screenshots/gank_07.png" width=200 >
+<img src = "screenshots/gank_08.png" width=200 >
+<img src = "screenshots/gank_09.jpg" width=200 >
+<img src = "screenshots/gank_10.png" width=200 >
+<img src = "screenshots/gank_11.png" width=200 >
+<img src = "screenshots/gank_12.png" width=200 >
+</div>
 
 
 ## 更新日志：
