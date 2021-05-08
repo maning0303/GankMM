@@ -24,7 +24,6 @@ android {
         // 设置MultiDex可用
         multiDexEnabled true
         flavorDimensions "gank"
-        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
 
     signingConfigs {//签名信息

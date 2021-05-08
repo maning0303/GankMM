@@ -1,21 +1,18 @@
 package com.maning.gankmm.ui.activity.login;
 
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.maning.gankmm.R;
-import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.AppValidationMgr;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,33 +100,6 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-
-    private MyCallBack mMyCallBack = new MyCallBack() {
-        @Override
-        public void onSuccess(int what, Object result) {
-            dissmissProgressDialog();
-            showProgressSuccess("注册成功,即将关闭页面!");
-
-            //关闭页面
-            MyApplication.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    closeActivity();
-                }
-            }, 1000);
-        }
-
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            dissmissProgressDialog();
-            MySnackbar.makeSnackBarRed(mToolbar, result);
-        }
-    };
 
     private void closeActivity() {
         this.finish();

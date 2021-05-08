@@ -2,7 +2,6 @@ package com.maning.gankmm.ui.activity.login;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,15 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.maning.gankmm.R;
-import com.maning.gankmm.app.MyApplication;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.KeyboardUtils;
 import com.maning.gankmm.utils.MySnackbar;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -182,41 +179,5 @@ public class ForgetPsdActivity extends BaseActivity {
         //恢复
         mBtnGetCode.setBackgroundColor(mContext.getResources().getColor(R.color.main_color));
     }
-
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccess(int what, Object result) {
-            dissmissProgressDialog();
-            if (what == 0x001) {
-                MySnackbar.makeSnackBarGreen(mToolbar, "密码追回的验证码已发送到您的邮箱,请到邮箱查看!");
-            } else {
-                showProgressSuccess("密码修改成功,请返回重新登录!");
-
-                MyApplication.getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onBackPressed();
-                    }
-                }, 500);
-            }
-        }
-
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            dissmissProgressDialog();
-            MySnackbar.makeSnackBarRed(mToolbar, result);
-            if (what == 0x001) {
-                //重置按钮
-                mMyCountDownTimer.cancel();
-                mMyCountDownTimer.onFinish();
-            }
-        }
-    };
 
 }

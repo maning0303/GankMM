@@ -25,45 +25,49 @@ public abstract class CommonHttpCallback<T> implements Callback<T> {
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
         onFinish();
-        if (200 == response.code()) {
-            T body = response.body();
-            if (body instanceof Gank2BaseBean) {
-                //gankio
-                Gank2BaseBean baseBean = (Gank2BaseBean) response.body();
-                if (baseBean.getStatus() == 100) {
-                    onSuccess(response.body());
+        try {
+            if (200 == response.code()) {
+                T body = response.body();
+                if (body instanceof Gank2BaseBean) {
+                    //gankio
+                    Gank2BaseBean baseBean = (Gank2BaseBean) response.body();
+                    if (baseBean.getStatus() == 100) {
+                        onSuccess(response.body());
+                    } else {
+                        onFail(baseBean.getStatus(), baseBean.getMsg());
+                    }
+                } else if (body instanceof CaiyunWeatherBaseBean) {
+                    //彩云天气
+                    CaiyunWeatherBaseBean baseBean = (CaiyunWeatherBaseBean) response.body();
+                    String status = baseBean.getStatus();
+                    String api_status = baseBean.getApi_status();
+                    if ("ok".equals(status) && "active".equals(api_status)) {
+                        onSuccess(response.body());
+                    } else {
+                        onFail(1000, "彩云天气接口出错啦~~~");
+                    }
+                } else if (body instanceof ZhixinBaseBean) {
+                    ZhixinBaseBean baseBean = (ZhixinBaseBean) response.body();
+                    if (TextUtils.isEmpty(baseBean.getStatus())) {
+                        onSuccess(response.body());
+                    } else {
+                        onFail(1000, baseBean.getStatus());
+                    }
+                } else if (body instanceof RollToolsBaseBean) {
+                    RollToolsBaseBean baseBean = (RollToolsBaseBean) response.body();
+                    if (baseBean.getCode() == 1) {
+                        onSuccess(response.body());
+                    } else {
+                        onFail(baseBean.getCode(), baseBean.getMsg());
+                    }
                 } else {
-                    onFail(baseBean.getStatus(), baseBean.getMsg());
-                }
-            } else if (body instanceof CaiyunWeatherBaseBean) {
-                //彩云天气
-                CaiyunWeatherBaseBean baseBean = (CaiyunWeatherBaseBean) response.body();
-                String status = baseBean.getStatus();
-                String api_status = baseBean.getApi_status();
-                if ("ok".equals(status) && "active".equals(api_status)) {
-                    onSuccess(response.body());
-                } else {
-                    onFail(1000, "彩云天气接口出错啦~~~");
-                }
-            } else if (body instanceof ZhixinBaseBean) {
-                ZhixinBaseBean baseBean = (ZhixinBaseBean) response.body();
-                if (TextUtils.isEmpty(baseBean.getStatus())) {
-                    onSuccess(response.body());
-                } else {
-                    onFail(1000, baseBean.getStatus());
-                }
-            } else if (body instanceof RollToolsBaseBean) {
-                RollToolsBaseBean baseBean = (RollToolsBaseBean) response.body();
-                if (baseBean.getCode() == 1) {
-                    onSuccess(response.body());
-                } else {
-                    onFail(baseBean.getCode(), baseBean.getMsg());
+                    onSuccess(body);
                 }
             } else {
-                onSuccess(body);
+                onFail(response.code(), HttpErrorConstants.ERR_NETEXCEPTION_ERROR);
             }
-        } else {
-            onFail(response.code(), HttpErrorConstants.ERR_NETEXCEPTION_ERROR);
+        } catch (Exception e) {
+            onFail(HttpErrorConstants.ERR_HTTPRESPONSE_JSONPARSE_ERROR_CODE, HttpErrorConstants.ERR_HTTPRESPONSE_JSONPARSE_ERROR);
         }
     }
 

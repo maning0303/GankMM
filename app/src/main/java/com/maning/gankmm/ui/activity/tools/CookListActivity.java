@@ -2,25 +2,23 @@ package com.maning.gankmm.ui.activity.tools;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maning.gankmm.R;
-import com.maning.gankmm.app.MyApplication;
 import com.maning.gankmm.bean.mob.MobCookCategoryEntity;
 import com.maning.gankmm.bean.mob.MobCookDetailEntity;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.listeners.OnItemClickListener;
 import com.maning.gankmm.ui.adapter.RecycleCookDetailItemAdapter;
 import com.maning.gankmm.ui.base.BaseActivity;
-import com.maning.gankmm.utils.MySnackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,56 +108,6 @@ public class CookListActivity extends BaseActivity implements OnRefreshListener,
         }
         return super.onOptionsItemSelected(item);
     }
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccess(int what, Object result) {
-            MobCookDetailEntity mobCookDetailEntity = (MobCookDetailEntity) result;
-            pageIndex++;
-            if (what == 0x001) {
-                mDatas.clear();
-                mDatas = mobCookDetailEntity.getList();
-                //延时展示刷新动画
-                MyApplication.getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mSwipeToLoadLayout.setRefreshing(false);
-                    }
-                }, 1000);
-            } else {
-                List<MobCookDetailEntity.ListBean> moreDatas = mobCookDetailEntity.getList();
-                mDatas.addAll(moreDatas);
-                mSwipeToLoadLayout.setLoadingMore(false);
-            }
-
-            //判断是不是还能加载更多
-            if (mDatas.size() >= mobCookDetailEntity.getTotal()) {
-                mSwipeToLoadLayout.setLoadMoreEnabled(false);
-            } else {
-                mSwipeToLoadLayout.setLoadMoreEnabled(true);
-            }
-
-            //刷新页面
-            initAdapter();
-
-        }
-
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            if (what == 0x001) {
-                mSwipeToLoadLayout.setRefreshing(false);
-            } else {
-                mSwipeToLoadLayout.setLoadingMore(false);
-            }
-            MySnackbar.makeSnackBarBlack(mToolbar, result);
-
-        }
-    };
 
     private void initAdapter() {
         if (mRecycleCookDetailItemAdapter == null) {

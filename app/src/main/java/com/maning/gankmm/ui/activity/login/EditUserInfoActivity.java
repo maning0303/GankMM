@@ -2,11 +2,12 @@ package com.maning.gankmm.ui.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bigkoo.pickerview.TimePickerView;
@@ -19,7 +20,6 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.maning.gankmm.R;
 import com.maning.gankmm.bean.mob.MobUserInfo;
-import com.maning.gankmm.http.callback.MyCallBack;
 import com.maning.gankmm.skin.SkinManager;
 import com.maning.gankmm.ui.base.BaseActivity;
 import com.maning.gankmm.utils.AppDateMgr;
@@ -260,54 +260,6 @@ public class EditUserInfoActivity extends BaseActivity {
             }
         }
     }
-
-    private MyCallBack httpCallBack = new MyCallBack() {
-        @Override
-        public void onSuccess(int what, Object result) {
-            dissmissProgressDialog();
-            if (what == 0x001) {
-                //保存成功
-                MySnackbar.makeSnackBarGreen(mToolbar, "数据更新成功");
-
-            } else if (what == 0x002) {
-                String userBaseInfo = (String) result;
-                if (TextUtils.isEmpty(userBaseInfo)) {
-                    return;
-                }
-                KLog.i("userBaseInfo:" + userBaseInfo);
-                String[] values = userBaseInfo.split("&");
-                if (values.length > 2) {
-                    String sex = values[0];
-                    String birth = values[1];
-                    String signature = values[2];
-
-                    //本地数据更新
-//                    MobUserInfo userCache = UserUtils.getUserCache();
-//                    userCache.setSex(sex);
-//                    userCache.setBirth(birth);
-//                    userCache.setSignature(signature);
-//                    //保存用户信息
-//                    UserUtils.saveUserCache(userCache);
-                    //刷新界面
-                    initDatas();
-                }
-
-            }
-        }
-
-        @Override
-        public void onSuccessList(int what, List results) {
-
-        }
-
-        @Override
-        public void onFail(int what, String result) {
-            dissmissProgressDialog();
-            if (what == 0x001) {
-                MySnackbar.makeSnackBarRed(mToolbar, result);
-            }
-        }
-    };
 
     private void updateUserInfo() {
         showProgressDialog("正在更新...");
