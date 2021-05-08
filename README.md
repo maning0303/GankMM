@@ -107,7 +107,7 @@
 ###### 图片加载 [glide](https://github.com/bumptech/glide)
 ###### 刷新框架 [SwipeToLoadLayout](https://github.com/Aspsine/SwipeToLoadLayout)
 ###### 解析Html [jsoup](https://github.com/jhy/jsoup)
-###### 权限管理库 [AndPermission](https://github.com/yanzhenjie/AndPermission)
+###### 权限管理库 [XXPermissions](https://github.com/getActivity/XXPermissions)
 ###### 提示框  [material-dialogs](https://github.com/afollestad/material-dialogs)  [Android-SVProgressHUD](https://github.com/saiwu-bigkoo/Android-SVProgressHUD)
 ###### RecycleView分割线 [RecyclerView-FlexibleDivider](https://github.com/yqritc/RecyclerView-FlexibleDivider)
 ###### ViewPager的标题控件 [smarttablayout](https://github.com/ogaclejapan/SmartTabLayout)
